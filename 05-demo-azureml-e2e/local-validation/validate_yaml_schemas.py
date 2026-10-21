@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Validate the Azure ML CLI v2 YAML files of this demo against the public JSON schemas.
 
 This is the SECONDARY check. The authoritative one is `validate_with_sdk_loaders.py`, which loads every

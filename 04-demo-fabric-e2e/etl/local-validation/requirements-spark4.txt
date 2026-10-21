@@ -1,0 +1,15 @@
+# Validated 2026-10-21, 39/39 metrics ok: Python 3.13.15, Java 17.0.20.1 (Temurin), Windows, local[2], spark.sql.ansi.enabled=true (the Spark 4 default). Java 21.0.12.1 (Temurin) also ran run_local.py to exit 0 with identical tables (compare_ground_truth.py was not re-run on 21).
+# Spark 4.1 + Delta 4.2 + Java 21 + Python 3.13 is the Fabric Runtime 2.0 line on Microsoft Learn (read 2026-10-21). This local run is not a Fabric run.
+# delta-spark 4.2.0 requires pyspark>=4.0.1,<=4.1.1, so pyspark 4.1.2 and 4.1.3 cannot be installed with it (not tried with another delta-spark).
+# numpy 2.5.4 needs Python 3.12 or newer; on Python 3.11 drop the numpy line and let pandas choose.
+# Resolved at validation time, not pinned here: py4j 0.10.9.9, importlib_metadata 8.7.1, python-dateutil 2.9.0.post0, six 1.17.0, zipp 4.1.1.
+# pyspark is a source distribution: the first install builds a wheel of about 450 MB (7 minutes here); cache pip in CI.
+# Linux: a pip download check found manylinux x86_64 cp313 wheels for every other pin, but the harness itself was only run on Windows.
+# The first Spark start downloads io.delta:delta-spark_4.1_2.13:4.2.0 and its dependencies from Maven Central (internet needed, then cached under ~/.ivy2).
+# Run from local-validation with JAVA_HOME set to a JDK 17 or 21: python run_local.py (it generates the 02-demo-data data with --with-drift when that folder is missing), then python compare_ground_truth.py. HADOOP_HOME with winutils.exe is needed on Windows only.
+# Both scripts exit 1 on a mismatch. CI should also assert "storage_format": "delta" in results/ground-truth-compare.json (run_local.py falls back to parquet when the Delta jar cannot be resolved).
+pyspark==4.1.1
+delta-spark==4.2.0
+pandas==3.0.6
+numpy==2.5.4
+tzdata==2026.5

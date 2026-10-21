@@ -18,8 +18,8 @@ env:
   PYTHONDONTWRITEBYTECODE: "1"
   PIP_DISABLE_PIP_VERSION_CHECK: "1"
 
-# One job per module, so a failure points at one folder. The Spark jobs (04 ETL), the Fabric ML job (04 ml-mlops),
-# the ETL-to-ML integration and the 06 Foundry job are added when their local validation is final (see the open issues).
+# One job per module, so a failure points at one folder. The heavy jobs (04 ETL on local Spark, the 04 Fabric ML kit and
+# the ETL-to-ML integration check) are in ci-data-ml.yml, which runs only when the data or the Fabric kits change.
 jobs:
   static:
     name: static (ruff, YAML/JSON/notebooks, neutrality, Fabric Git)
@@ -72,6 +72,19 @@ jobs:
           python-version: "3.13"
       - run: python -m pip install -r ci/requirements/mlflow-tour.txt
       - run: python -m pytest -q -p no:cacheprovider 03-demo-mlflow-tour/tests
+
+  infra:
+    name: infra (Bicep compile)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: az bicep install
+      # The root template pulls in the Azure ML modules of 05 and the Foundry and Fabric modules.
+      - name: Compile the template and its parameters
+        run: |
+          az bicep build --file infra/main.bicep --stdout > /dev/null
+          az bicep build-params --file infra/main.bicepparam --stdout > /dev/null
 
   aml:
     name: 05 Azure ML kit (tests, SDK loaders, Bicep, local run)

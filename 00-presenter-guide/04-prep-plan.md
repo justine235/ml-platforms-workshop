@@ -15,12 +15,12 @@ Nothing in this kit was run in a real Fabric, Azure ML or Foundry tenant. The co
 |---|---|---|---|
 | 1 | Date and length | Fri 2026-10-23, full day 09:00 to 17:00. A half-day deck (about 3.5 hours) also exists | Now |
 | 2 | Fabric capacity | A **paid** F SKU. F2 is the smallest; start the ETL on F4 or F8 (a starting point, not a verified sizing: time it in your rehearsal). The 60-day trial runs notebooks and pipelines but **not** Copilot, the data agent or AI functions, so Part 4 needs a paid capacity | Now |
-| 3 | Azure subscription for Azure ML | You can create resources (Contributor or Owner) and have quota for `Standard_DS3_v2` in the chosen region | Now |
-| 4 | Foundry project and chat model | One project and one chat model deployment. Pick a **Data Zone EU** deployment type if data residency matters; the "Global" types do not guarantee it | Now |
+| 3 | Azure subscription for Azure ML and Foundry | You can create resources and role assignments (Owner, or Contributor plus User Access Administrator) and have quota for `Standard_DS3_v2` in the chosen region | Now |
+| 4 | Foundry project and chat model | One project and one chat model deployment; `infra\` creates both (`gpt-5.4`, GlobalStandard). Pick a **Data Zone EU** deployment type if data residency matters (`chatModelSkuName`; ⚠ UNVERIFIED that the model offers it in your region); the "Global" types do not guarantee it | Now |
 | 5 | GitHub repository for CI/CD | A private repository you control, for Fabric Git sync and for the GitHub Actions + OIDC step on Azure ML | Now |
 | 6 | Hands-on or watch-only | **Watch-only.** The rebuild guides are the take-home. Hands-on would need a workspace and a capacity per person | Now |
 | 7 | Alert channel for the drift alert | Email. Teams also works if a shared connection exists | Thu morning |
-| 8 | Region | Fabric capacity, Azure ML workspace and Foundry project in the same geography (the first three are West Europe, France Central or Sweden Central) | Now |
+| 8 | Region | Fabric capacity, Azure ML workspace and Foundry project in the same geography. `infra\` defaults to France Central; Sweden Central also passed a what-if on the presenter subscription, West Europe was refused there | Now |
 
 Names to fill in: tenant admin ______ ; Azure subscription owner ______ ; GitHub org owner ______ ; venue AV contact ______ .
 
@@ -72,13 +72,13 @@ A demo shown from a pre-run result, with a screenshot behind it, is better than 
 Order matters: start the Azure ML infrastructure and the environment image first, because they build while you work on Fabric.
 
 Azure ML: start this first, it builds in the background (about 1.5 hours hands-on, 3 hours elapsed)
-- [ ] Deploy the infrastructure from `05-demo-azureml-e2e\infra` (run `what-if` first; 8 to 12 minutes). It creates the workspace `mlw-fleet-dev`, the cluster `cpu-cluster` (`Standard_DS3_v2`, min nodes 0, max 2), storage, Key Vault, Log Analytics, Application Insights and the container registry. If the region has no quota, switch to France Central or Sweden Central.
+- [ ] Deploy the infrastructure from the repository root `infra\` (`infra\README.md`: run `what-if` first; the Azure ML part takes 8 to 12 minutes). It creates the workspace `mlw-fleet-dev`, the cluster `cpu-cluster` (`Standard_DS3_v2`, min nodes 0, max 2), storage, Key Vault, Log Analytics, Application Insights and the container registry, plus the Foundry account, project and chat model deployment (and, with `deployFabricCapacity=true`, a paid Fabric capacity). The default region is France Central; if a region has no quota or is refused, pass another `location=`.
 - [ ] Register the environment `env-fleet-sklearn` and the three data assets (the reference features, `dim_asset` and the champion metrics) first: `rebuild-guide.md`, step 2. Every job, component, endpoint and schedule fails with "asset not found" until all four exist. The first image build takes 10 to 20 minutes (⚠ planning estimate); keep the `mlflow==2.16.2` pin.
 - [ ] Run the local fallback once: `05-demo-azureml-e2e\local-validation\run_local.py`.
 
 Fabric ETL (about 2 hours)
 - [ ] Create workspace `ws-fleet-dev`, assign the paid capacity, create the schema-enabled lakehouse `lh_fleet` (`04-demo-fabric-e2e\etl\rebuild-guide.md`).
-- [ ] Pin the workspace to Fabric Runtime 1.3 (Spark 3.5, Python 3.11) before you create or import any notebook. The kit was rehearsed on that line; Runtime 2.0 was not. The steps are in `04-demo-fabric-e2e\etl\rebuild-guide.md`.
+- [ ] Check which runtime the workspace starts on (`print(spark.version)` shows `4.1.x` on the default, Runtime 2.0) before you import any notebook, and keep it. The ETL passed on local Spark 4.1.1 and 3.5.6; nothing ran in Fabric yet. Runtime 1.3 (Spark 3.5, long-term support until March 2027) is the fallback if a notebook fails. The steps are in `04-demo-fabric-e2e\etl\rebuild-guide.md`.
 - [ ] Generate the data locally (about 5 seconds, 95 MB): `python fleet_data_generator.py --out data --truth-dir truth --with-drift` in `02-demo-data`; then upload `data` to `Files/raw`. Details: `02-demo-data\README.md`.
 - [ ] Import `nb_00` to `nb_03`, attach `lh_fleet` as the default lakehouse of each, run them once in order, and compare the counts with the table in the "Numbers to sanity-check" section below.
 

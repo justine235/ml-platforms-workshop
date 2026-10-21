@@ -1,6 +1,6 @@
 # Results: local validation of the Fabric ETL demo
 
-> Latest: the 2026-10-21 re-run on the current notebook sources ended **39/39 metrics ok, `all_ok: true`**, on local Spark 3.5.6 + delta-spark 3.2.1 (Windows, not a Fabric tenant). See "Round 5 (2026-10-21)" at the end for what it did and did not cover. The sections in between are kept as history; their counts are unchanged.
+> Latest: the 2026-10-21 re-run on the current notebook sources ended **39/39 metrics ok, `all_ok: true`**, on local Spark 3.5.6 + delta-spark 3.2.1, and again **39/39** on local Spark 4.1.1 + delta-spark 4.2.0 (Windows, not a Fabric tenant). See "Round 5 (2026-10-21)" and "Round 5, follow-up T5" at the end for what they did and did not cover. The sections in between are kept as history; their counts are unchanged.
 
 ## What ran, when, how
 - Run 1 (previous agent, 2026-10-19 20:30-20:36): full local Spark + Delta run of
@@ -34,7 +34,9 @@
 
 ## Versions
 - Python 3.13.15, PySpark 3.5.6, delta-spark 3.2.1 (resolved via Ivy at runtime),
-  pandas 3.0.6 (a local venv dedicated to this validation).
+  pandas 3.0.6 (a local venv dedicated to this validation). The Spark 4.1.1 stack of
+  Round 5, follow-up T5 uses a second venv; exact pins of both stacks are in
+  `local-validation\requirements-spark35.txt` and `requirements-spark4.txt`.
 - JDK: a local JDK 17 install. Hadoop native libs: a local Hadoop folder whose bin\ has winutils.exe/hadoop.dll.
 - Ground truth pipeline (`fleet_reference_pipeline.py`) was itself generated with
   Python 3.13.15 / pandas 3.0.6 / numpy 2.5.4 per `ground_truth.json`.
@@ -297,7 +299,8 @@ pipeline JSON was read against `00-presenter-guide\fact-sheets\fabric-de-rti.md`
   equal once local paths and timings are removed. So no cast, date or timestamp parse in the
   four notebooks raised an ANSI error on this dataset. This covers the ANSI class of change
   only; `compare_ground_truth.py` was not repeated on the scratch tables (they equal the
-  validated ones). The scratch copy is not part of the kit; the kit and its artifacts were
+  validated ones). The full Spark 4.1.1 run, with its own 39/39, is in "Round 5, follow-up
+  T5" below. The scratch copy is not part of the kit; the kit and its artifacts were
   not touched.
 - **What this run did NOT cover** (all `⚠ UNVERIFIED` until a rehearsal in a real
   workspace, listed in `VERIFY-BEFORE-FRIDAY.md`): every `IS_FABRIC` branch
@@ -308,10 +311,20 @@ pipeline JSON was read against `00-presenter-guide\fact-sheets\fabric-de-rti.md`
   of a freshly uploaded file looking missing is not documented); the readable
   `RuntimeError` path; `CREATE SCHEMA IF NOT EXISTS` in a schema-enabled lakehouse;
   pipeline parameter passing and Git rebinding; whether Runtime 1.3 can still be
-  selected; and Runtime 2.0 / Spark 4.1 (Delta 4.2, Java 21, Python 3.13), which these
-  notebooks never ran on (only the ANSI setting was tried, on Spark 3.5.6, see above).
-- Documentation changes in this round (no number affected): the Runtime 1.3 pin and its
-  EOSA / LTS dates, the default-lakehouse and restart step, the roughly 2-minute wait
+  selected; and Fabric Runtime 2.0 itself (Spark 4.1, Delta 4.2, Java 21, Python 3.13):
+  the notebooks ran on a local Spark 4.1.1 + Delta 4.2.0 stack (follow-up T5 below),
+  never in Fabric.
+- Documentation changes in this round (no number affected): the runtime guidance with its
+  EOSA / LTS dates (first written as a Runtime 1.3 pin, reworded in follow-up T5 to
+  "keep the Runtime 2.0 default, Runtime 1.3 LTS as the fallback"), the default-lakehouse
+  and restart step, the roughly 2-minute wait
   after an upload, and F64 re-labelled as a workshop-comfort recommendation rather than
   a documented requirement. See `rebuild-guide.md` sections 2 to 5, `README.md`,
   `run-of-show.md` (Pre-flight), `troubleshooting.md` and `VERIFY-BEFORE-FRIDAY.md`.
+
+## Round 5, follow-up T5 (2026-10-21): the same kit on a Spark 4 stack
+- Combos that passed (Windows, `local[2]`, Python 3.13.15, Temurin Java 17.0.20.1): Spark 3.5.6 + Delta 3.2.1 (the Runtime 1.3 line) and Spark 4.1.1 + Delta 4.2.0 (the Runtime 2.0 line); exact pins in `local-validation\requirements-spark35.txt` and `requirements-spark4.txt` (pyspark 4.1.1 is the newest release that delta-spark 4.2.0 accepts).
+- Result: on both stacks `run_local.py` exited 0 and `compare_ground_truth.py` ended **39/39 ok, `all_ok: true`**, Delta format confirmed; the Spark 4 run had `spark.sql.ansi.enabled=true` (the Spark 4 default) and needed no notebook, metric or source change, so the ipynb, Fabric Git sources and logicalIds are untouched and no slide number changes.
+- Spark 4.1.1 vs 3.5.6: all 18 Delta tables are identical (same columns, row counts and content, ignoring `_ingest_ts`) and the validation summaries are equal once paths and timings are removed; the Spark 4 logs carry non-fatal block-manager / heartbeat NullPointerException warnings with correct results and exit 0, and the wall times are not comparable (loaded machine, 1 GB driver).
+- Java, Linux and harness: Java 17.0.20.1 ran the full chain (`run_local.py` and `compare_ground_truth.py`, 39/39) on both stacks; Java 21.0.12.1, the Runtime 2.0 JDK, ran `run_local.py` on Spark 4.1.1 + Delta 4.2.0 to exit 0 with no mismatches and the same 18 tables (`compare_ground_truth.py` was not re-run on Java 21); Runtime 1.3's own Java 11 and Python 3.11 were not run; nothing was run on Linux (a `pip download` check only found manylinux cp313 wheels for numpy, pandas, tzdata, delta-spark and py4j, and pyspark is built from its source distribution); `_prepend_env_bin` in both scripts now uses `os.pathsep` (same behaviour on Windows, needed for Linux CI).
+- Still NOT covered: Fabric itself. This is a local library-stack proof, not a Fabric Runtime 2.0 run: every `IS_FABRIC` branch, the default-lakehouse binding, the file-listing cache, schema-enabled lakehouses, pipeline Git rebinding, whether Runtime 1.3 is still selectable and whether Fabric keeps the ANSI default stay `⚠ UNVERIFIED` (see `VERIFY-BEFORE-FRIDAY.md`).

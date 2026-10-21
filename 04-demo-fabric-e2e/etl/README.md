@@ -37,7 +37,7 @@ flowchart LR
 
 ## Prerequisites
 - Fabric capacity or trial.
-- Workspace `ws-fleet-dev`, pinned to Fabric Runtime 1.3 (Spark 3.5, Python 3.11). The ETL notebooks were rehearsed on Spark 3.5 [local Spark 3.5.6 + Delta, not a Fabric tenant]. Runtime 2.0 (Spark 4.1, Python 3.13) is the newer runtime and was not rehearsed with these notebooks, so pin 1.3 for the whole demo workspace. Menu path and dates: `rebuild-guide.md` section 3.
+- Workspace `ws-fleet-dev` on the workspace default runtime, Fabric Runtime 2.0 (Spark 4.1, Python 3.13), which Microsoft Learn lists as generally available and recommended. The ETL notebooks passed 39/39 metrics on local Spark 4.1.1 + Delta 4.2.0 and on local Spark 3.5.6 + Delta 3.2.1 [local runs, not a Fabric tenant]. Keep Runtime 1.3 (Spark 3.5, end-of-support-announced, Long Term Support through March 2027) only as the fallback if a notebook fails in Fabric. Menu path and dates: `rebuild-guide.md` section 3.
 - Schema-enabled lakehouse `lh_fleet`.
 - Raw data under `Files/raw`. After an upload, wait about 2 minutes before running `nb_00_setup` (file-listing cache, ⚠ UNVERIFIED duration; `rebuild-guide.md` section 4).
 - Four imported notebooks with `lh_fleet` attached as the DEFAULT lakehouse, and the session restarted after attaching it. Imports and Git syncs do not carry that binding into a new workspace (`rebuild-guide.md` section 5).
@@ -60,6 +60,8 @@ flowchart LR
 | `tools\build_notebooks.py` | regenerates `.ipynb` and Fabric Git notebook folders |
 | `local-validation\run_local.py` | local PySpark execution harness |
 | `local-validation\compare_ground_truth.py` | compares the local run with the generator ground truth (39 checks) |
+| `local-validation\requirements-spark35.txt` | exact pins of the Spark 3.5.6 + Delta 3.2.1 stack that passed 39/39 (the Runtime 1.3 line) |
+| `local-validation\requirements-spark4.txt` | exact pins of the Spark 4.1.1 + Delta 4.2.0 stack that passed 39/39 (the Runtime 2.0 line) |
 | `etl-facts-for-slides.md` | slide-author facts and code snippets |
 | `run-of-show.md` | minute-by-minute live script |
 | `rebuild-guide.md` | rebuild from empty tenant |
@@ -90,7 +92,7 @@ validated and `CHANGES-for-slides.md` for the exact figures.
 Participants reproduce bronze + silver in 30 minutes.
 
 ### Prerequisites
-- Their own Fabric workspace pinned to Runtime 1.3, and a schema-enabled lakehouse.
+- Their own Fabric workspace on the default runtime (Runtime 2.0; Runtime 1.3 is the fallback), and a schema-enabled lakehouse.
 - Raw data already uploaded to `Files/raw` (and at least 2 minutes old before `nb_00_setup` runs).
 - The first three notebooks imported, with `lh_fleet` attached as the default lakehouse and the session restarted.
 

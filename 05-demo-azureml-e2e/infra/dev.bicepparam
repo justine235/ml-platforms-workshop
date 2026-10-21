@@ -1,6 +1,6 @@
 using './main.bicep'
 
-param location = 'westeurope'
+param location = 'francecentral'
 param environmentName = 'dev'
 param prefix = 'fleet'
 param workspaceName = 'mlw-fleet-dev'

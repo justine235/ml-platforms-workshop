@@ -10,7 +10,7 @@
 | CP5 | Gold exception and match counts shown from notebook output or table preview |
 
 ## Pre-flight (before the audience arrives, ideally the day before)
-1. Runtime: the workspace is pinned to Fabric Runtime 1.3 (Spark 3.5, Python 3.11) and `print(spark.version)` shows `3.5.x`. Runtime 2.0 (Spark 4.1) was not rehearsed with these notebooks (`rebuild-guide.md` section 3).
+1. Runtime: the workspace uses the default runtime, Fabric Runtime 2.0 (Spark 4.1, Python 3.13), and `print(spark.version)` shows `4.1.x`. Runtime 1.3 (`3.5.x`) is only the fallback if a notebook fails (`rebuild-guide.md` section 3). Both Spark lines passed 39/39 locally; neither was run in Fabric (⚠ UNVERIFIED until the rehearsal).
 2. Default lakehouse: in each of the four notebooks `lh_fleet` is attached as the DEFAULT lakehouse (pin icon) and the session was restarted after attaching it. Imports and Git syncs do not carry that binding into a new workspace.
 3. Raw files: `Files/raw` was uploaded at least 2 minutes before `nb_00_setup` runs (file-listing cache, ⚠ UNVERIFIED duration). If `nb_00_setup` stops with "Could not list Files/raw in the attached lakehouse", wait a minute and re-run the cell.
 4. Warm session: start one notebook session early, and run the whole chain once the day before so the outputs can serve as the fallback.

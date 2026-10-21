@@ -6,7 +6,7 @@
 - **Action:**
 
 ```powershell
-az group create --name rg-fleet-aml-dev --location westeurope
+az group create --name rg-fleet-aml-dev --location francecentral
 az deployment group what-if `
   --resource-group rg-fleet-aml-dev `
   --template-file .\infra\main.bicep `

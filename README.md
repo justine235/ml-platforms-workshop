@@ -41,7 +41,8 @@ The deck also has optional slides and a half-day version (core slides only). The
 | `05-demo-azureml-e2e` | Demo 2b on Azure ML v2: pipeline, MLflow, registry, online and batch endpoints, monitoring, Bicep, GitHub Actions |
 | `06-demo-foundry-data-agent` | Demo 3: reconciliation walk-through, a Fabric data agent built live, and a Foundry agent on top, with guardrails and an offline evaluation harness |
 | `deploy` | How to deploy each module in your own Azure and Fabric tenants, and how to remove it again |
-| `ci`, `.github` | Continuous integration (`ci.yml`), the manual-only deploy workflows, the Copilot cloud agent setup and the repository checks (`ci\static_checks.py`) |
+| `infra`, `azure.yaml` | Root Bicep deployment (subscription scope): the Azure ML workspace, the Foundry account, project and chat model, and an optional Fabric capacity. See `infra\README.md` |
+| `ci`, `.github` | Continuous integration (`ci.yml` for the light checks, `ci-data-ml.yml` for the Spark ETL and the Fabric ML kit), the manual-only deploy workflows, the Copilot cloud agent setup and the repository checks (`ci\static_checks.py`) |
 
 Every demo kit follows the same pattern: `README.md` (what and why), `run-of-show.md` (the live script with a short and a full path), `rebuild-guide.md` (every step from an empty tenant), `troubleshooting.md`, `VERIFY-BEFORE-FRIDAY.md`, `RESULTS.md` (what was really run and what was not) and a `*-facts-for-slides.md` that backs the slide numbers.
 
@@ -97,21 +98,21 @@ The Fabric block of Part 3 is 55 minutes including its intro slides, so plan on 
 
 ## Deploy it in your own subscription
 
-Push this repository to your own GitHub account (private) and follow `deploy\README.md`. It lists, per module, what deploys where, the commands, the one-time setup (capacity, tenant settings, GitHub OIDC) and the teardown. Today the Azure ML kit has infrastructure as code (Bicep). The Fabric and Foundry parts are guided by hand, and automating them is tracked in the open issues.
+Push this repository to your own GitHub account (private) and follow `deploy\README.md`. It lists, per module, what deploys where, the commands, the one-time setup (capacity, tenant settings, GitHub OIDC) and the teardown. Infrastructure as code (Bicep) covers the Azure ML workspace, the Foundry account with its project and chat model, and an optional Fabric capacity (`infra\README.md`: it compiles and passes a what-if and a validation, and has never been deployed). The Fabric workspace, the lakehouse and the notebooks are created by hand or by Git sync, and automating that is tracked in the open issues.
 
-The workflows in `.github\workflows` check the repository on every push without any cloud access. The four deploy workflows stay switched off until you set the variable `ENABLE_AZURE_DEPLOY` and the OIDC variables.
+The workflows `ci.yml` and `ci-data-ml.yml` check the repository on GitHub-hosted runners without any cloud access (see below). The four deploy workflows stay switched off until you set the variable `ENABLE_AZURE_DEPLOY` and the OIDC variables.
 
 ## How far this has been tested
 
-Be honest with the room and with yourself: **nothing in this kit has been run in a real Fabric, Azure ML or Foundry tenant.** It was built and checked offline against the same synthetic data:
+Be honest with the room and with yourself: **nothing in this kit has been run in a real Fabric, Azure ML or Foundry tenant.** It was built and checked offline, on a laptop and on GitHub Actions, against the same synthetic data:
 
 - **Data and reference pipeline**: deterministic; the reference pipeline checks its own output against the hidden answer key.
-- **Fabric ETL**: the notebooks ran locally on PySpark and match the reference pipeline on every checked count.
-- **Fabric ML and MLOps**: the notebooks ran locally on pandas, scikit-learn and MLflow; the Git folders (notebooks, pipelines, Variable Library) are checked by `04-demo-fabric-e2e\tools\check_fabric_git.py` against the public `microsoft/fabric-cicd` sample.
+- **Fabric ETL**: the notebooks ran on PySpark and match the reference pipeline on every checked count: 39 of 39 checks on Spark 4.1.1 with Delta 4.2.0 and on Spark 3.5.6 with Delta 3.2.1, on a laptop and on GitHub Actions (Linux).
+- **Fabric ML and MLOps**: the notebooks ran on pandas, scikit-learn and MLflow, with a fake Spark for the Fabric-only calls, on two library sets (a Runtime 2.0-like one on Python 3.13 and a Runtime 1.3 one on Python 3.11). The ETL's Delta tables feed the ML notebooks (14 checks). The Git folders (notebooks, pipelines, Variable Library) are checked by `04-demo-fabric-e2e\tools\check_fabric_git.py` against the public `microsoft/fabric-cicd` sample.
 - **Azure ML**: every YAML loads with the real `azure-ai-ml` SDK loaders, the pipeline builds, and one offline end-to-end run reproduces the gate decision.
 - **MLflow tour**: the registry behaviour was probed on four MLflow versions (2.12.2, 2.16.2, 2.22.0, 3.17.0).
-- **Foundry and data agent**: dry-run first; an offline harness grades the expected answers (30 questions) against the reference tables.
-- **Repository checks** (`ci.yml`): lint, parsing of every YAML, JSON and notebook, a neutrality and secret scan, the strict deck build, and the tests of modules 03 and 05. The workflow is green on GitHub (four jobs: static checks, deck, module 03, module 05). The deck job runs on Windows because the builder measures text with Windows fonts. The Spark ETL, the Fabric ML kit, the ETL-to-ML integration and the Part 4 kit are checked locally for now (commands in `AGENTS.md`); adding them to the workflow is tracked in the open issues.
+- **Foundry and data agent**: dry-run first; an offline harness grades the expected answers (30 questions) against the reference tables; the two Spark notebooks ran on local Spark and Delta, and the tests, the example SQL, the harness and the agent dry run run on GitHub Actions.
+- **Repository checks on GitHub Actions** (Linux, plus Windows for the deck). `ci.yml` runs on every push: lint, parsing of every YAML, JSON and notebook, a neutrality and secret scan, the strict deck build (on Windows, because the builder measures text with Windows fonts), the tests of modules 03, 05 and 06, and a Bicep compile of `infra\`. `ci-data-ml.yml` runs the heavy part when `02-demo-data`, `04-demo-fabric-e2e` or `ci\requirements` change, or by hand (about an hour of runner time): the Spark ETL on Spark 3.5 and 4.1, the Fabric ML kit on the two library sets, and the ETL-to-ML integration on three combinations. Both were green when the kit was handed over (the Actions tab has the run pages). The commands are the same as in `AGENTS.md`. A Linux run is not a Fabric run: the first real run in a tenant is still the test.
 
 That is why every kit ends with `VERIFY-BEFORE-FRIDAY.md`, and why `VERIFY-BEFORE-FRIDAY.md` at this level puts the checks in priority order. Spend a rehearsal day on it.
 

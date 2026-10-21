@@ -82,7 +82,13 @@ def render(slides: dict[str, list[dict]]) -> str:
             sid = f"**{r['id']}**" if r["layout"] == "demo" else r["id"]
             out.append(f"| {hm(t)} | {sid} | {fmt(r['min'])} | {'core' if r['core'] else 'optional'} | {r['headline']} |")
             t += r["min"]
-        flag = "" if abs(total - budget) <= 3 else f"  **Check: budget is {budget}.**"
+        over = total - budget
+        if abs(over) > 3:
+            flag = f"  **Check: budget is {budget}.**"
+        elif over > 0:
+            flag = f"  Over the budget by {fmt(over)} min: skip or shorten an optional slide to end on time."
+        else:
+            flag = ""
         out += ["", f"{len(rows)} slides, {fmt(total)} min in total, {fmt(core_total)} min core, "
                 f"{fmt(total - core_total)} min optional.{flag}", ""]
         half_rows.append((label, sum(1 for r in rows if r["core"]), core_total))

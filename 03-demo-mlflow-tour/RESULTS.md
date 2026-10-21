@@ -28,7 +28,7 @@ Ran `code\train_fleet_model.py` (model kind `hist_gradient_boosting`) through
 All 4 runs produced **byte-identical** metrics: valid pr_auc 0.3490 / roc_auc 0.7037, test
 pr_auc 0.3882 / roc_auc 0.7551, row/positive counts exactly matching
 `02-demo-data\reference_out\ground_truth.json` within the contract's +-0.03 tolerance
-(counts exact). Commands used (one per venv, via the shared `heavy.ps1` lock):
+(counts exact). Commands used (one per venv, run one after the other):
 
 ```powershell
 & "<venv>\Scripts\python.exe" validation\registry_matrix.py --label <2122|2162|2222|3x> \

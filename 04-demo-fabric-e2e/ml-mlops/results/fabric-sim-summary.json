@@ -48,6 +48,7 @@
       "champion_test_precision_at_top5pct",
       "champion_version",
       "decision",
+      "metrics_source",
       "passed",
       "pr_auc_gain",
       "precision_drop",

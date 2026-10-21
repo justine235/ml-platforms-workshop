@@ -439,10 +439,21 @@ def model_pointer_schema() -> list[str]:
     return ["model_name", "champion_version", "updated_at_utc", "updated_by", "note"]
 
 
+_MISSING_TABLE_MARKERS = ("TABLE_OR_VIEW_NOT_FOUND", "cannot be found", "does not exist")
+
+
+def _is_missing_table_error(exc: Exception) -> bool:
+    # pyspark is not importable in local runs, so Spark's AnalysisException is matched by class name or message.
+    return type(exc).__name__ == "AnalysisException" or any(marker in str(exc) for marker in _MISSING_TABLE_MARKERS)
+
+
 def read_model_pointer(context: NotebookContext, table_name: str = "ml.model_pointer") -> pd.DataFrame:
     try:
         frame = context.read_table(table_name)
-    except (FileNotFoundError, KeyError):
+    except Exception as exc:
+        # No pointer yet: local runs raise KeyError / FileNotFoundError, a fresh Fabric lakehouse raises Spark's AnalysisException.
+        if not (isinstance(exc, (FileNotFoundError, KeyError)) or _is_missing_table_error(exc)):
+            raise
         frame = pd.DataFrame(columns=model_pointer_schema())
     return frame.reindex(columns=model_pointer_schema())
 

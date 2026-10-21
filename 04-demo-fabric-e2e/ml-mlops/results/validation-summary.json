@@ -64,30 +64,29 @@
   },
   "gate": {
     "challenger_metrics": {
-      "positives": 274,
-      "pr_auc": 0.9602,
-      "precision_at_top5pct": 0.8464,
-      "prevalence": 0.0448,
-      "recall_at_top5pct": 0.9453,
-      "roc_auc": 0.9959,
-      "rows": 6111
+      "test_pr_auc": 0.3882,
+      "test_precision_at_top5pct": 0.3758,
+      "test_recall_at_top5pct": 0.4197,
+      "test_roc_auc": 0.7551,
+      "valid_pr_auc": 0.349,
+      "valid_roc_auc": 0.7037
     },
-    "challenger_test_pr_auc": 0.9602,
-    "challenger_test_precision_at_top5pct": 0.8464,
+    "challenger_test_pr_auc": 0.3882,
+    "challenger_test_precision_at_top5pct": 0.3758,
     "challenger_version": "2",
     "champion_metrics": {
-      "positives": 274,
-      "pr_auc": 0.9602,
-      "precision_at_top5pct": 0.8464,
-      "prevalence": 0.0448,
-      "recall_at_top5pct": 0.9453,
-      "roc_auc": 0.9959,
-      "rows": 6111
+      "test_pr_auc": 0.3882,
+      "test_precision_at_top5pct": 0.3758,
+      "test_recall_at_top5pct": 0.4197,
+      "test_roc_auc": 0.7551,
+      "valid_pr_auc": 0.349,
+      "valid_roc_auc": 0.7037
     },
-    "champion_test_pr_auc": 0.9602,
-    "champion_test_precision_at_top5pct": 0.8464,
+    "champion_test_pr_auc": 0.3882,
+    "champion_test_precision_at_top5pct": 0.3758,
     "champion_version": "1",
     "decision": "hold",
+    "metrics_source": "logged holdout metrics of the source run; model fit on train splits only",
     "passed": false,
     "pr_auc_gain": 0.0,
     "precision_drop": 0.0,
@@ -124,7 +123,7 @@
     "best_candidate": "hist_gradient_boosting",
     "child_runs": {
       "hist_gradient_boosting": {
-        "run_id": "82f14504364140108579e218f0d028a2",
+        "run_id": "2911c69db5814a8b9058904ffad7c365",
         "test_pr_auc": 0.3882,
         "test_precision_at_top5pct": 0.3758,
         "test_recall_at_top5pct": 0.4197,
@@ -133,7 +132,7 @@
         "valid_roc_auc": 0.7037
       },
       "hist_gradient_boosting_no_fault_codes": {
-        "run_id": "87128f135aa24e4db6883f013a38e7c0",
+        "run_id": "000844e826ea4540ba69f57abd80eaa4",
         "test_pr_auc": 0.2732,
         "test_precision_at_top5pct": 0.281,
         "test_recall_at_top5pct": 0.3139,
@@ -142,7 +141,7 @@
         "valid_roc_auc": 0.7083
       },
       "logistic_regression": {
-        "run_id": "b7aa6075a41a4577a2fbf9ab81f93140",
+        "run_id": "8c8178d8378f45218b6ba978095cee0c",
         "test_pr_auc": 0.2924,
         "test_precision_at_top5pct": 0.3072,
         "test_recall_at_top5pct": 0.3431,
@@ -151,7 +150,7 @@
         "valid_roc_auc": 0.7301
       },
       "prevalence": {
-        "run_id": "2b0234e874934db38ab8048d25bc3313",
+        "run_id": "b9b4d07f9b274a018099553df1936520",
         "test_pr_auc": 0.0448,
         "test_precision_at_top5pct": 0.0261,
         "test_recall_at_top5pct": 0.0292,
@@ -160,7 +159,7 @@
         "valid_roc_auc": 0.5
       },
       "rule_baseline": {
-        "run_id": "816e73d4f7294ffc94fd05c6ad92ead0",
+        "run_id": "e510cdfcc7e44c5f91e019919024def0",
         "test_pr_auc": 0.068,
         "test_precision_at_top5pct": 0.1667,
         "test_recall_at_top5pct": 0.1861,
@@ -178,7 +177,7 @@
     "best_candidate": "hist_gradient_boosting",
     "child_runs": {
       "hist_gradient_boosting": {
-        "run_id": "8190cbbf9dd34d08819f8ab405197f23",
+        "run_id": "a6faa572237b42a79cb9fe9875d1d773",
         "test_pr_auc": 0.3882,
         "test_precision_at_top5pct": 0.3758,
         "test_recall_at_top5pct": 0.4197,
@@ -187,7 +186,7 @@
         "valid_roc_auc": 0.7037
       },
       "hist_gradient_boosting_no_fault_codes": {
-        "run_id": "d2345036c90f49c49dd3a67175c0611e",
+        "run_id": "987ce868ca474f77bf841fef00e3e983",
         "test_pr_auc": 0.2732,
         "test_precision_at_top5pct": 0.281,
         "test_recall_at_top5pct": 0.3139,
@@ -196,7 +195,7 @@
         "valid_roc_auc": 0.7083
       },
       "logistic_regression": {
-        "run_id": "5b689e100dbd49d29f99bbf541dcd346",
+        "run_id": "2c3b051f086d4617ba7e944312a8141d",
         "test_pr_auc": 0.2924,
         "test_precision_at_top5pct": 0.3072,
         "test_recall_at_top5pct": 0.3431,
@@ -205,7 +204,7 @@
         "valid_roc_auc": 0.7301
       },
       "prevalence": {
-        "run_id": "169897239b9c407c8670fdc78971f895",
+        "run_id": "9d2ef2a9b81b4365993aac943c84ff5e",
         "test_pr_auc": 0.0448,
         "test_precision_at_top5pct": 0.0261,
         "test_recall_at_top5pct": 0.0292,
@@ -214,7 +213,7 @@
         "valid_roc_auc": 0.5
       },
       "rule_baseline": {
-        "run_id": "d6c125ac15dc464386b4a00e0d81f914",
+        "run_id": "afd279047c574b3eb65b0400b0bdd056",
         "test_pr_auc": 0.068,
         "test_precision_at_top5pct": 0.1667,
         "test_recall_at_top5pct": 0.1861,

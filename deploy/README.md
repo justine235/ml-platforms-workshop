@@ -11,7 +11,7 @@ This repository is the whole workshop kit. This page says, module by module, wha
 | `02-demo-data` | your laptop or CI | `python 02-demo-data/fleet_data_generator.py --out 02-demo-data/data --truth-dir 02-demo-data/truth --with-drift` (about 5 seconds) | Ready |
 | `03-demo-mlflow-tour` | laptop, then one Fabric and one Azure ML workspace | Run it locally, then import its notebook in Fabric and in Azure ML (its README) | Ready |
 | `04-demo-fabric-e2e` (ETL, then ML and MLOps) | Fabric workspace | Capacity, workspace, runtime check, `lh_fleet`, raw data, then Git sync or `cicd/deploy.py` (`04-demo-fabric-e2e/README.md`, "Before you start") | Guided by hand. The item deploy script has not run in a tenant |
-| `infra` (repository root) | Azure subscription | One deployment, `az deployment sub create` with `infra/main.bicep` or `azd provision`: the Azure ML resources of module 05, a Foundry account with a project and a chat model, and an optional paid Fabric capacity (`infra/README.md`) | The Bicep compiles in CI. What-if and validate passed on one subscription. Never deployed |
+| `infra` (repository root) | Azure subscription | One deployment, `az deployment sub create` with `infra/main.bicep` or `azd provision`: the Azure ML resources of module 05, a Foundry account with a project and a chat model, and an optional paid Fabric capacity. The default region is `francecentral`; a subscription policy can refuse a region (West Europe was refused on the presenter's), so run the what-if first (`infra/README.md`) | The Bicep compiles in CI. What-if and validate passed on one subscription. Never deployed |
 | `05-demo-azureml-e2e` | Azure subscription | The resources come from `infra/` above, or from `05-demo-azureml-e2e/infra/main.bicep` alone; then the `az ml` steps of `rebuild-guide.md`, or the `aml-*` workflows | The Bicep compiles in CI. Never deployed |
 | `06-demo-foundry-data-agent` | Fabric lakehouse and the Foundry project of `infra/` | `fabric-setup/nb_10` and `nb_11` in the Fabric lakehouse, the data agent in the Fabric UI, then `foundry-agent/create_agent.py` | Guided by hand |
 
@@ -73,7 +73,8 @@ Check: `python 04-demo-fabric-e2e/tools/check_fabric_git.py --list` must report 
 
 | Workflow | Runs | Purpose |
 |---|---|---|
-| `ci.yml` | on every push and pull request | Lint, parse every YAML, JSON and notebook, neutrality and secret scan, strict deck build, module tests. No cloud access needed |
+| `ci.yml` | on every push and pull request | Lint, parse every YAML, JSON and notebook, neutrality and secret scan, strict deck build, the tests of modules 03, 05 and 06, Bicep compile of `infra/`. No cloud access needed |
+| `ci-data-ml.yml` | when `02-demo-data`, `04-demo-fabric-e2e` or `ci/requirements` change, and by hand | The Spark ETL on Spark 3.5 and 4.1, the Fabric ML kit on two library sets, and the ETL-to-ML integration. About an hour of runner time per run. No cloud access needed |
 | `copilot-setup-steps.yml` | for the Copilot cloud agent | Prepares its environment (Java, Python, linters) |
 | `aml-infra.yml`, `aml-train-pipeline.yml`, `aml-promote-model.yml`, `fabric-mlops-deploy.yml` | **manual or on a path change, and only when switched on** | Deploy to your tenants with GitHub OIDC, no stored secret |
 

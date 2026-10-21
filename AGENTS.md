@@ -21,19 +21,21 @@ Read `README.md` first, then the README of the module you work on.
 |---|---|---|---|
 | Data | `02-demo-data/` | Deterministic generator, reference pipeline and contract: the single source of truth | `python 02-demo-data/fleet_data_generator.py --out 02-demo-data/data --truth-dir 02-demo-data/truth --with-drift` |
 | MLflow tour | `03-demo-mlflow-tour/` | MLflow concepts: local, Fabric and Azure ML notebooks, portability proof | `pytest 03-demo-mlflow-tour/tests`; see its `rebuild-guide.md` |
-| Fabric ETL | `04-demo-fabric-e2e/etl/` | Bronze, silver, gold and reconciliation notebooks plus `pl_fleet_etl` | `etl/local-validation/run_local.py` then `compare_ground_truth.py` (JDK 17 or 21 and PySpark; 39 checks must be ok) |
-| Fabric ML and MLOps | `04-demo-fabric-e2e/ml-mlops/` | Features, MLflow training, registration, scoring, drift, promotion gate, `pl_fleet_daily`, CI/CD | `ml-mlops/local-validation/run_local.py`, `pytest ml-mlops/local-validation/tests`, `integration_etl_to_ml.py` |
-| Azure ML | `05-demo-azureml-e2e/` | Bicep infrastructure, jobs, pipelines, endpoints, CI/CD workflow templates | see `mlops/github-workflows/ci.yml` (pytest, SDK loaders, `az bicep build`, `run_local.py`) |
-| Foundry data agent | `06-demo-foundry-data-agent/` | Fabric data agent plus a Foundry agent over reconciled logs | `pytest 06-demo-foundry-data-agent/tests`, `data-agent/validate_examples.py`, `foundry-agent/eval_harness.py --agent oracle` |
+| Fabric ETL | `04-demo-fabric-e2e/etl/` | Bronze, silver, gold and reconciliation notebooks plus `pl_fleet_etl` | `etl/local-validation/run_local.py` then `compare_ground_truth.py` (JDK 17 or 21 and PySpark; 39 checks must be ok). CI: the `etl` job of `ci-data-ml.yml` (Spark 3.5 with Java 17, Spark 4.1 with Java 21), then `ci/assert_etl_results.py` |
+| Fabric ML and MLOps | `04-demo-fabric-e2e/ml-mlops/` | Features, MLflow training, registration, scoring, drift, promotion gate, `pl_fleet_daily`, CI/CD | From `ml-mlops/`: `python -m pytest -q`, `local-validation/run_local.py`, `compare_ground_truth.py`, `fabric_sim.py`, and `integration_etl_to_ml.py` once the ETL has produced `lh_fleet`; `tools/build_notebooks.py` must leave the `fabric-git` folders unchanged. CI: the `ml-mlops` and `integration` jobs of `ci-data-ml.yml`, on `ci/requirements/ml-mlops.txt` (Python 3.13) and `ml-mlops-rt13.txt` (Python 3.11) |
+| Azure ML | `05-demo-azureml-e2e/` | Bicep infrastructure, jobs, pipelines, endpoints, CI/CD workflow templates | The `aml` job of `.github/workflows/ci.yml` (pytest, SDK loaders, `az bicep build`, `local-validation/run_local.py`) |
+| Foundry data agent | `06-demo-foundry-data-agent/` | Fabric data agent plus a Foundry agent over reconciled logs | The `foundry` job of `ci.yml`: `pytest 06-demo-foundry-data-agent/tests`, `data-agent/validate_examples.py`, `foundry-agent/eval_harness.py --agent oracle` and `create_agent.py --dry-run` |
 | Slides | `01-slides/` | python-pptx deck builder (105 slides, 51 core for a half day) | `cd 01-slides && python build_deck.py --out out/strict` must print `RESULT: clean`. It measures text with Windows fonts, so run it on Windows (the `deck` job of `ci.yml` uses `windows-latest`) |
 | Presenter guide | `00-presenter-guide/` | Day plan, slide timeline, Q&A, prep plan, glossary | none |
-| Deploy | `deploy/`, `.github/workflows/` | How to deploy each module in a subscription, plus `ci.yml` and the manual-only deploy workflows | `python ci/static_checks.py`, `ruff check .`, and `az bicep build --file <file>` for every Bicep file |
+| Infra | `infra/`, `azure.yaml` | Subscription-scope Bicep: the Azure ML workspace (module 05), a Foundry account with project and chat model, an optional Fabric capacity. Default region `francecentral` | `az bicep build --file infra/main.bicep` (the `infra` job of `ci.yml`). A what-if needs a subscription: `infra/README.md` |
+| Deploy | `deploy/`, `.github/workflows/` | How to deploy each module in a subscription, plus `ci.yml`, `ci-data-ml.yml` and the manual-only deploy workflows | `python ci/static_checks.py`, `ruff check .`, `actionlint` on the workflows, and `az bicep build --file <file>` for every Bicep file |
 
 ## Runtime facts to keep consistent (Microsoft Learn, lifecycle page, checked 2026-10-21)
 
 - Fabric Runtime 2.0 (Spark 4.1) is GA and the recommended runtime.
 - Fabric Runtime 1.3 (Spark 3.5) is end-of-support-announced (2026-09-30) and in long-term support until March 2027.
-- The Python code must run on both stacks. The ETL job of `ci.yml` is where both are tested (an open issue until it exists). Do not change a pin or a runtime statement without checking Learn again.
+- The Python code must run on both stacks. `ci-data-ml.yml` tests both: the ETL on Spark 3.5 (Runtime 1.3) and Spark 4.1 (Runtime 2.0), and the Fabric ML kit on a Runtime 2.0-like and a Runtime 1.3 library set. These are Linux approximations built from Microsoft's public package lists, not Fabric images. Do not change a pin or a runtime statement without checking Learn again.
+- The files in `ci/requirements/` pin each CI job. MLflow 2.x needs SQLAlchemy 2.0.x, and an unpinned install resolves SQLAlchemy 2.1, which fails on import: keep the pins.
 
 ## What has not been verified
 
@@ -41,6 +43,6 @@ Nothing in this repository has run in a real Fabric, Azure ML or Foundry tenant.
 
 ## Working without the author
 
-Open work is tracked as GitHub issues labelled `module:*`. Pick one, work on a branch, open a pull request, and make sure the `ci` workflow is green or explain exactly why a job cannot be green.
+Open work is tracked as GitHub issues labelled `module:*`. Issues labelled `needs-tenant` can only be finished in a real Azure or Fabric tenant; the others can be done offline and checked by CI. Pick one, work on a branch, open a pull request, and make sure the `ci` workflow is green or explain exactly why a job cannot be green.
 
 The deploy workflows (`aml-*.yml`, `fabric-mlops-deploy.yml`) need a real tenant and stay skipped unless the repository variable `ENABLE_AZURE_DEPLOY` is `true`. Never turn them on, and never add a cloud credential, from an agent session. Anything that must be checked in a tenant goes into a `VERIFY-BEFORE-FRIDAY.md` and into the pull request body.

@@ -19,7 +19,7 @@ The deck gives the Fabric half 55 minutes: framing 11, ETL 17, ML and MLOps 27. 
 ## Before you start (once per workspace)
 
 1. **Capacity and workspace.** A trial capacity runs these notebooks and pipelines. The data agent in Part 4 needs a paid capacity (F2 or higher). Create the workspace `ws-fleet-dev`. Sizing, regions and tenant settings are in `etl\rebuild-guide.md` section 2.
-2. **Runtime.** Pin the workspace to Fabric Runtime 1.3 (Spark 3.5, Python 3.11). Both kits were rehearsed on that Spark and Python line. Runtime 2.0 was not rehearsed with the ETL notebooks. The exact steps are in `etl\rebuild-guide.md`.
+2. **Runtime.** Keep the workspace default, Fabric Runtime 2.0 (Spark 4.1, Python 3.13). Runtime 1.3 (Spark 3.5, Python 3.11; long-term support until March 2027) is the fallback if a notebook fails. Nothing was run in Fabric itself: the ETL notebooks passed 39 of 39 checks on Spark 4.1.1 + Delta 4.2.0 and on Spark 3.5.6 + Delta 3.2.1 (on a laptop and in GitHub Actions), and the ML notebooks ran on the Python libraries of both runtimes. The exact steps are in `etl\rebuild-guide.md` section 3, and the Spark calls to watch in the first run are in `ml-mlops\VERIFY-BEFORE-FRIDAY.md`.
 3. **Lakehouse.** Create the schema-enabled lakehouse `lh_fleet`.
 4. **Raw data.** Put the generated files under `Files/raw` (`etl\rebuild-guide.md` section 4 has five ways to do it). After an upload, wait about two minutes before running `nb_00_setup`: the file listing can lag.
 5. **Items.** Get the notebooks and pipelines into the workspace in one of two ways:
@@ -60,7 +60,7 @@ Run these from the workshop folder (the one that contains `02-demo-data`).
 | Fake Fabric run | `ml-mlops\local-validation\fabric_sim.py` | The generated Fabric notebooks run end to end with stand-ins for `spark` and `notebookutils` |
 | ETL to ML hand-off | `ml-mlops\local-validation\integration_etl_to_ml.py` | The ML notebooks accept the tables the ETL notebooks actually write |
 
-None of this ran in a real Fabric tenant. `..\VERIFY-BEFORE-FRIDAY.md` lists what to confirm there.
+The same checks run in GitHub Actions on Linux (`.github\workflows\ci-data-ml.yml`, whenever `02-demo-data`, this folder or `ci\requirements` change): the ETL on Spark 3.5 and 4.1, the ML kit on a Runtime 2.0-like and a Runtime 1.3 library set, and the ETL to ML hand-off on three combinations of the two. All seven jobs were green when this kit was prepared. None of this ran in a real Fabric tenant. `..\VERIFY-BEFORE-FRIDAY.md` lists what to confirm there.
 
 ## Labs for participants
 

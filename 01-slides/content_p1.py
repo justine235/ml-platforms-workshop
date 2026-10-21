@@ -464,7 +464,7 @@ TRANSITION: The registry differences are important, but the quieter trap is vers
         ["Surface", "Verified version state", "Safe workshop rule"],
         [
             ["Fabric Runtime 1.3", "Bundled `mlflow-skinny 2.12.2`", "Classic MLflow 2.x patterns only."],
-            ["Fabric Runtime 2.0", "Bundled `mlflow-skinny 2.22.0`", "Current GA runtime, still MLflow 2.x by default."],
+            ["Fabric Runtime 2.0", "Bundled `mlflow-skinny 2.22.0`", "GA and recommended runtime, still MLflow 2.x by default."],
             ["Fabric MLflow 3", "Supported up to 3.1 with explicit install", "Treat as Fabric-only extension, not shared baseline."],
             ["Azure ML", "`mlflow<=2.16.2` with `azureml-mlflow`", "Pin the environment and stay on classic model logging."],
         ],
@@ -532,7 +532,7 @@ TRANSITION: Now that the audience has the vocabulary, I can walk the live demo w
         [
             ("Local: show the tracking URI, experiment, and one finished leaderboard", "5 min"),
             ("Fabric: open the Experiment item and compare the same run shape", "5 min"),
-            ("Fabric: call out runtime pin and version-first model registration", "5 min"),
+            ("Fabric: call out the runtime's MLflow version and version-first registration", "5 min"),
             ("Azure ML: show the tracking URI and the `mlflow<=2.16.2` pin", "5 min"),
             ("Azure ML: show registration / no-code deploy path and close on portability", "5 min"),
         ],
@@ -587,7 +587,7 @@ What does not move cleanly is the wrapper around it: run history, lineage views,
 
 That is not a weakness. It is normal. A model artifact is portable. An operating model is not automatically portable.
 
-WATCH OUT: The tested direction is forward only. A model exported under MLflow 2.12.2 loaded under 3.17.0 with identical predictions. The reverse, a model saved by MLflow 3.x and loaded on a 2.x runtime such as Fabric Runtime 1.3 or Azure ML, was not tested and I would expect it to fail (3.x saves scikit-learn models in the skops format by default). Train on the oldest runtime you plan to target.
+WATCH OUT: The tested direction is forward only. A model exported under MLflow 2.12.2 loaded under 3.17.0 with identical predictions. The reverse, a model saved by MLflow 3.x and loaded on a 2.x runtime such as Fabric Runtime 1.3 or 2.0 (both ship MLflow 2.x) or Azure ML, was not tested and I would expect it to fail (3.x saves scikit-learn models in the skops format by default). Train on the oldest runtime you plan to target.
 
 SOURCE: `03-demo-mlflow-tour\\portability\\portability.md`
 TRANSITION: Once the audience accepts that limit, choosing a platform becomes much easier.""",

@@ -50,7 +50,7 @@ flowchart LR
 - Capacity: a Trial capacity runs the notebooks and pipelines in this kit; only the Part 4
   data agent (and Copilot / AI functions) needs a paid F2+ capacity (same wording as
   `..\etl\rebuild-guide.md` section 2).
-- Runtime: Pin the workspace to Fabric Runtime 1.3 (Spark 3.5, Python 3.11). This kit was rehearsed on that package set [the ML notebooks ran end to end on the Runtime 1.3 Python libraries (pandas 2.1.4, numpy 1.26.4, scikit-learn 1.2.2, pyarrow 14.0.2, mlflow-skinny 2.12.2) and reproduced the contract: counts exact, metrics within the +/-0.03 tolerance; this was a local Python plus simulated-Fabric run, not a Fabric tenant]. Runtime 2.0 (Spark 4.1, Python 3.13) is the newer runtime; the Python/ML code was also run on a Runtime-2.0-like package set, but the ETL notebooks were not rehearsed on Spark 4.1, so pin 1.3 for the whole demo workspace. Set it in the workspace Spark settings (see the ETL guide, `..\etl\rebuild-guide.md` section 3).
+- Runtime: Keep the workspace default (Runtime 2.0: Spark 4.1, Python 3.13). Runtime 1.3 (Spark 3.5, Python 3.11; long-term support until March 2027) is the fallback. Nothing was run in Fabric itself. The ML notebooks ran end to end on the Python libraries of both runtimes [a Runtime-2.0-like set (pandas 2.2.3, numpy 2.5.4, scikit-learn 1.6.1, pyarrow 19.0.1, mlflow 2.22.0) and the Runtime 1.3 set (pandas 2.1.4, numpy 1.26.4, scikit-learn 1.2.2, pyarrow 14.0.2, mlflow-skinny 2.12.2)] and reproduced the contract on both: counts exact, metrics within the +/-0.03 tolerance. Those were local Python runs with a simulated Fabric and the ETL tables read through pyarrow, so the Spark calls of the ML notebooks (and Spark 4's ANSI default) were not exercised; they are listed in `VERIFY-BEFORE-FRIDAY.md`, "Spark calls to watch in the first Fabric run". The ETL kit passes 39 of 39 checks on local Spark 4.1.1 + Delta 4.2.0 and on Spark 3.5.6 + Delta 3.2.1 (Python 3.13.15, Java 17), also not in Fabric. Check the runtime with `print(spark.version)` (4.1.x on Runtime 2.0, 3.5.x on Runtime 1.3; see the ETL guide, `..\etl\rebuild-guide.md` section 3).
 - The ETL half of the demo already ran and produced the gold tables (`gold.*`) plus
   `silver.telemetry`, `silver.telemetry_drift`, and `bronze.fault_code_catalog`.
 - Break-glass if the ETL tables are missing: run
@@ -96,7 +96,7 @@ flowchart LR
 Optional, local, plain Python (no Spark, no Fabric tenant). `local-validation\run_local.py` feeds the ML notebooks pandas tables built from the raw CSVs; `local-validation\integration_etl_to_ml.py` feeds them the Delta tables the ETL notebooks really wrote (default `..\etl\local-validation\artifacts`, so run the ETL validation first). It reads each table through its Delta log (active files only, never a blind glob of the parquet parts) and converts it the way `spark.table(...).toPandas()` does in Fabric: `date` becomes `datetime.date`, `array<string>` becomes a list, timestamps become `datetime64[ns]`.
 
 ```text
-python local-validation\integration_etl_to_ml.py                          # 14 checks, 4 to 8 minutes depending on the machine
+python local-validation\integration_etl_to_ml.py                          # 14 checks, 4 to 9 minutes depending on the machine and its load
 python local-validation\integration_etl_to_ml.py --features-only          # nb_04 + nb_07 only, about 10 seconds
 python local-validation\integration_etl_to_ml.py --tables-root <folder> --out <short folder>
 ```

@@ -216,22 +216,22 @@ VERIFY: alias support remains intentionally conservative because current platfor
     d.table_slide(
         "A2", "Fabric runtimes and library versions",
         ["Area", "Runtime 2.0", "Runtime 1.3", "Why it matters"],
-        [["Status", "Current GA production runtime.", "LTS baseline.", "Choose one runtime on purpose; do not mix silently."],
-         ["Core stack", "Spark 4.1, Python 3.13, Delta 4.2.", "Older Spark/Python/Delta stack.", "Notebook behavior and package compatibility change with the runtime."],
+        [["Status", "GA and recommended.", "Long-term support until March 2027.", "Choose one runtime on purpose; do not mix silently."],
+         ["Core stack", "Spark 4.1, Python 3.13, Delta 4.2.", "Spark 3.5, Python 3.11, Delta 3.2.", "Notebook behavior and package compatibility change with the runtime."],
          ["MLflow", "`mlflow-skinny 2.22.0`.", "`mlflow-skinny 2.12.2`.", "Cross-platform demos must respect AML's lower MLflow ceiling."],
          ["scikit-learn", "`1.6.1`.", "`1.2.2`.", "Metrics stay close, but packaging and warnings can move."],
          ["Data stack", "`pandas 2.3.3`, `numpy 2.4.1`, `pyarrow 24.0.0`.", "`pandas 2.1.4`, `numpy 1.26.4`, `pyarrow 14.0.2`.", "Pin the environment when a rebuild must stay reproducible."],
          ["SynapseML path", "`synapseml 1.1.3+spark4.1`, `synapseml-mlflow 2.0.4`.", "`synapseml 1.1.3`, `synapseml-mlflow 1.0.31`.", "Cross-workspace logging and scoring helpers follow these pins."],
-         ["Extra notes", "MLflow 3 up to 3.1 is supported with explicit install; pure Python notebooks default to Python 3.12.", "Runtime 1.3 remains the safer comparison point for older examples.", "Fabric model endpoints are preview, so do not turn runtime facts into a serving promise."]],
+         ["Extra notes", "MLflow 3 up to 3.1 is supported with explicit install; pure Python notebooks default to Python 3.12.", "The fallback for older examples until March 2027.", "Fabric model endpoints are preview, so do not turn runtime facts into a serving promise."]],
         col_w=[1.15, 1.85, 1.65, 1.85],
         size=12.2,
         tbl=dict(bold_first=True, zebra=True),
         minutes=0.5,
         core=False,
-        source="Microsoft Learn and runtime manifests, verified 2026-10-18.",
+        source="Microsoft Learn and runtime manifests, verified 2026-10-18; status re-read 2026-10-21.",
         notes="""This slide answers the version-pin question that usually comes up after the workshop.
 
-The message is simple. Fabric Runtime 2.0 is the current GA production runtime, but Runtime 1.3 is still the important LTS baseline because many examples and older notebooks still assume it. The biggest operational difference for this workshop is the MLflow version pin: Fabric can run newer MLflow than Azure ML can.
+The message is simple. Fabric Runtime 2.0 is the GA, recommended runtime. Runtime 1.3 is in long-term support until March 2027, so it is the fallback if a notebook misbehaves on 2.0, and many older examples still assume it. The biggest operational difference for this workshop is the MLflow version pin: Fabric can run newer MLflow than Azure ML can.
 
 The other reminder is that pure Python notebooks and Spark notebooks are different experiences. That matters when people want a lighter-weight exploration path inside Fabric.
 
@@ -242,7 +242,7 @@ SOURCE:
 - https://github.com/microsoft/synapse-spark-runtime
 - https://learn.microsoft.com/en-us/fabric/data-science/mlflow-3-overview
 - https://learn.microsoft.com/en-us/fabric/data-engineering/using-python-experience-on-notebook
-VERIFY: Runtime 2.0 is clearly current GA, but the exact word 'default' is still not perfectly synchronized across docs.""")
+VERIFY: the lifecycle page lists Runtime 2.0 as GA and recommended, but which runtime is the default is a workspace setting: check it in the workspace Spark settings.""")
 
     d.table_slide(
         "A3", "Azure ML versions and pins",

@@ -66,7 +66,7 @@ A demo shown from a pre-run result, with a screenshot behind it, is better than 
 
 ### Wed 21, first 30 minutes (before anything else)
 - [ ] Take the eight decisions above; send the admin, capacity and quota requests today. If an admin cannot act before Thursday morning, use a tenant where you are the admin.
-- [ ] Create the GitHub repository (private) and copy this kit's folders into it, **without** the `truth/` folder (the hidden answer key stays on your laptop). The repository root is the workshop folder, the one that contains `02-demo-data` to `06-demo-foundry-data-agent`: the Azure ML data assets, the Fabric deploy script and the GitHub workflows all assume it.
+- [ ] Push this kit to a private GitHub repository of your own. It is already a git repository: add your remote and push. The `truth/` folder (the hidden answer key) is git-ignored and stays on your laptop. The repository root is the workshop folder, the one that contains `02-demo-data` to `06-demo-foundry-data-agent`: the Azure ML data assets, the Fabric deploy script and the GitHub workflows all assume it.
 
 ### Wed 21 evening: build the environments and the Fabric half (about 8 hours of work, the waiting overlaps)
 Order matters: start the Azure ML infrastructure and the environment image first, because they build while you work on Fabric.
@@ -78,7 +78,7 @@ Azure ML: start this first, it builds in the background (about 1.5 hours hands-o
 
 Fabric ETL (about 2 hours)
 - [ ] Create workspace `ws-fleet-dev`, assign the paid capacity, create the schema-enabled lakehouse `lh_fleet` (`04-demo-fabric-e2e\etl\rebuild-guide.md`).
-- [ ] Check which runtime the workspace starts on (`print(spark.version)` shows `4.1.x` on the default, Runtime 2.0) before you import any notebook, and keep it. The ETL passed on local Spark 4.1.1 and 3.5.6; nothing ran in Fabric yet. Runtime 1.3 (Spark 3.5, long-term support until March 2027) is the fallback if a notebook fails. The steps are in `04-demo-fabric-e2e\etl\rebuild-guide.md`.
+- [ ] Check which runtime the workspace starts on (`print(spark.version)` shows `4.1.x` on the default, Runtime 2.0) before you import any notebook, and keep it. The ETL passed on Spark 4.1.1 and 3.5.6, on a laptop and in GitHub Actions; nothing ran in Fabric yet. Runtime 1.3 (Spark 3.5, long-term support until March 2027) is the fallback if a notebook fails. The steps are in `04-demo-fabric-e2e\etl\rebuild-guide.md`.
 - [ ] Generate the data locally (about 5 seconds, 95 MB): `python fleet_data_generator.py --out data --truth-dir truth --with-drift` in `02-demo-data`; then upload `data` to `Files/raw`. Details: `02-demo-data\README.md`.
 - [ ] Import `nb_00` to `nb_03`, attach `lh_fleet` as the default lakehouse of each, run them once in order, and compare the counts with the table in the "Numbers to sanity-check" section below.
 

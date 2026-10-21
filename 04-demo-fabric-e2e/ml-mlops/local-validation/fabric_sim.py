@@ -81,13 +81,18 @@ class FakeDataFrame:
         return FakeWriter(self._tables, self._pdf)
 
 
+class AnalysisException(Exception):
+    """Same class name as pyspark's AnalysisException; the real Fabric class and message are UNVERIFIED."""
+
+
 class FakeReader:
     def __init__(self, tables: dict):
         self._tables = tables
 
     def table(self, name: str) -> FakeDataFrame:
         if name not in self._tables:
-            raise KeyError("fabric_sim: table not seeded: %s" % name)
+            # Mimics Spark 3.5 / 4.x for a missing table (the old KeyError hid that read_model_pointer did not catch this).
+            raise AnalysisException("[TABLE_OR_VIEW_NOT_FOUND] The table or view `%s` cannot be found. (fabric_sim: table not seeded)" % name)
         return FakeDataFrame(self._tables, self._tables[name])
 
 

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "pl_fleet_etl",
+    "description": "Sequential Fabric ETL pipeline for the fleet medallion demo."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2a904957-c295-54e4-a532-c07190eea83c"
+  }
+}

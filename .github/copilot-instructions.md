@@ -1,0 +1,1 @@
+Read `AGENTS.md` at the repository root before you change anything. It lists the modules, how to validate each one, and the hard rules: customer-neutral text, synthetic data only, no secrets or environment identifiers, no unverified claims, one module per pull request.

@@ -1,0 +1,6 @@
+$schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
+name: fleet-asset-day-features-reference
+version: 1
+type: uri_file
+description: Canonical ml.asset_day_features export from the workshop reference output.
+path: ../../02-demo-data/reference_out/ml_asset_day_features.csv.gz

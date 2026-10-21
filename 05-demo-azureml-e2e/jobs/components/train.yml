@@ -1,0 +1,38 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: fleet_train_model
+display_name: Fleet train model
+version: 1
+type: command
+inputs:
+  input_data:
+    type: uri_folder
+  experiment_name:
+    type: string
+  data_version:
+    type: string
+  git_sha:
+    type: string
+  learning_rate:
+    type: number
+  max_leaf_nodes:
+    type: integer
+  l2_regularization:
+    type: number
+outputs:
+  model_output:
+    type: uri_folder
+  metrics_output:
+    type: uri_folder
+code: ../../src
+environment: azureml:env-fleet-sklearn:1
+command: >-
+  python train.py
+  --input-path ${{inputs.input_data}}
+  --model-output ${{outputs.model_output}}
+  --metrics-output ${{outputs.metrics_output}}
+  --experiment-name ${{inputs.experiment_name}}
+  --data-version ${{inputs.data_version}}
+  --git-sha ${{inputs.git_sha}}
+  --learning-rate ${{inputs.learning_rate}}
+  --max-leaf-nodes ${{inputs.max_leaf_nodes}}
+  --l2-regularization ${{inputs.l2_regularization}}

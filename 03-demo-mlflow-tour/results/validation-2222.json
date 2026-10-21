@@ -1,0 +1,183 @@
+{
+  "env": {
+    "label": "2222",
+    "mlflow_version": "2.22.0",
+    "tracking_uri": "sqlite:///<workshop-root>/work/mlruns-2222/mlflow-2222.db",
+    "registered_name": "fleet-failure-7d-matrix-2222"
+  },
+  "train_seconds": 62.315,
+  "training_summary": {
+    "run_id": "bd72f80df1234f00bba3a543bd1d4ac3",
+    "tracking_uri": "sqlite:///<workshop-root>/work/mlruns-2222/mlflow-2222.db",
+    "model_uri": "runs:/bd72f80df1234f00bba3a543bd1d4ac3/model",
+    "registered_name": "fleet-failure-7d-matrix-2222",
+    "model_version": "1",
+    "model_kind": "hist_gradient_boosting",
+    "metrics": {
+      "valid": {
+        "rows": 6591,
+        "positives": 353,
+        "prevalence": 0.0536,
+        "pr_auc": 0.349,
+        "roc_auc": 0.7037,
+        "precision_at_top5pct": 0.3727,
+        "recall_at_top5pct": 0.3484
+      },
+      "test": {
+        "rows": 6111,
+        "positives": 274,
+        "prevalence": 0.0448,
+        "pr_auc": 0.3882,
+        "roc_auc": 0.7551,
+        "precision_at_top5pct": 0.3758,
+        "recall_at_top5pct": 0.4197
+      }
+    },
+    "params": {
+      "data_file_name": "ml_asset_day_features.csv.gz",
+      "data_file_sha256": "51384c56b0e52460c81dbda8ed4e8cb0c367f4220d5278fb89f9ad269bcb868d",
+      "feature_count": 42,
+      "python_version": "3.13.15",
+      "platform_name": "local",
+      "mlflow_version": "2.22.0",
+      "pandas_version": "2.2.3",
+      "numpy_version": "2.5.4",
+      "sklearn_version": "1.6.1",
+      "warmup_rows": 3976,
+      "warmup_positives": 196,
+      "warmup_prevalence": 0.0493,
+      "train_rows": 28520,
+      "train_positives": 1639,
+      "train_prevalence": 0.0575,
+      "gap_rows": 3830,
+      "gap_positives": 219,
+      "gap_prevalence": 0.0572,
+      "valid_rows": 6591,
+      "valid_positives": 353,
+      "valid_prevalence": 0.0536,
+      "test_rows": 6111,
+      "test_positives": 274,
+      "test_prevalence": 0.0448,
+      "unlabeled_rows": 1584,
+      "score_rows": 264
+    },
+    "durations": {
+      "train_seconds": 14.039
+    },
+    "mlflow_metric_names": {
+      "valid_pr_auc": 0.349,
+      "valid_roc_auc": 0.7037,
+      "test_pr_auc": 0.3882,
+      "test_roc_auc": 0.7551,
+      "test_precision_at_top5pct": 0.3758,
+      "test_recall_at_top5pct": 0.4197
+    }
+  },
+  "versions": {
+    "v1": "1",
+    "v2": 2
+  },
+  "registry_ops": [
+    {
+      "op": "register_second_version",
+      "ok": true,
+      "result": {
+        "version": 2,
+        "name": "fleet-failure-7d-matrix-2222",
+        "aliases": [],
+        "current_stage": "None",
+        "run_id": "bd72f80df1234f00bba3a543bd1d4ac3"
+      },
+      "warnings": [],
+      "seconds": 0.072
+    },
+    {
+      "op": "set_registered_model_alias(champion->v1)",
+      "ok": true,
+      "result": null,
+      "warnings": [],
+      "seconds": 0.034
+    },
+    {
+      "op": "get_model_version_by_alias(champion)",
+      "ok": true,
+      "result": {
+        "version": 1,
+        "name": "fleet-failure-7d-matrix-2222",
+        "aliases": [
+          "champion"
+        ],
+        "current_stage": "None",
+        "run_id": "bd72f80df1234f00bba3a543bd1d4ac3"
+      },
+      "warnings": [],
+      "seconds": 0.02
+    },
+    {
+      "op": "load_model(models:/name@champion)",
+      "ok": true,
+      "result": "mlflow.pyfunc.loaded_model:\n  artifact_path: model\n  flavor: mlflow.sklearn\n  run_id: bd72f80df1234f00bba3a543bd1d4ac3\n",
+      "warnings": [],
+      "seconds": 0.388
+    },
+    {
+      "op": "transition_model_version_stage(v1->Staging)",
+      "ok": true,
+      "result": {
+        "version": 1,
+        "name": "fleet-failure-7d-matrix-2222",
+        "aliases": [
+          "champion"
+        ],
+        "current_stage": "Staging",
+        "run_id": "bd72f80df1234f00bba3a543bd1d4ac3"
+      },
+      "warnings": [
+        "``mlflow.tracking.client.MlflowClient.transition_model_version_stage`` is deprecated since 2.9.0. Model registry stages will be removed in a future major release. To learn more about the deprecation of model registry stages, see our migration guide here: https://mlflow.org/docs/latest/model-registry"
+      ],
+      "seconds": 0.049
+    },
+    {
+      "op": "transition_model_version_stage(v2->Production)",
+      "ok": true,
+      "result": {
+        "version": 2,
+        "name": "fleet-failure-7d-matrix-2222",
+        "aliases": [],
+        "current_stage": "Production",
+        "run_id": "bd72f80df1234f00bba3a543bd1d4ac3"
+      },
+      "warnings": [
+        "``mlflow.tracking.client.MlflowClient.transition_model_version_stage`` is deprecated since 2.9.0. Model registry stages will be removed in a future major release. To learn more about the deprecation of model registry stages, see our migration guide here: https://mlflow.org/docs/latest/model-registry"
+      ],
+      "seconds": 0.049
+    },
+    {
+      "op": "load_model(models:/name/Production)",
+      "ok": true,
+      "result": "mlflow.pyfunc.loaded_model:\n  artifact_path: model\n  flavor: mlflow.sklearn\n  run_id: bd72f80df1234f00bba3a543bd1d4ac3\n",
+      "warnings": [],
+      "seconds": 0.252
+    },
+    {
+      "op": "load_model(models:/name/Staging)",
+      "ok": true,
+      "result": "mlflow.pyfunc.loaded_model:\n  artifact_path: model\n  flavor: mlflow.sklearn\n  run_id: bd72f80df1234f00bba3a543bd1d4ac3\n",
+      "warnings": [],
+      "seconds": 0.28
+    },
+    {
+      "op": "load_model(models:/name/latest)",
+      "ok": true,
+      "result": "mlflow.pyfunc.loaded_model:\n  artifact_path: model\n  flavor: mlflow.sklearn\n  run_id: bd72f80df1234f00bba3a543bd1d4ac3\n",
+      "warnings": [],
+      "seconds": 0.287
+    },
+    {
+      "op": "has_logged_model_api",
+      "ok": true,
+      "result": false,
+      "warnings": []
+    }
+  ]
+}

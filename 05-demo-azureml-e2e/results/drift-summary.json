@@ -1,0 +1,30 @@
+{
+  "major_count": 4,
+  "major_pairs": [
+    {
+      "equipment_class": "Excavator",
+      "psi": 0.8804,
+      "sensor": "engine_temp_c"
+    },
+    {
+      "equipment_class": "Excavator",
+      "psi": 3.7113,
+      "sensor": "vibration_mm_s"
+    },
+    {
+      "equipment_class": "WheelLoader",
+      "psi": 0.9587,
+      "sensor": "engine_temp_c"
+    },
+    {
+      "equipment_class": "WheelLoader",
+      "psi": 2.7825,
+      "sensor": "vibration_mm_s"
+    }
+  ],
+  "output_files": {
+    "csv": "local-validation/out/drift/drift_report.csv",
+    "parquet": "local-validation/out/drift/drift_report.parquet"
+  },
+  "rows": 47
+}

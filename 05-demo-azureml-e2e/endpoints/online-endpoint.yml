@@ -1,0 +1,9 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineEndpoint.schema.json
+name: fleet-risk-online
+auth_mode: key
+description: Managed online endpoint for the fleet-failure-7d MLflow model.
+traffic:
+  blue: 100
+tags:
+  scenario: fleet
+  deployment_pattern: blue-green

@@ -1,0 +1,16 @@
+$schema: https://azuremlschemas.azureedge.net/latest/batchDeployment.schema.json
+name: default
+endpoint_name: fleet-risk-batch
+model: azureml:fleet-failure-7d@latest
+compute: azureml:cpu-cluster
+resources:
+  instance_count: 1
+max_concurrency_per_instance: 2
+mini_batch_size: 32
+output_action: append_row
+output_file_name: predictions.csv
+retry_settings:
+  max_retries: 2
+  timeout: 300
+tags:
+  serving_mode: no-code-mlflow

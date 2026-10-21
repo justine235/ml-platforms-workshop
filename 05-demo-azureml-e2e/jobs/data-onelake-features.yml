@@ -1,0 +1,7 @@
+$schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
+# OPTIONAL hybrid path: needs the datastore created from jobs/datastore-onelake.yml (see bridge-fabric-aml.md, "Create the OneLake datastore").
+name: fleet-asset-day-features-onelake
+version: 1
+type: uri_folder
+description: OneLake-backed feature export for the hybrid Fabric ETL to Azure ML training path.
+path: azureml://datastores/fleet_onelake/paths/fleet/ml/asset_day_features/

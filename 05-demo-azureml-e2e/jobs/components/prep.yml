@@ -1,0 +1,18 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: fleet_prep_features
+display_name: Fleet feature contract validation
+version: 1
+type: command
+description: Validate the feature-table contract and export a prepared parquet/csv bundle for downstream AML steps.
+inputs:
+  input_data:
+    type: uri_file
+outputs:
+  prepared_data:
+    type: uri_folder
+code: ../../src
+environment: azureml:env-fleet-sklearn:1
+command: >-
+  python prep.py
+  --input-path ${{inputs.input_data}}
+  --output-dir ${{outputs.prepared_data}}

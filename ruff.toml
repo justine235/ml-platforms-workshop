@@ -1,0 +1,8 @@
+# Repository-wide lint: only the rules that find real bugs (syntax errors, undefined names).
+# Modules with their own ruff configuration (04-demo-fabric-e2e/ml-mlops, 05-demo-azureml-e2e, 06-demo-foundry-data-agent) keep it.
+target-version = "py311"
+# Names that Microsoft Fabric injects into notebooks.
+builtins = ["spark", "display", "notebookutils", "mssparkutils"]
+
+[lint]
+select = ["E9", "F63", "F7", "F82"]

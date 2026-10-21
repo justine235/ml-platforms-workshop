@@ -1,0 +1,32 @@
+# Template: copy this file to .github/workflows/ in your repository.
+# Layout assumed: the repository root is the workshop folder (it contains 05-demo-azureml-e2e/).
+# Prerequisite: step 2 of rebuild-guide.md (environment + 3 data assets) was done in the target workspace.
+name: aml-train-pipeline
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 5 * * 1-5'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - run: az extension add -n ml --upgrade
+      - run: >
+          az ml job create
+          --file 05-demo-azureml-e2e/jobs/pipeline-train.yml
+          --set inputs.git_sha=${{ github.sha }}
+          --resource-group rg-fleet-aml-dev
+          --workspace-name mlw-fleet-dev

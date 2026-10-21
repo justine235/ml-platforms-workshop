@@ -1,0 +1,308 @@
+{
+  "properties": {
+    "description": "Daily Fabric ML + MLOps orchestration for the fleet workshop: ETL notebooks, features, train, register/score, drift monitor, promotion gate, then alert on major drift. Each notebook activity has a failure-notify branch via Office365Email.",
+    "activities": [
+      {
+        "name": "RunBronzeIngest",
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "3c43c756-6296-51c4-935c-0913b6689392",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "sessionTag": "fleet-daily"
+        },
+        "policy": {
+          "timeout": "02:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 60
+        }
+      },
+      {
+        "name": "RunSilverCleanResolve",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "RunBronzeIngest",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "notebookId": "c045e7f2-b13d-549b-a4d7-8153affa9b69",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "sessionTag": "fleet-daily"
+        },
+        "policy": {
+          "timeout": "02:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 60
+        }
+      },
+      {
+        "name": "RunGoldReconcile",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "RunSilverCleanResolve",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "notebookId": "d07d6d9c-f6eb-566e-99be-a985be286e5d",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "sessionTag": "fleet-daily"
+        },
+        "policy": {
+          "timeout": "02:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 60
+        }
+      },
+      {
+        "name": "RunFeatures",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "RunGoldReconcile",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "notebookId": "450e1a40-7003-58ba-a513-21146061cde8",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "sessionTag": "fleet-daily"
+        },
+        "policy": {
+          "timeout": "01:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 60
+        }
+      },
+      {
+        "name": "NotifyFeaturesFailure",
+        "type": "Office365Email",
+        "dependsOn": [
+          {
+            "activity": "RunFeatures",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ],
+        "externalReferences": {
+          "connection": "__OFFICE365_CONNECTION_ID__"
+        },
+        "typeProperties": {
+          "to": "__ALERT_TO__",
+          "subject": "[fleet-demo] Features notebook failed",
+          "body": "RunFeatures failed in pl_fleet_daily. Check notebook output and the gold tables before re-running."
+        }
+      },
+      {
+        "name": "RunTrainMlflow",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "RunFeatures",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "notebookId": "2b91ef9d-20fc-5319-b151-0a34557edb7c",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "sessionTag": "fleet-daily"
+        },
+        "policy": {
+          "timeout": "01:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 60
+        }
+      },
+      {
+        "name": "NotifyTrainFailure",
+        "type": "Office365Email",
+        "dependsOn": [
+          {
+            "activity": "RunTrainMlflow",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ],
+        "externalReferences": {
+          "connection": "__OFFICE365_CONNECTION_ID__"
+        },
+        "typeProperties": {
+          "to": "__ALERT_TO__",
+          "subject": "[fleet-demo] Training notebook failed",
+          "body": "RunTrainMlflow failed in pl_fleet_daily. Check the Experiment item, MLflow run comparison, and package/runtime compatibility."
+        }
+      },
+      {
+        "name": "RunRegisterScore",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "RunTrainMlflow",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "notebookId": "d4800ec6-1d71-5af4-a7a2-658a6039cf46",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "sessionTag": "fleet-daily"
+        },
+        "policy": {
+          "timeout": "01:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 60
+        }
+      },
+      {
+        "name": "NotifyScoreFailure",
+        "type": "Office365Email",
+        "dependsOn": [
+          {
+            "activity": "RunRegisterScore",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ],
+        "externalReferences": {
+          "connection": "__OFFICE365_CONNECTION_ID__"
+        },
+        "typeProperties": {
+          "to": "__ALERT_TO__",
+          "subject": "[fleet-demo] Register/score notebook failed",
+          "body": "RunRegisterScore failed in pl_fleet_daily. Check the ML model version, model signature, and default lakehouse attachment."
+        }
+      },
+      {
+        "name": "RunDriftMonitor",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "RunRegisterScore",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "notebookId": "5576afb0-976b-5fbc-83fa-654ac21618ef",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "sessionTag": "fleet-daily"
+        },
+        "policy": {
+          "timeout": "01:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 60
+        }
+      },
+      {
+        "name": "NotifyDriftNotebookFailure",
+        "type": "Office365Email",
+        "dependsOn": [
+          {
+            "activity": "RunDriftMonitor",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ],
+        "externalReferences": {
+          "connection": "__OFFICE365_CONNECTION_ID__"
+        },
+        "typeProperties": {
+          "to": "__ALERT_TO__",
+          "subject": "[fleet-demo] Drift monitor notebook failed",
+          "body": "RunDriftMonitor failed in pl_fleet_daily. Check the silver.telemetry_drift source and the ml.drift_report write path."
+        }
+      },
+      {
+        "name": "RunPromotionGate",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "RunDriftMonitor",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "notebookId": "8d2439df-3423-50ac-b6f8-e2279ae20bed",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "sessionTag": "fleet-daily"
+        },
+        "policy": {
+          "timeout": "01:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 60
+        }
+      },
+      {
+        "name": "NotifyGateFailure",
+        "type": "Office365Email",
+        "dependsOn": [
+          {
+            "activity": "RunPromotionGate",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ],
+        "externalReferences": {
+          "connection": "__OFFICE365_CONNECTION_ID__"
+        },
+        "typeProperties": {
+          "to": "__ALERT_TO__",
+          "subject": "[fleet-demo] Promotion gate notebook failed",
+          "body": "RunPromotionGate failed in pl_fleet_daily. Check the champion/challenger model versions and ml.model_pointer before re-running."
+        }
+      },
+      {
+        "name": "IfDriftAlert",
+        "type": "IfCondition",
+        "dependsOn": [
+          {
+            "activity": "RunPromotionGate",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "expression": {
+            "type": "Expression",
+            "value": "@equals(json(activity('RunDriftMonitor').output.result.exitValue).status, 'alert')"
+          },
+          "ifTrueActivities": [
+            {
+              "name": "SendDriftAlertEmail",
+              "type": "Office365Email",
+              "externalReferences": {
+                "connection": "__OFFICE365_CONNECTION_ID__"
+              },
+              "typeProperties": {
+                "to": "__ALERT_TO__",
+                "subject": "[fleet-demo] Drift alert fired",
+                "body": "pl_fleet_daily detected major drift in ml.drift_report. Expected outcome for the workshop: 4 major shifts, 3 moderate, 40 stable. Investigate and decide whether to retrain before promoting a challenger."
+              }
+            }
+          ],
+          "ifFalseActivities": []
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "drift": {
+    "expected_moderate_shifts": [
+      "Compactor engine_temp_c psi=0.1097",
+      "MobileCrane engine_temp_c psi=0.1033",
+      "Paver engine_temp_c psi=0.1862"
+    ],
+    "major_shift_count": 4,
+    "major_shifts": [
+      "Excavator engine_temp_c psi=0.8804",
+      "Excavator vibration_mm_s psi=3.7113",
+      "WheelLoader engine_temp_c psi=0.9587",
+      "WheelLoader vibration_mm_s psi=2.7825"
+    ],
+    "moderate_shift_count": 3,
+    "reference_comparison": {
+      "exact_failures": {},
+      "max_abs_diff": 0.0,
+      "numeric_failures": {},
+      "ok": true
+    },
+    "status": "alert"
+  },
+  "features": {
+    "labelled_rows": 49028,
+    "positive_rate_labelled": 0.0547,
+    "reference_comparison": {
+      "exact_failures": {},
+      "max_abs_diff": 0.0,
+      "numeric_failures": {},
+      "ok": true
+    },
+    "rows": 50876,
+    "split_counts": {
+      "gap": {
+        "positives": 219,
+        "rows": 3830
+      },
+      "score": {
+        "positives": 0,
+        "rows": 264
+      },
+      "test": {
+        "positives": 274,
+        "rows": 6111
+      },
+      "train": {
+        "positives": 1639,
+        "rows": 28520
+      },
+      "unlabeled": {
+        "positives": 0,
+        "rows": 1584
+      },
+      "valid": {
+        "positives": 353,
+        "rows": 6591
+      },
+      "warmup": {
+        "positives": 196,
+        "rows": 3976
+      }
+    }
+  },
+  "gate": {
+    "challenger_metrics": {
+      "positives": 274,
+      "pr_auc": 0.9602,
+      "precision_at_top5pct": 0.8464,
+      "prevalence": 0.0448,
+      "recall_at_top5pct": 0.9453,
+      "roc_auc": 0.9959,
+      "rows": 6111
+    },
+    "challenger_test_pr_auc": 0.9602,
+    "challenger_test_precision_at_top5pct": 0.8464,
+    "challenger_version": "2",
+    "champion_metrics": {
+      "positives": 274,
+      "pr_auc": 0.9602,
+      "precision_at_top5pct": 0.8464,
+      "prevalence": 0.0448,
+      "recall_at_top5pct": 0.9453,
+      "roc_auc": 0.9959,
+      "rows": 6111
+    },
+    "champion_test_pr_auc": 0.9602,
+    "champion_test_precision_at_top5pct": 0.8464,
+    "champion_version": "1",
+    "decision": "hold",
+    "passed": false,
+    "pr_auc_gain": 0.0,
+    "precision_drop": 0.0,
+    "rule": {
+      "max_precision_drop": 0.02,
+      "min_pr_auc_gain": 0.01,
+      "passed_pr_auc_gain": false,
+      "passed_precision_guardrail": true
+    }
+  },
+  "score": {
+    "bands": {
+      "High": 9,
+      "Low": 247,
+      "Medium": 8
+    },
+    "frozen_reference_comparison": {
+      "note": "Bands can move across library versions; rule-based reason codes must stay exact.",
+      "reason_code_matches": 264,
+      "reason_code_total": 264,
+      "risk_band_matches": 261,
+      "risk_band_total": 264,
+      "rows": 264
+    },
+    "model_version": "1",
+    "pyfunc_vs_sklearn_max_abs_diff": 0.0,
+    "rows": 264,
+    "spark_transformer": {
+      "executed": false,
+      "reason": "disabled"
+    }
+  },
+  "training_first": {
+    "best_candidate": "hist_gradient_boosting",
+    "child_runs": {
+      "hist_gradient_boosting": {
+        "run_id": "82f14504364140108579e218f0d028a2",
+        "test_pr_auc": 0.3882,
+        "test_precision_at_top5pct": 0.3758,
+        "test_recall_at_top5pct": 0.4197,
+        "test_roc_auc": 0.7551,
+        "valid_pr_auc": 0.349,
+        "valid_roc_auc": 0.7037
+      },
+      "hist_gradient_boosting_no_fault_codes": {
+        "run_id": "87128f135aa24e4db6883f013a38e7c0",
+        "test_pr_auc": 0.2732,
+        "test_precision_at_top5pct": 0.281,
+        "test_recall_at_top5pct": 0.3139,
+        "test_roc_auc": 0.722,
+        "valid_pr_auc": 0.3294,
+        "valid_roc_auc": 0.7083
+      },
+      "logistic_regression": {
+        "run_id": "b7aa6075a41a4577a2fbf9ab81f93140",
+        "test_pr_auc": 0.2924,
+        "test_precision_at_top5pct": 0.3072,
+        "test_recall_at_top5pct": 0.3431,
+        "test_roc_auc": 0.741,
+        "valid_pr_auc": 0.2923,
+        "valid_roc_auc": 0.7301
+      },
+      "prevalence": {
+        "run_id": "2b0234e874934db38ab8048d25bc3313",
+        "test_pr_auc": 0.0448,
+        "test_precision_at_top5pct": 0.0261,
+        "test_recall_at_top5pct": 0.0292,
+        "test_roc_auc": 0.5,
+        "valid_pr_auc": 0.0536,
+        "valid_roc_auc": 0.5
+      },
+      "rule_baseline": {
+        "run_id": "816e73d4f7294ffc94fd05c6ad92ead0",
+        "test_pr_auc": 0.068,
+        "test_precision_at_top5pct": 0.1667,
+        "test_recall_at_top5pct": 0.1861,
+        "test_roc_auc": 0.5842,
+        "valid_pr_auc": 0.0642,
+        "valid_roc_auc": 0.554
+      }
+    },
+    "experiment_name": "fleet-failure-7d",
+    "hyperparameter_search_rows": 0,
+    "model_name": "fleet-failure-7d",
+    "registered_version": "1"
+  },
+  "training_second": {
+    "best_candidate": "hist_gradient_boosting",
+    "child_runs": {
+      "hist_gradient_boosting": {
+        "run_id": "8190cbbf9dd34d08819f8ab405197f23",
+        "test_pr_auc": 0.3882,
+        "test_precision_at_top5pct": 0.3758,
+        "test_recall_at_top5pct": 0.4197,
+        "test_roc_auc": 0.7551,
+        "valid_pr_auc": 0.349,
+        "valid_roc_auc": 0.7037
+      },
+      "hist_gradient_boosting_no_fault_codes": {
+        "run_id": "d2345036c90f49c49dd3a67175c0611e",
+        "test_pr_auc": 0.2732,
+        "test_precision_at_top5pct": 0.281,
+        "test_recall_at_top5pct": 0.3139,
+        "test_roc_auc": 0.722,
+        "valid_pr_auc": 0.3294,
+        "valid_roc_auc": 0.7083
+      },
+      "logistic_regression": {
+        "run_id": "5b689e100dbd49d29f99bbf541dcd346",
+        "test_pr_auc": 0.2924,
+        "test_precision_at_top5pct": 0.3072,
+        "test_recall_at_top5pct": 0.3431,
+        "test_roc_auc": 0.741,
+        "valid_pr_auc": 0.2923,
+        "valid_roc_auc": 0.7301
+      },
+      "prevalence": {
+        "run_id": "169897239b9c407c8670fdc78971f895",
+        "test_pr_auc": 0.0448,
+        "test_precision_at_top5pct": 0.0261,
+        "test_recall_at_top5pct": 0.0292,
+        "test_roc_auc": 0.5,
+        "valid_pr_auc": 0.0536,
+        "valid_roc_auc": 0.5
+      },
+      "rule_baseline": {
+        "run_id": "d6c125ac15dc464386b4a00e0d81f914",
+        "test_pr_auc": 0.068,
+        "test_precision_at_top5pct": 0.1667,
+        "test_recall_at_top5pct": 0.1861,
+        "test_roc_auc": 0.5842,
+        "valid_pr_auc": 0.0642,
+        "valid_roc_auc": 0.554
+      }
+    },
+    "experiment_name": "fleet-failure-7d",
+    "hyperparameter_search_rows": 0,
+    "model_name": "fleet-failure-7d",
+    "registered_version": "2"
+  }
+}

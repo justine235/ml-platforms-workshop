@@ -1,0 +1,21 @@
+# Local checks and CI for the Azure ML demo kit (Python 3.11).
+#   python -m venv .venv ; .venv\Scripts\activate ; pip install -r requirements-local.txt
+# These are the versions the kit was validated with (October 2026). They are NOT the training
+# environment of the AML jobs: that one is environments/conda-fleet-sklearn.yml.
+mlflow==2.16.2
+azureml-mlflow==1.62.0.post6
+scikit-learn==1.6.1
+pandas==2.2.3
+pyarrow==17.0.0
+numpy==2.4.6
+scipy==1.17.1
+# mlflow 2.16.2 needs the SQLAlchemy 1.4 / 2.0 API for its SQLite tracking store.
+SQLAlchemy>=1.4,<2.1
+PyYAML==6.0.3
+# Validators and tests
+azure-ai-ml==1.35.2
+azure-identity==1.26.0
+jsonschema==4.26.0
+requests==2.34.2
+pytest==9.1.1
+ruff==0.17.0

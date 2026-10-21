@@ -1,0 +1,240 @@
+{
+  "storage_format": "delta",
+  "all_ok": true,
+  "rows": [
+    {
+      "metric": "bronze.telematics_events rows",
+      "expected": 208900,
+      "got": 208900,
+      "ok": true
+    },
+    {
+      "metric": "bronze.telematics_events duplicates removed",
+      "expected": 1209,
+      "got": 1209,
+      "ok": true
+    },
+    {
+      "metric": "bronze.telematics_events out_of_range_values_nulled",
+      "expected": 217,
+      "got": 217,
+      "ok": true
+    },
+    {
+      "metric": "silver.telemetry rows",
+      "expected": 207691,
+      "got": 207691,
+      "ok": true
+    },
+    {
+      "metric": "silver.telemetry late_rows",
+      "expected": 2066,
+      "got": 2066,
+      "ok": true
+    },
+    {
+      "metric": "silver.telemetry EXACT_NORM",
+      "expected": 196810,
+      "got": 196810,
+      "ok": true
+    },
+    {
+      "metric": "silver.telemetry SERIAL",
+      "expected": 4350,
+      "got": 4350,
+      "ok": true
+    },
+    {
+      "metric": "silver.telemetry CROSSWALK",
+      "expected": 2180,
+      "got": 2180,
+      "ok": true
+    },
+    {
+      "metric": "silver.telemetry UNRESOLVED",
+      "expected": 4351,
+      "got": 4351,
+      "ok": true
+    },
+    {
+      "metric": "silver.work_orders rows",
+      "expected": 2359,
+      "got": 2359,
+      "ok": true
+    },
+    {
+      "metric": "silver.work_orders EXACT_NORM",
+      "expected": 2305,
+      "got": 2305,
+      "ok": true
+    },
+    {
+      "metric": "silver.work_orders SERIAL",
+      "expected": 28,
+      "got": 28,
+      "ok": true
+    },
+    {
+      "metric": "silver.work_orders CROSSWALK",
+      "expected": 18,
+      "got": 18,
+      "ok": true
+    },
+    {
+      "metric": "silver.work_orders UNRESOLVED",
+      "expected": 8,
+      "got": 8,
+      "ok": true
+    },
+    {
+      "metric": "gold.dim_asset rows",
+      "expected": 316,
+      "got": 316,
+      "ok": true
+    },
+    {
+      "metric": "gold.dim_site rows",
+      "expected": 12,
+      "got": 12,
+      "ok": true
+    },
+    {
+      "metric": "gold.fact_telemetry_daily rows",
+      "expected": 51353,
+      "got": 51353,
+      "ok": true
+    },
+    {
+      "metric": "gold.fact_fault_episode rows",
+      "expected": 3459,
+      "got": 3459,
+      "ok": true
+    },
+    {
+      "metric": "gold.fact_work_order rows",
+      "expected": 2345,
+      "got": 2345,
+      "ok": true
+    },
+    {
+      "metric": "gold.fact_recon_match rows",
+      "expected": 468,
+      "got": 468,
+      "ok": true
+    },
+    {
+      "metric": "gold.fact_recon_exception rows",
+      "expected": 211,
+      "got": 211,
+      "ok": true
+    },
+    {
+      "metric": "gold.agg_recon_monthly rows",
+      "expected": 72,
+      "got": 72,
+      "ok": true
+    },
+    {
+      "metric": "gold.fact_recon_exception ACTIVE_ASSET_SILENT",
+      "expected": 12,
+      "got": 12,
+      "ok": true
+    },
+    {
+      "metric": "gold.fact_recon_exception DUPLICATE_WO",
+      "expected": 6,
+      "got": 6,
+      "ok": true
+    },
+    {
+      "metric": "gold.fact_recon_exception FAULT_WITHOUT_WO",
+      "expected": 91,
+      "got": 91,
+      "ok": true
+    },
+    {
+      "metric": "gold.fact_recon_exception RETIRED_ASSET_REPORTING",
+      "expected": 6,
+      "got": 6,
+      "ok": true
+    },
+    {
+      "metric": "gold.fact_recon_exception UNRESOLVED_ASSET_CMMS",
+      "expected": 3,
+      "got": 3,
+      "ok": true
+    },
+    {
+      "metric": "gold.fact_recon_exception UNRESOLVED_ASSET_TELEMATICS",
+      "expected": 6,
+      "got": 6,
+      "ok": true
+    },
+    {
+      "metric": "gold.fact_recon_exception WO_TIME_ANOMALY",
+      "expected": 8,
+      "got": 8,
+      "ok": true
+    },
+    {
+      "metric": "gold.fact_recon_exception WO_WITHOUT_FAULT",
+      "expected": 79,
+      "got": 79,
+      "ok": true
+    },
+    {
+      "metric": "bronze.telematics_events_drift rows",
+      "expected": 15367,
+      "got": 15367,
+      "ok": true
+    },
+    {
+      "metric": "bronze.telematics_events_drift duplicates removed",
+      "expected": 79,
+      "got": 79,
+      "ok": true
+    },
+    {
+      "metric": "bronze.telematics_events_drift out_of_range_values_nulled",
+      "expected": 28,
+      "got": 28,
+      "ok": true
+    },
+    {
+      "metric": "silver.telemetry_drift rows",
+      "expected": 15288,
+      "got": 15288,
+      "ok": true
+    },
+    {
+      "metric": "silver.telemetry_drift late_rows",
+      "expected": 0,
+      "got": 0,
+      "ok": true
+    },
+    {
+      "metric": "silver.telemetry_drift EXACT_NORM",
+      "expected": 14457,
+      "got": 14457,
+      "ok": true
+    },
+    {
+      "metric": "silver.telemetry_drift SERIAL",
+      "expected": 333,
+      "got": 333,
+      "ok": true
+    },
+    {
+      "metric": "silver.telemetry_drift CROSSWALK",
+      "expected": 167,
+      "got": 167,
+      "ok": true
+    },
+    {
+      "metric": "silver.telemetry_drift UNRESOLVED",
+      "expected": 331,
+      "got": 331,
+      "ok": true
+    }
+  ]
+}

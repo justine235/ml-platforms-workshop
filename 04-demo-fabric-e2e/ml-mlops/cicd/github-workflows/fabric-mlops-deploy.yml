@@ -1,0 +1,100 @@
+name: fabric-mlops-deploy
+# repo root = the workshop folder (the folder that contains 04-demo-fabric-e2e/).
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "04-demo-fabric-e2e/ml-mlops/**"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  lint-and-validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 04-demo-fabric-e2e/ml-mlops
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install fabric-cicd ruff pyyaml nbformat
+      - run: python -m py_compile notebooks/*.py notebooks/shared/*.py local-validation/*.py tools/*.py cicd/deploy.py
+      - run: ruff check notebooks local-validation tools cicd
+      - run: python tools/build_notebooks.py
+
+  deploy-dev:
+    needs: lint-and-validate
+    runs-on: ubuntu-latest
+    environment: dev
+    defaults:
+      run:
+        working-directory: 04-demo-fabric-e2e/ml-mlops
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install fabric-cicd azure-identity
+      - run: python cicd/deploy.py --environment DEV
+        env:
+          FABRIC_TARGET_WORKSPACE_ID: ${{ vars.FABRIC_WORKSPACE_ID }}
+
+  deploy-test:
+    needs: deploy-dev
+    runs-on: ubuntu-latest
+    environment: test
+    defaults:
+      run:
+        working-directory: 04-demo-fabric-e2e/ml-mlops
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install fabric-cicd azure-identity
+      - run: python cicd/deploy.py --environment TEST
+        env:
+          FABRIC_TARGET_WORKSPACE_ID: ${{ vars.FABRIC_WORKSPACE_ID }}
+
+  deploy-prod:
+    needs: deploy-test
+    runs-on: ubuntu-latest
+    environment: prod
+    defaults:
+      run:
+        working-directory: 04-demo-fabric-e2e/ml-mlops
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install fabric-cicd azure-identity
+      - run: python cicd/deploy.py --environment PROD
+        env:
+          FABRIC_TARGET_WORKSPACE_ID: ${{ vars.FABRIC_WORKSPACE_ID }}

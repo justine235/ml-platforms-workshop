@@ -1,0 +1,4530 @@
+{
+  "generatedAt": "2026-10-19T15:55:39.176Z",
+  "partial": false,
+  "counts": {
+    "planned": {
+      "lucide": 93,
+      "microsoft": 28,
+      "tiles": 13
+    },
+    "ready": {
+      "lucide": 93,
+      "microsoft": 28,
+      "tiles": 13
+    }
+  },
+  "deliberateAbsences": [
+    {
+      "name": "activator",
+      "nearestAlternative": "No official alternative shipped in the approved Microsoft sources; use a neutral text tile only if a slide must label Activator explicitly.",
+      "reason": "No current official Activator icon was found in the Microsoft Fabric Learn download or the official @fabric-msft/svg-icons package."
+    },
+    {
+      "name": "azure-bicep",
+      "nearestAlternative": "No official Microsoft product icon is published in the approved sources; use the neutral bicep text tile when the concept must appear on a slide.",
+      "reason": "No official Azure/Bicep product icon was offered in the Azure architecture pack or the other approved Microsoft icon sources checked for this task."
+    }
+  ],
+  "failures": [],
+  "icons": [
+    {
+      "name": "database",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/database.svg",
+        "png": {
+          "ink": "png/ink/database.png",
+          "azure": "png/azure/database.png",
+          "amber": "png/amber/database.png",
+          "white": "png/white/database.png",
+          "success": "png/success/database.png",
+          "muted": "png/muted/database.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/database",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/database.svg",
+      "png": {
+        "ink": "png/ink/database.png",
+        "azure": "png/azure/database.png",
+        "amber": "png/amber/database.png",
+        "white": "png/white/database.png",
+        "success": "png/success/database.png",
+        "muted": "png/muted/database.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "server",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/server.svg",
+        "png": {
+          "ink": "png/ink/server.png",
+          "azure": "png/azure/server.png",
+          "amber": "png/amber/server.png",
+          "white": "png/white/server.png",
+          "success": "png/success/server.png",
+          "muted": "png/muted/server.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/server",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/server.svg",
+      "png": {
+        "ink": "png/ink/server.png",
+        "azure": "png/azure/server.png",
+        "amber": "png/amber/server.png",
+        "white": "png/white/server.png",
+        "success": "png/success/server.png",
+        "muted": "png/muted/server.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "cloud",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/cloud.svg",
+        "png": {
+          "ink": "png/ink/cloud.png",
+          "azure": "png/azure/cloud.png",
+          "amber": "png/amber/cloud.png",
+          "white": "png/white/cloud.png",
+          "success": "png/success/cloud.png",
+          "muted": "png/muted/cloud.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/cloud",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/cloud.svg",
+      "png": {
+        "ink": "png/ink/cloud.png",
+        "azure": "png/azure/cloud.png",
+        "amber": "png/amber/cloud.png",
+        "white": "png/white/cloud.png",
+        "success": "png/success/cloud.png",
+        "muted": "png/muted/cloud.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "cpu",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/cpu.svg",
+        "png": {
+          "ink": "png/ink/cpu.png",
+          "azure": "png/azure/cpu.png",
+          "amber": "png/amber/cpu.png",
+          "white": "png/white/cpu.png",
+          "success": "png/success/cpu.png",
+          "muted": "png/muted/cpu.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/cpu",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/cpu.svg",
+      "png": {
+        "ink": "png/ink/cpu.png",
+        "azure": "png/azure/cpu.png",
+        "amber": "png/amber/cpu.png",
+        "white": "png/white/cpu.png",
+        "success": "png/success/cpu.png",
+        "muted": "png/muted/cpu.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "git-branch",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/git-branch.svg",
+        "png": {
+          "ink": "png/ink/git-branch.png",
+          "azure": "png/azure/git-branch.png",
+          "amber": "png/amber/git-branch.png",
+          "white": "png/white/git-branch.png",
+          "success": "png/success/git-branch.png",
+          "muted": "png/muted/git-branch.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/git-branch",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/git-branch.svg",
+      "png": {
+        "ink": "png/ink/git-branch.png",
+        "azure": "png/azure/git-branch.png",
+        "amber": "png/amber/git-branch.png",
+        "white": "png/white/git-branch.png",
+        "success": "png/success/git-branch.png",
+        "muted": "png/muted/git-branch.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "git-merge",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/git-merge.svg",
+        "png": {
+          "ink": "png/ink/git-merge.png",
+          "azure": "png/azure/git-merge.png",
+          "amber": "png/amber/git-merge.png",
+          "white": "png/white/git-merge.png",
+          "success": "png/success/git-merge.png",
+          "muted": "png/muted/git-merge.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/git-merge",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/git-merge.svg",
+      "png": {
+        "ink": "png/ink/git-merge.png",
+        "azure": "png/azure/git-merge.png",
+        "amber": "png/amber/git-merge.png",
+        "white": "png/white/git-merge.png",
+        "success": "png/success/git-merge.png",
+        "muted": "png/muted/git-merge.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "git-pull-request",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/git-pull-request.svg",
+        "png": {
+          "ink": "png/ink/git-pull-request.png",
+          "azure": "png/azure/git-pull-request.png",
+          "amber": "png/amber/git-pull-request.png",
+          "white": "png/white/git-pull-request.png",
+          "success": "png/success/git-pull-request.png",
+          "muted": "png/muted/git-pull-request.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/git-pull-request",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/git-pull-request.svg",
+      "png": {
+        "ink": "png/ink/git-pull-request.png",
+        "azure": "png/azure/git-pull-request.png",
+        "amber": "png/amber/git-pull-request.png",
+        "white": "png/white/git-pull-request.png",
+        "success": "png/success/git-pull-request.png",
+        "muted": "png/muted/git-pull-request.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "shield-check",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/shield-check.svg",
+        "png": {
+          "ink": "png/ink/shield-check.png",
+          "azure": "png/azure/shield-check.png",
+          "amber": "png/amber/shield-check.png",
+          "white": "png/white/shield-check.png",
+          "success": "png/success/shield-check.png",
+          "muted": "png/muted/shield-check.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/shield-check",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/shield-check.svg",
+      "png": {
+        "ink": "png/ink/shield-check.png",
+        "azure": "png/azure/shield-check.png",
+        "amber": "png/amber/shield-check.png",
+        "white": "png/white/shield-check.png",
+        "success": "png/success/shield-check.png",
+        "muted": "png/muted/shield-check.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "lock",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/lock.svg",
+        "png": {
+          "ink": "png/ink/lock.png",
+          "azure": "png/azure/lock.png",
+          "amber": "png/amber/lock.png",
+          "white": "png/white/lock.png",
+          "success": "png/success/lock.png",
+          "muted": "png/muted/lock.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/lock",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/lock.svg",
+      "png": {
+        "ink": "png/ink/lock.png",
+        "azure": "png/azure/lock.png",
+        "amber": "png/amber/lock.png",
+        "white": "png/white/lock.png",
+        "success": "png/success/lock.png",
+        "muted": "png/muted/lock.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "key-round",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/key-round.svg",
+        "png": {
+          "ink": "png/ink/key-round.png",
+          "azure": "png/azure/key-round.png",
+          "amber": "png/amber/key-round.png",
+          "white": "png/white/key-round.png",
+          "success": "png/success/key-round.png",
+          "muted": "png/muted/key-round.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/key-round",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/key-round.svg",
+      "png": {
+        "ink": "png/ink/key-round.png",
+        "azure": "png/azure/key-round.png",
+        "amber": "png/amber/key-round.png",
+        "white": "png/white/key-round.png",
+        "success": "png/success/key-round.png",
+        "muted": "png/muted/key-round.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "bell",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/bell.svg",
+        "png": {
+          "ink": "png/ink/bell.png",
+          "azure": "png/azure/bell.png",
+          "amber": "png/amber/bell.png",
+          "white": "png/white/bell.png",
+          "success": "png/success/bell.png",
+          "muted": "png/muted/bell.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/bell",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/bell.svg",
+      "png": {
+        "ink": "png/ink/bell.png",
+        "azure": "png/azure/bell.png",
+        "amber": "png/amber/bell.png",
+        "white": "png/white/bell.png",
+        "success": "png/success/bell.png",
+        "muted": "png/muted/bell.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "activity",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/activity.svg",
+        "png": {
+          "ink": "png/ink/activity.png",
+          "azure": "png/azure/activity.png",
+          "amber": "png/amber/activity.png",
+          "white": "png/white/activity.png",
+          "success": "png/success/activity.png",
+          "muted": "png/muted/activity.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/activity",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/activity.svg",
+      "png": {
+        "ink": "png/ink/activity.png",
+        "azure": "png/azure/activity.png",
+        "amber": "png/amber/activity.png",
+        "white": "png/white/activity.png",
+        "success": "png/success/activity.png",
+        "muted": "png/muted/activity.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "bar-chart-3",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/bar-chart-3.svg",
+        "png": {
+          "ink": "png/ink/bar-chart-3.png",
+          "azure": "png/azure/bar-chart-3.png",
+          "amber": "png/amber/bar-chart-3.png",
+          "white": "png/white/bar-chart-3.png",
+          "success": "png/success/bar-chart-3.png",
+          "muted": "png/muted/bar-chart-3.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/bar-chart-3",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/bar-chart-3.svg",
+      "png": {
+        "ink": "png/ink/bar-chart-3.png",
+        "azure": "png/azure/bar-chart-3.png",
+        "amber": "png/amber/bar-chart-3.png",
+        "white": "png/white/bar-chart-3.png",
+        "success": "png/success/bar-chart-3.png",
+        "muted": "png/muted/bar-chart-3.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "line-chart",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/line-chart.svg",
+        "png": {
+          "ink": "png/ink/line-chart.png",
+          "azure": "png/azure/line-chart.png",
+          "amber": "png/amber/line-chart.png",
+          "white": "png/white/line-chart.png",
+          "success": "png/success/line-chart.png",
+          "muted": "png/muted/line-chart.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/line-chart",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/line-chart.svg",
+      "png": {
+        "ink": "png/ink/line-chart.png",
+        "azure": "png/azure/line-chart.png",
+        "amber": "png/amber/line-chart.png",
+        "white": "png/white/line-chart.png",
+        "success": "png/success/line-chart.png",
+        "muted": "png/muted/line-chart.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "table",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/table.svg",
+        "png": {
+          "ink": "png/ink/table.png",
+          "azure": "png/azure/table.png",
+          "amber": "png/amber/table.png",
+          "white": "png/white/table.png",
+          "success": "png/success/table.png",
+          "muted": "png/muted/table.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/table",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/table.svg",
+      "png": {
+        "ink": "png/ink/table.png",
+        "azure": "png/azure/table.png",
+        "amber": "png/amber/table.png",
+        "white": "png/white/table.png",
+        "success": "png/success/table.png",
+        "muted": "png/muted/table.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "file-text",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/file-text.svg",
+        "png": {
+          "ink": "png/ink/file-text.png",
+          "azure": "png/azure/file-text.png",
+          "amber": "png/amber/file-text.png",
+          "white": "png/white/file-text.png",
+          "success": "png/success/file-text.png",
+          "muted": "png/muted/file-text.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/file-text",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/file-text.svg",
+      "png": {
+        "ink": "png/ink/file-text.png",
+        "azure": "png/azure/file-text.png",
+        "amber": "png/amber/file-text.png",
+        "white": "png/white/file-text.png",
+        "success": "png/success/file-text.png",
+        "muted": "png/muted/file-text.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "folder",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/folder.svg",
+        "png": {
+          "ink": "png/ink/folder.png",
+          "azure": "png/azure/folder.png",
+          "amber": "png/amber/folder.png",
+          "white": "png/white/folder.png",
+          "success": "png/success/folder.png",
+          "muted": "png/muted/folder.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/folder",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/folder.svg",
+      "png": {
+        "ink": "png/ink/folder.png",
+        "azure": "png/azure/folder.png",
+        "amber": "png/amber/folder.png",
+        "white": "png/white/folder.png",
+        "success": "png/success/folder.png",
+        "muted": "png/muted/folder.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "layers",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/layers.svg",
+        "png": {
+          "ink": "png/ink/layers.png",
+          "azure": "png/azure/layers.png",
+          "amber": "png/amber/layers.png",
+          "white": "png/white/layers.png",
+          "success": "png/success/layers.png",
+          "muted": "png/muted/layers.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/layers",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/layers.svg",
+      "png": {
+        "ink": "png/ink/layers.png",
+        "azure": "png/azure/layers.png",
+        "amber": "png/amber/layers.png",
+        "white": "png/white/layers.png",
+        "success": "png/success/layers.png",
+        "muted": "png/muted/layers.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "workflow",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/workflow.svg",
+        "png": {
+          "ink": "png/ink/workflow.png",
+          "azure": "png/azure/workflow.png",
+          "amber": "png/amber/workflow.png",
+          "white": "png/white/workflow.png",
+          "success": "png/success/workflow.png",
+          "muted": "png/muted/workflow.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/workflow",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/workflow.svg",
+      "png": {
+        "ink": "png/ink/workflow.png",
+        "azure": "png/azure/workflow.png",
+        "amber": "png/amber/workflow.png",
+        "white": "png/white/workflow.png",
+        "success": "png/success/workflow.png",
+        "muted": "png/muted/workflow.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "rocket",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/rocket.svg",
+        "png": {
+          "ink": "png/ink/rocket.png",
+          "azure": "png/azure/rocket.png",
+          "amber": "png/amber/rocket.png",
+          "white": "png/white/rocket.png",
+          "success": "png/success/rocket.png",
+          "muted": "png/muted/rocket.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/rocket",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/rocket.svg",
+      "png": {
+        "ink": "png/ink/rocket.png",
+        "azure": "png/azure/rocket.png",
+        "amber": "png/amber/rocket.png",
+        "white": "png/white/rocket.png",
+        "success": "png/success/rocket.png",
+        "muted": "png/muted/rocket.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "refresh-cw",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/refresh-cw.svg",
+        "png": {
+          "ink": "png/ink/refresh-cw.png",
+          "azure": "png/azure/refresh-cw.png",
+          "amber": "png/amber/refresh-cw.png",
+          "white": "png/white/refresh-cw.png",
+          "success": "png/success/refresh-cw.png",
+          "muted": "png/muted/refresh-cw.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/refresh-cw",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/refresh-cw.svg",
+      "png": {
+        "ink": "png/ink/refresh-cw.png",
+        "azure": "png/azure/refresh-cw.png",
+        "amber": "png/amber/refresh-cw.png",
+        "white": "png/white/refresh-cw.png",
+        "success": "png/success/refresh-cw.png",
+        "muted": "png/muted/refresh-cw.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "repeat",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/repeat.svg",
+        "png": {
+          "ink": "png/ink/repeat.png",
+          "azure": "png/azure/repeat.png",
+          "amber": "png/amber/repeat.png",
+          "white": "png/white/repeat.png",
+          "success": "png/success/repeat.png",
+          "muted": "png/muted/repeat.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/repeat",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/repeat.svg",
+      "png": {
+        "ink": "png/ink/repeat.png",
+        "azure": "png/azure/repeat.png",
+        "amber": "png/amber/repeat.png",
+        "white": "png/white/repeat.png",
+        "success": "png/success/repeat.png",
+        "muted": "png/muted/repeat.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "play",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/play.svg",
+        "png": {
+          "ink": "png/ink/play.png",
+          "azure": "png/azure/play.png",
+          "amber": "png/amber/play.png",
+          "white": "png/white/play.png",
+          "success": "png/success/play.png",
+          "muted": "png/muted/play.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/play",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/play.svg",
+      "png": {
+        "ink": "png/ink/play.png",
+        "azure": "png/azure/play.png",
+        "amber": "png/amber/play.png",
+        "white": "png/white/play.png",
+        "success": "png/success/play.png",
+        "muted": "png/muted/play.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "pause",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/pause.svg",
+        "png": {
+          "ink": "png/ink/pause.png",
+          "azure": "png/azure/pause.png",
+          "amber": "png/amber/pause.png",
+          "white": "png/white/pause.png",
+          "success": "png/success/pause.png",
+          "muted": "png/muted/pause.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/pause",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/pause.svg",
+      "png": {
+        "ink": "png/ink/pause.png",
+        "azure": "png/azure/pause.png",
+        "amber": "png/amber/pause.png",
+        "white": "png/white/pause.png",
+        "success": "png/success/pause.png",
+        "muted": "png/muted/pause.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "check-circle",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/check-circle.svg",
+        "png": {
+          "ink": "png/ink/check-circle.png",
+          "azure": "png/azure/check-circle.png",
+          "amber": "png/amber/check-circle.png",
+          "white": "png/white/check-circle.png",
+          "success": "png/success/check-circle.png",
+          "muted": "png/muted/check-circle.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/check-circle",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/check-circle.svg",
+      "png": {
+        "ink": "png/ink/check-circle.png",
+        "azure": "png/azure/check-circle.png",
+        "amber": "png/amber/check-circle.png",
+        "white": "png/white/check-circle.png",
+        "success": "png/success/check-circle.png",
+        "muted": "png/muted/check-circle.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "x-circle",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/x-circle.svg",
+        "png": {
+          "ink": "png/ink/x-circle.png",
+          "azure": "png/azure/x-circle.png",
+          "amber": "png/amber/x-circle.png",
+          "white": "png/white/x-circle.png",
+          "success": "png/success/x-circle.png",
+          "muted": "png/muted/x-circle.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/x-circle",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/x-circle.svg",
+      "png": {
+        "ink": "png/ink/x-circle.png",
+        "azure": "png/azure/x-circle.png",
+        "amber": "png/amber/x-circle.png",
+        "white": "png/white/x-circle.png",
+        "success": "png/success/x-circle.png",
+        "muted": "png/muted/x-circle.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "alert-triangle",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/alert-triangle.svg",
+        "png": {
+          "ink": "png/ink/alert-triangle.png",
+          "azure": "png/azure/alert-triangle.png",
+          "amber": "png/amber/alert-triangle.png",
+          "white": "png/white/alert-triangle.png",
+          "success": "png/success/alert-triangle.png",
+          "muted": "png/muted/alert-triangle.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/alert-triangle",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/alert-triangle.svg",
+      "png": {
+        "ink": "png/ink/alert-triangle.png",
+        "azure": "png/azure/alert-triangle.png",
+        "amber": "png/amber/alert-triangle.png",
+        "white": "png/white/alert-triangle.png",
+        "success": "png/success/alert-triangle.png",
+        "muted": "png/muted/alert-triangle.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "clock",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/clock.svg",
+        "png": {
+          "ink": "png/ink/clock.png",
+          "azure": "png/azure/clock.png",
+          "amber": "png/amber/clock.png",
+          "white": "png/white/clock.png",
+          "success": "png/success/clock.png",
+          "muted": "png/muted/clock.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/clock",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/clock.svg",
+      "png": {
+        "ink": "png/ink/clock.png",
+        "azure": "png/azure/clock.png",
+        "amber": "png/amber/clock.png",
+        "white": "png/white/clock.png",
+        "success": "png/success/clock.png",
+        "muted": "png/muted/clock.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "calendar",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/calendar.svg",
+        "png": {
+          "ink": "png/ink/calendar.png",
+          "azure": "png/azure/calendar.png",
+          "amber": "png/amber/calendar.png",
+          "white": "png/white/calendar.png",
+          "success": "png/success/calendar.png",
+          "muted": "png/muted/calendar.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/calendar",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/calendar.svg",
+      "png": {
+        "ink": "png/ink/calendar.png",
+        "azure": "png/azure/calendar.png",
+        "amber": "png/amber/calendar.png",
+        "white": "png/white/calendar.png",
+        "success": "png/success/calendar.png",
+        "muted": "png/muted/calendar.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "users",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/users.svg",
+        "png": {
+          "ink": "png/ink/users.png",
+          "azure": "png/azure/users.png",
+          "amber": "png/amber/users.png",
+          "white": "png/white/users.png",
+          "success": "png/success/users.png",
+          "muted": "png/muted/users.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/users",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/users.svg",
+      "png": {
+        "ink": "png/ink/users.png",
+        "azure": "png/azure/users.png",
+        "amber": "png/amber/users.png",
+        "white": "png/white/users.png",
+        "success": "png/success/users.png",
+        "muted": "png/muted/users.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "user",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/user.svg",
+        "png": {
+          "ink": "png/ink/user.png",
+          "azure": "png/azure/user.png",
+          "amber": "png/amber/user.png",
+          "white": "png/white/user.png",
+          "success": "png/success/user.png",
+          "muted": "png/muted/user.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/user",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/user.svg",
+      "png": {
+        "ink": "png/ink/user.png",
+        "azure": "png/azure/user.png",
+        "amber": "png/amber/user.png",
+        "white": "png/white/user.png",
+        "success": "png/success/user.png",
+        "muted": "png/muted/user.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "bot",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/bot.svg",
+        "png": {
+          "ink": "png/ink/bot.png",
+          "azure": "png/azure/bot.png",
+          "amber": "png/amber/bot.png",
+          "white": "png/white/bot.png",
+          "success": "png/success/bot.png",
+          "muted": "png/muted/bot.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/bot",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/bot.svg",
+      "png": {
+        "ink": "png/ink/bot.png",
+        "azure": "png/azure/bot.png",
+        "amber": "png/amber/bot.png",
+        "white": "png/white/bot.png",
+        "success": "png/success/bot.png",
+        "muted": "png/muted/bot.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "message-square",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/message-square.svg",
+        "png": {
+          "ink": "png/ink/message-square.png",
+          "azure": "png/azure/message-square.png",
+          "amber": "png/amber/message-square.png",
+          "white": "png/white/message-square.png",
+          "success": "png/success/message-square.png",
+          "muted": "png/muted/message-square.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/message-square",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/message-square.svg",
+      "png": {
+        "ink": "png/ink/message-square.png",
+        "azure": "png/azure/message-square.png",
+        "amber": "png/amber/message-square.png",
+        "white": "png/white/message-square.png",
+        "success": "png/success/message-square.png",
+        "muted": "png/muted/message-square.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "search",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/search.svg",
+        "png": {
+          "ink": "png/ink/search.png",
+          "azure": "png/azure/search.png",
+          "amber": "png/amber/search.png",
+          "white": "png/white/search.png",
+          "success": "png/success/search.png",
+          "muted": "png/muted/search.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/search",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/search.svg",
+      "png": {
+        "ink": "png/ink/search.png",
+        "azure": "png/azure/search.png",
+        "amber": "png/amber/search.png",
+        "white": "png/white/search.png",
+        "success": "png/success/search.png",
+        "muted": "png/muted/search.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "filter",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/filter.svg",
+        "png": {
+          "ink": "png/ink/filter.png",
+          "azure": "png/azure/filter.png",
+          "amber": "png/amber/filter.png",
+          "white": "png/white/filter.png",
+          "success": "png/success/filter.png",
+          "muted": "png/muted/filter.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/filter",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/filter.svg",
+      "png": {
+        "ink": "png/ink/filter.png",
+        "azure": "png/azure/filter.png",
+        "amber": "png/amber/filter.png",
+        "white": "png/white/filter.png",
+        "success": "png/success/filter.png",
+        "muted": "png/muted/filter.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "scale",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/scale.svg",
+        "png": {
+          "ink": "png/ink/scale.png",
+          "azure": "png/azure/scale.png",
+          "amber": "png/amber/scale.png",
+          "white": "png/white/scale.png",
+          "success": "png/success/scale.png",
+          "muted": "png/muted/scale.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/scale",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/scale.svg",
+      "png": {
+        "ink": "png/ink/scale.png",
+        "azure": "png/azure/scale.png",
+        "amber": "png/amber/scale.png",
+        "white": "png/white/scale.png",
+        "success": "png/success/scale.png",
+        "muted": "png/muted/scale.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "gauge",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/gauge.svg",
+        "png": {
+          "ink": "png/ink/gauge.png",
+          "azure": "png/azure/gauge.png",
+          "amber": "png/amber/gauge.png",
+          "white": "png/white/gauge.png",
+          "success": "png/success/gauge.png",
+          "muted": "png/muted/gauge.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/gauge",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/gauge.svg",
+      "png": {
+        "ink": "png/ink/gauge.png",
+        "azure": "png/azure/gauge.png",
+        "amber": "png/amber/gauge.png",
+        "white": "png/white/gauge.png",
+        "success": "png/success/gauge.png",
+        "muted": "png/muted/gauge.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "flask-conical",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/flask-conical.svg",
+        "png": {
+          "ink": "png/ink/flask-conical.png",
+          "azure": "png/azure/flask-conical.png",
+          "amber": "png/amber/flask-conical.png",
+          "white": "png/white/flask-conical.png",
+          "success": "png/success/flask-conical.png",
+          "muted": "png/muted/flask-conical.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/flask-conical",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/flask-conical.svg",
+      "png": {
+        "ink": "png/ink/flask-conical.png",
+        "azure": "png/azure/flask-conical.png",
+        "amber": "png/amber/flask-conical.png",
+        "white": "png/white/flask-conical.png",
+        "success": "png/success/flask-conical.png",
+        "muted": "png/muted/flask-conical.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "brain",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/brain.svg",
+        "png": {
+          "ink": "png/ink/brain.png",
+          "azure": "png/azure/brain.png",
+          "amber": "png/amber/brain.png",
+          "white": "png/white/brain.png",
+          "success": "png/success/brain.png",
+          "muted": "png/muted/brain.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/brain",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/brain.svg",
+      "png": {
+        "ink": "png/ink/brain.png",
+        "azure": "png/azure/brain.png",
+        "amber": "png/amber/brain.png",
+        "white": "png/white/brain.png",
+        "success": "png/success/brain.png",
+        "muted": "png/muted/brain.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "sparkles",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/sparkles.svg",
+        "png": {
+          "ink": "png/ink/sparkles.png",
+          "azure": "png/azure/sparkles.png",
+          "amber": "png/amber/sparkles.png",
+          "white": "png/white/sparkles.png",
+          "success": "png/success/sparkles.png",
+          "muted": "png/muted/sparkles.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/sparkles",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/sparkles.svg",
+      "png": {
+        "ink": "png/ink/sparkles.png",
+        "azure": "png/azure/sparkles.png",
+        "amber": "png/amber/sparkles.png",
+        "white": "png/white/sparkles.png",
+        "success": "png/success/sparkles.png",
+        "muted": "png/muted/sparkles.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "network",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/network.svg",
+        "png": {
+          "ink": "png/ink/network.png",
+          "azure": "png/azure/network.png",
+          "amber": "png/amber/network.png",
+          "white": "png/white/network.png",
+          "success": "png/success/network.png",
+          "muted": "png/muted/network.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/network",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/network.svg",
+      "png": {
+        "ink": "png/ink/network.png",
+        "azure": "png/azure/network.png",
+        "amber": "png/amber/network.png",
+        "white": "png/white/network.png",
+        "success": "png/success/network.png",
+        "muted": "png/muted/network.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "plug",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/plug.svg",
+        "png": {
+          "ink": "png/ink/plug.png",
+          "azure": "png/azure/plug.png",
+          "amber": "png/amber/plug.png",
+          "white": "png/white/plug.png",
+          "success": "png/success/plug.png",
+          "muted": "png/muted/plug.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/plug",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/plug.svg",
+      "png": {
+        "ink": "png/ink/plug.png",
+        "azure": "png/azure/plug.png",
+        "amber": "png/amber/plug.png",
+        "white": "png/white/plug.png",
+        "success": "png/success/plug.png",
+        "muted": "png/muted/plug.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "box",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/box.svg",
+        "png": {
+          "ink": "png/ink/box.png",
+          "azure": "png/azure/box.png",
+          "amber": "png/amber/box.png",
+          "white": "png/white/box.png",
+          "success": "png/success/box.png",
+          "muted": "png/muted/box.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/box",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/box.svg",
+      "png": {
+        "ink": "png/ink/box.png",
+        "azure": "png/azure/box.png",
+        "amber": "png/amber/box.png",
+        "white": "png/white/box.png",
+        "success": "png/success/box.png",
+        "muted": "png/muted/box.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "boxes",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/boxes.svg",
+        "png": {
+          "ink": "png/ink/boxes.png",
+          "azure": "png/azure/boxes.png",
+          "amber": "png/amber/boxes.png",
+          "white": "png/white/boxes.png",
+          "success": "png/success/boxes.png",
+          "muted": "png/muted/boxes.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/boxes",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/boxes.svg",
+      "png": {
+        "ink": "png/ink/boxes.png",
+        "azure": "png/azure/boxes.png",
+        "amber": "png/amber/boxes.png",
+        "white": "png/white/boxes.png",
+        "success": "png/success/boxes.png",
+        "muted": "png/muted/boxes.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "package",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/package.svg",
+        "png": {
+          "ink": "png/ink/package.png",
+          "azure": "png/azure/package.png",
+          "amber": "png/amber/package.png",
+          "white": "png/white/package.png",
+          "success": "png/success/package.png",
+          "muted": "png/muted/package.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/package",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/package.svg",
+      "png": {
+        "ink": "png/ink/package.png",
+        "azure": "png/azure/package.png",
+        "amber": "png/amber/package.png",
+        "white": "png/white/package.png",
+        "success": "png/success/package.png",
+        "muted": "png/muted/package.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "container",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/container.svg",
+        "png": {
+          "ink": "png/ink/container.png",
+          "azure": "png/azure/container.png",
+          "amber": "png/amber/container.png",
+          "white": "png/white/container.png",
+          "success": "png/success/container.png",
+          "muted": "png/muted/container.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/container",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/container.svg",
+      "png": {
+        "ink": "png/ink/container.png",
+        "azure": "png/azure/container.png",
+        "amber": "png/amber/container.png",
+        "white": "png/white/container.png",
+        "success": "png/success/container.png",
+        "muted": "png/muted/container.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "terminal",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/terminal.svg",
+        "png": {
+          "ink": "png/ink/terminal.png",
+          "azure": "png/azure/terminal.png",
+          "amber": "png/amber/terminal.png",
+          "white": "png/white/terminal.png",
+          "success": "png/success/terminal.png",
+          "muted": "png/muted/terminal.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/terminal",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/terminal.svg",
+      "png": {
+        "ink": "png/ink/terminal.png",
+        "azure": "png/azure/terminal.png",
+        "amber": "png/amber/terminal.png",
+        "white": "png/white/terminal.png",
+        "success": "png/success/terminal.png",
+        "muted": "png/muted/terminal.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "code",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/code.svg",
+        "png": {
+          "ink": "png/ink/code.png",
+          "azure": "png/azure/code.png",
+          "amber": "png/amber/code.png",
+          "white": "png/white/code.png",
+          "success": "png/success/code.png",
+          "muted": "png/muted/code.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/code",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/code.svg",
+      "png": {
+        "ink": "png/ink/code.png",
+        "azure": "png/azure/code.png",
+        "amber": "png/amber/code.png",
+        "white": "png/white/code.png",
+        "success": "png/success/code.png",
+        "muted": "png/muted/code.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "settings",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/settings.svg",
+        "png": {
+          "ink": "png/ink/settings.png",
+          "azure": "png/azure/settings.png",
+          "amber": "png/amber/settings.png",
+          "white": "png/white/settings.png",
+          "success": "png/success/settings.png",
+          "muted": "png/muted/settings.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/settings",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/settings.svg",
+      "png": {
+        "ink": "png/ink/settings.png",
+        "azure": "png/azure/settings.png",
+        "amber": "png/amber/settings.png",
+        "white": "png/white/settings.png",
+        "success": "png/success/settings.png",
+        "muted": "png/muted/settings.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "wrench",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/wrench.svg",
+        "png": {
+          "ink": "png/ink/wrench.png",
+          "azure": "png/azure/wrench.png",
+          "amber": "png/amber/wrench.png",
+          "white": "png/white/wrench.png",
+          "success": "png/success/wrench.png",
+          "muted": "png/muted/wrench.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/wrench",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/wrench.svg",
+      "png": {
+        "ink": "png/ink/wrench.png",
+        "azure": "png/azure/wrench.png",
+        "amber": "png/amber/wrench.png",
+        "white": "png/white/wrench.png",
+        "success": "png/success/wrench.png",
+        "muted": "png/muted/wrench.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "truck",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/truck.svg",
+        "png": {
+          "ink": "png/ink/truck.png",
+          "azure": "png/azure/truck.png",
+          "amber": "png/amber/truck.png",
+          "white": "png/white/truck.png",
+          "success": "png/success/truck.png",
+          "muted": "png/muted/truck.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/truck",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/truck.svg",
+      "png": {
+        "ink": "png/ink/truck.png",
+        "azure": "png/azure/truck.png",
+        "amber": "png/amber/truck.png",
+        "white": "png/white/truck.png",
+        "success": "png/success/truck.png",
+        "muted": "png/muted/truck.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "factory",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/factory.svg",
+        "png": {
+          "ink": "png/ink/factory.png",
+          "azure": "png/azure/factory.png",
+          "amber": "png/amber/factory.png",
+          "white": "png/white/factory.png",
+          "success": "png/success/factory.png",
+          "muted": "png/muted/factory.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/factory",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/factory.svg",
+      "png": {
+        "ink": "png/ink/factory.png",
+        "azure": "png/azure/factory.png",
+        "amber": "png/amber/factory.png",
+        "white": "png/white/factory.png",
+        "success": "png/success/factory.png",
+        "muted": "png/muted/factory.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "building-2",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/building-2.svg",
+        "png": {
+          "ink": "png/ink/building-2.png",
+          "azure": "png/azure/building-2.png",
+          "amber": "png/amber/building-2.png",
+          "white": "png/white/building-2.png",
+          "success": "png/success/building-2.png",
+          "muted": "png/muted/building-2.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/building-2",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/building-2.svg",
+      "png": {
+        "ink": "png/ink/building-2.png",
+        "azure": "png/azure/building-2.png",
+        "amber": "png/amber/building-2.png",
+        "white": "png/white/building-2.png",
+        "success": "png/success/building-2.png",
+        "muted": "png/muted/building-2.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "map-pin",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/map-pin.svg",
+        "png": {
+          "ink": "png/ink/map-pin.png",
+          "azure": "png/azure/map-pin.png",
+          "amber": "png/amber/map-pin.png",
+          "white": "png/white/map-pin.png",
+          "success": "png/success/map-pin.png",
+          "muted": "png/muted/map-pin.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/map-pin",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/map-pin.svg",
+      "png": {
+        "ink": "png/ink/map-pin.png",
+        "azure": "png/azure/map-pin.png",
+        "amber": "png/amber/map-pin.png",
+        "white": "png/white/map-pin.png",
+        "success": "png/success/map-pin.png",
+        "muted": "png/muted/map-pin.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "globe",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/globe.svg",
+        "png": {
+          "ink": "png/ink/globe.png",
+          "azure": "png/azure/globe.png",
+          "amber": "png/amber/globe.png",
+          "white": "png/white/globe.png",
+          "success": "png/success/globe.png",
+          "muted": "png/muted/globe.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/globe",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/globe.svg",
+      "png": {
+        "ink": "png/ink/globe.png",
+        "azure": "png/azure/globe.png",
+        "amber": "png/amber/globe.png",
+        "white": "png/white/globe.png",
+        "success": "png/success/globe.png",
+        "muted": "png/muted/globe.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "eye",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/eye.svg",
+        "png": {
+          "ink": "png/ink/eye.png",
+          "azure": "png/azure/eye.png",
+          "amber": "png/amber/eye.png",
+          "white": "png/white/eye.png",
+          "success": "png/success/eye.png",
+          "muted": "png/muted/eye.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/eye",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/eye.svg",
+      "png": {
+        "ink": "png/ink/eye.png",
+        "azure": "png/azure/eye.png",
+        "amber": "png/amber/eye.png",
+        "white": "png/white/eye.png",
+        "success": "png/success/eye.png",
+        "muted": "png/muted/eye.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "badge-check",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/badge-check.svg",
+        "png": {
+          "ink": "png/ink/badge-check.png",
+          "azure": "png/azure/badge-check.png",
+          "amber": "png/amber/badge-check.png",
+          "white": "png/white/badge-check.png",
+          "success": "png/success/badge-check.png",
+          "muted": "png/muted/badge-check.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/badge-check",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/badge-check.svg",
+      "png": {
+        "ink": "png/ink/badge-check.png",
+        "azure": "png/azure/badge-check.png",
+        "amber": "png/amber/badge-check.png",
+        "white": "png/white/badge-check.png",
+        "success": "png/success/badge-check.png",
+        "muted": "png/muted/badge-check.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "flag",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/flag.svg",
+        "png": {
+          "ink": "png/ink/flag.png",
+          "azure": "png/azure/flag.png",
+          "amber": "png/amber/flag.png",
+          "white": "png/white/flag.png",
+          "success": "png/success/flag.png",
+          "muted": "png/muted/flag.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/flag",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/flag.svg",
+      "png": {
+        "ink": "png/ink/flag.png",
+        "azure": "png/azure/flag.png",
+        "amber": "png/amber/flag.png",
+        "white": "png/white/flag.png",
+        "success": "png/success/flag.png",
+        "muted": "png/muted/flag.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "target",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/target.svg",
+        "png": {
+          "ink": "png/ink/target.png",
+          "azure": "png/azure/target.png",
+          "amber": "png/amber/target.png",
+          "white": "png/white/target.png",
+          "success": "png/success/target.png",
+          "muted": "png/muted/target.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/target",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/target.svg",
+      "png": {
+        "ink": "png/ink/target.png",
+        "azure": "png/azure/target.png",
+        "amber": "png/amber/target.png",
+        "white": "png/white/target.png",
+        "success": "png/success/target.png",
+        "muted": "png/muted/target.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "trending-up",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/trending-up.svg",
+        "png": {
+          "ink": "png/ink/trending-up.png",
+          "azure": "png/azure/trending-up.png",
+          "amber": "png/amber/trending-up.png",
+          "white": "png/white/trending-up.png",
+          "success": "png/success/trending-up.png",
+          "muted": "png/muted/trending-up.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/trending-up",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/trending-up.svg",
+      "png": {
+        "ink": "png/ink/trending-up.png",
+        "azure": "png/azure/trending-up.png",
+        "amber": "png/amber/trending-up.png",
+        "white": "png/white/trending-up.png",
+        "success": "png/success/trending-up.png",
+        "muted": "png/muted/trending-up.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "trending-down",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/trending-down.svg",
+        "png": {
+          "ink": "png/ink/trending-down.png",
+          "azure": "png/azure/trending-down.png",
+          "amber": "png/amber/trending-down.png",
+          "white": "png/white/trending-down.png",
+          "success": "png/success/trending-down.png",
+          "muted": "png/muted/trending-down.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/trending-down",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/trending-down.svg",
+      "png": {
+        "ink": "png/ink/trending-down.png",
+        "azure": "png/azure/trending-down.png",
+        "amber": "png/amber/trending-down.png",
+        "white": "png/white/trending-down.png",
+        "success": "png/success/trending-down.png",
+        "muted": "png/muted/trending-down.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "arrow-right",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/arrow-right.svg",
+        "png": {
+          "ink": "png/ink/arrow-right.png",
+          "azure": "png/azure/arrow-right.png",
+          "amber": "png/amber/arrow-right.png",
+          "white": "png/white/arrow-right.png",
+          "success": "png/success/arrow-right.png",
+          "muted": "png/muted/arrow-right.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/arrow-right",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/arrow-right.svg",
+      "png": {
+        "ink": "png/ink/arrow-right.png",
+        "azure": "png/azure/arrow-right.png",
+        "amber": "png/amber/arrow-right.png",
+        "white": "png/white/arrow-right.png",
+        "success": "png/success/arrow-right.png",
+        "muted": "png/muted/arrow-right.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "arrow-down",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/arrow-down.svg",
+        "png": {
+          "ink": "png/ink/arrow-down.png",
+          "azure": "png/azure/arrow-down.png",
+          "amber": "png/amber/arrow-down.png",
+          "white": "png/white/arrow-down.png",
+          "success": "png/success/arrow-down.png",
+          "muted": "png/muted/arrow-down.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/arrow-down",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/arrow-down.svg",
+      "png": {
+        "ink": "png/ink/arrow-down.png",
+        "azure": "png/azure/arrow-down.png",
+        "amber": "png/amber/arrow-down.png",
+        "white": "png/white/arrow-down.png",
+        "success": "png/success/arrow-down.png",
+        "muted": "png/muted/arrow-down.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "arrow-up-right",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/arrow-up-right.svg",
+        "png": {
+          "ink": "png/ink/arrow-up-right.png",
+          "azure": "png/azure/arrow-up-right.png",
+          "amber": "png/amber/arrow-up-right.png",
+          "white": "png/white/arrow-up-right.png",
+          "success": "png/success/arrow-up-right.png",
+          "muted": "png/muted/arrow-up-right.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/arrow-up-right",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/arrow-up-right.svg",
+      "png": {
+        "ink": "png/ink/arrow-up-right.png",
+        "azure": "png/azure/arrow-up-right.png",
+        "amber": "png/amber/arrow-up-right.png",
+        "white": "png/white/arrow-up-right.png",
+        "success": "png/success/arrow-up-right.png",
+        "muted": "png/muted/arrow-up-right.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "zap",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/zap.svg",
+        "png": {
+          "ink": "png/ink/zap.png",
+          "azure": "png/azure/zap.png",
+          "amber": "png/amber/zap.png",
+          "white": "png/white/zap.png",
+          "success": "png/success/zap.png",
+          "muted": "png/muted/zap.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/zap",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/zap.svg",
+      "png": {
+        "ink": "png/ink/zap.png",
+        "azure": "png/azure/zap.png",
+        "amber": "png/amber/zap.png",
+        "white": "png/white/zap.png",
+        "success": "png/success/zap.png",
+        "muted": "png/muted/zap.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "hard-drive",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/hard-drive.svg",
+        "png": {
+          "ink": "png/ink/hard-drive.png",
+          "azure": "png/azure/hard-drive.png",
+          "amber": "png/amber/hard-drive.png",
+          "white": "png/white/hard-drive.png",
+          "success": "png/success/hard-drive.png",
+          "muted": "png/muted/hard-drive.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/hard-drive",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/hard-drive.svg",
+      "png": {
+        "ink": "png/ink/hard-drive.png",
+        "azure": "png/azure/hard-drive.png",
+        "amber": "png/amber/hard-drive.png",
+        "white": "png/white/hard-drive.png",
+        "success": "png/success/hard-drive.png",
+        "muted": "png/muted/hard-drive.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "file-json",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/file-json.svg",
+        "png": {
+          "ink": "png/ink/file-json.png",
+          "azure": "png/azure/file-json.png",
+          "amber": "png/amber/file-json.png",
+          "white": "png/white/file-json.png",
+          "success": "png/success/file-json.png",
+          "muted": "png/muted/file-json.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/file-json",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/file-json.svg",
+      "png": {
+        "ink": "png/ink/file-json.png",
+        "azure": "png/azure/file-json.png",
+        "amber": "png/amber/file-json.png",
+        "white": "png/white/file-json.png",
+        "success": "png/success/file-json.png",
+        "muted": "png/muted/file-json.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "file-spreadsheet",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/file-spreadsheet.svg",
+        "png": {
+          "ink": "png/ink/file-spreadsheet.png",
+          "azure": "png/azure/file-spreadsheet.png",
+          "amber": "png/amber/file-spreadsheet.png",
+          "white": "png/white/file-spreadsheet.png",
+          "success": "png/success/file-spreadsheet.png",
+          "muted": "png/muted/file-spreadsheet.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/file-spreadsheet",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/file-spreadsheet.svg",
+      "png": {
+        "ink": "png/ink/file-spreadsheet.png",
+        "azure": "png/azure/file-spreadsheet.png",
+        "amber": "png/amber/file-spreadsheet.png",
+        "white": "png/white/file-spreadsheet.png",
+        "success": "png/success/file-spreadsheet.png",
+        "muted": "png/muted/file-spreadsheet.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "split",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/split.svg",
+        "png": {
+          "ink": "png/ink/split.png",
+          "azure": "png/azure/split.png",
+          "amber": "png/amber/split.png",
+          "white": "png/white/split.png",
+          "success": "png/success/split.png",
+          "muted": "png/muted/split.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/split",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/split.svg",
+      "png": {
+        "ink": "png/ink/split.png",
+        "azure": "png/azure/split.png",
+        "amber": "png/amber/split.png",
+        "white": "png/white/split.png",
+        "success": "png/success/split.png",
+        "muted": "png/muted/split.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "git-compare",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/git-compare.svg",
+        "png": {
+          "ink": "png/ink/git-compare.png",
+          "azure": "png/azure/git-compare.png",
+          "amber": "png/amber/git-compare.png",
+          "white": "png/white/git-compare.png",
+          "success": "png/success/git-compare.png",
+          "muted": "png/muted/git-compare.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/git-compare",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/git-compare.svg",
+      "png": {
+        "ink": "png/ink/git-compare.png",
+        "azure": "png/azure/git-compare.png",
+        "amber": "png/amber/git-compare.png",
+        "white": "png/white/git-compare.png",
+        "success": "png/success/git-compare.png",
+        "muted": "png/muted/git-compare.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "history",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/history.svg",
+        "png": {
+          "ink": "png/ink/history.png",
+          "azure": "png/azure/history.png",
+          "amber": "png/amber/history.png",
+          "white": "png/white/history.png",
+          "success": "png/success/history.png",
+          "muted": "png/muted/history.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/history",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/history.svg",
+      "png": {
+        "ink": "png/ink/history.png",
+        "azure": "png/azure/history.png",
+        "amber": "png/amber/history.png",
+        "white": "png/white/history.png",
+        "success": "png/success/history.png",
+        "muted": "png/muted/history.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "list-checks",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/list-checks.svg",
+        "png": {
+          "ink": "png/ink/list-checks.png",
+          "azure": "png/azure/list-checks.png",
+          "amber": "png/amber/list-checks.png",
+          "white": "png/white/list-checks.png",
+          "success": "png/success/list-checks.png",
+          "muted": "png/muted/list-checks.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/list-checks",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/list-checks.svg",
+      "png": {
+        "ink": "png/ink/list-checks.png",
+        "azure": "png/azure/list-checks.png",
+        "amber": "png/amber/list-checks.png",
+        "white": "png/white/list-checks.png",
+        "success": "png/success/list-checks.png",
+        "muted": "png/muted/list-checks.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "clipboard-check",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/clipboard-check.svg",
+        "png": {
+          "ink": "png/ink/clipboard-check.png",
+          "azure": "png/azure/clipboard-check.png",
+          "amber": "png/amber/clipboard-check.png",
+          "white": "png/white/clipboard-check.png",
+          "success": "png/success/clipboard-check.png",
+          "muted": "png/muted/clipboard-check.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/clipboard-check",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/clipboard-check.svg",
+      "png": {
+        "ink": "png/ink/clipboard-check.png",
+        "azure": "png/azure/clipboard-check.png",
+        "amber": "png/amber/clipboard-check.png",
+        "white": "png/white/clipboard-check.png",
+        "success": "png/success/clipboard-check.png",
+        "muted": "png/muted/clipboard-check.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "microscope",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/microscope.svg",
+        "png": {
+          "ink": "png/ink/microscope.png",
+          "azure": "png/azure/microscope.png",
+          "amber": "png/amber/microscope.png",
+          "white": "png/white/microscope.png",
+          "success": "png/success/microscope.png",
+          "muted": "png/muted/microscope.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/microscope",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/microscope.svg",
+      "png": {
+        "ink": "png/ink/microscope.png",
+        "azure": "png/azure/microscope.png",
+        "amber": "png/amber/microscope.png",
+        "white": "png/white/microscope.png",
+        "success": "png/success/microscope.png",
+        "muted": "png/muted/microscope.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "radar",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/radar.svg",
+        "png": {
+          "ink": "png/ink/radar.png",
+          "azure": "png/azure/radar.png",
+          "amber": "png/amber/radar.png",
+          "white": "png/white/radar.png",
+          "success": "png/success/radar.png",
+          "muted": "png/muted/radar.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/radar",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/radar.svg",
+      "png": {
+        "ink": "png/ink/radar.png",
+        "azure": "png/azure/radar.png",
+        "amber": "png/amber/radar.png",
+        "white": "png/white/radar.png",
+        "success": "png/success/radar.png",
+        "muted": "png/muted/radar.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "siren",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/siren.svg",
+        "png": {
+          "ink": "png/ink/siren.png",
+          "azure": "png/azure/siren.png",
+          "amber": "png/amber/siren.png",
+          "white": "png/white/siren.png",
+          "success": "png/success/siren.png",
+          "muted": "png/muted/siren.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/siren",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/siren.svg",
+      "png": {
+        "ink": "png/ink/siren.png",
+        "azure": "png/azure/siren.png",
+        "amber": "png/amber/siren.png",
+        "white": "png/white/siren.png",
+        "success": "png/success/siren.png",
+        "muted": "png/muted/siren.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "tag",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/tag.svg",
+        "png": {
+          "ink": "png/ink/tag.png",
+          "azure": "png/azure/tag.png",
+          "amber": "png/amber/tag.png",
+          "white": "png/white/tag.png",
+          "success": "png/success/tag.png",
+          "muted": "png/muted/tag.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/tag",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/tag.svg",
+      "png": {
+        "ink": "png/ink/tag.png",
+        "azure": "png/azure/tag.png",
+        "amber": "png/amber/tag.png",
+        "white": "png/white/tag.png",
+        "success": "png/success/tag.png",
+        "muted": "png/muted/tag.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "link",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/link.svg",
+        "png": {
+          "ink": "png/ink/link.png",
+          "azure": "png/azure/link.png",
+          "amber": "png/amber/link.png",
+          "white": "png/white/link.png",
+          "success": "png/success/link.png",
+          "muted": "png/muted/link.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/link",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/link.svg",
+      "png": {
+        "ink": "png/ink/link.png",
+        "azure": "png/azure/link.png",
+        "amber": "png/amber/link.png",
+        "white": "png/white/link.png",
+        "success": "png/success/link.png",
+        "muted": "png/muted/link.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "unlink",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/unlink.svg",
+        "png": {
+          "ink": "png/ink/unlink.png",
+          "azure": "png/azure/unlink.png",
+          "amber": "png/amber/unlink.png",
+          "white": "png/white/unlink.png",
+          "success": "png/success/unlink.png",
+          "muted": "png/muted/unlink.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/unlink",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/unlink.svg",
+      "png": {
+        "ink": "png/ink/unlink.png",
+        "azure": "png/azure/unlink.png",
+        "amber": "png/amber/unlink.png",
+        "white": "png/white/unlink.png",
+        "success": "png/success/unlink.png",
+        "muted": "png/muted/unlink.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "upload",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/upload.svg",
+        "png": {
+          "ink": "png/ink/upload.png",
+          "azure": "png/azure/upload.png",
+          "amber": "png/amber/upload.png",
+          "white": "png/white/upload.png",
+          "success": "png/success/upload.png",
+          "muted": "png/muted/upload.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/upload",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/upload.svg",
+      "png": {
+        "ink": "png/ink/upload.png",
+        "azure": "png/azure/upload.png",
+        "amber": "png/amber/upload.png",
+        "white": "png/white/upload.png",
+        "success": "png/success/upload.png",
+        "muted": "png/muted/upload.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "download",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/download.svg",
+        "png": {
+          "ink": "png/ink/download.png",
+          "azure": "png/azure/download.png",
+          "amber": "png/amber/download.png",
+          "white": "png/white/download.png",
+          "success": "png/success/download.png",
+          "muted": "png/muted/download.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/download",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/download.svg",
+      "png": {
+        "ink": "png/ink/download.png",
+        "azure": "png/azure/download.png",
+        "amber": "png/amber/download.png",
+        "white": "png/white/download.png",
+        "success": "png/success/download.png",
+        "muted": "png/muted/download.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "trash-2",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/trash-2.svg",
+        "png": {
+          "ink": "png/ink/trash-2.png",
+          "azure": "png/azure/trash-2.png",
+          "amber": "png/amber/trash-2.png",
+          "white": "png/white/trash-2.png",
+          "success": "png/success/trash-2.png",
+          "muted": "png/muted/trash-2.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/trash-2",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/trash-2.svg",
+      "png": {
+        "ink": "png/ink/trash-2.png",
+        "azure": "png/azure/trash-2.png",
+        "amber": "png/amber/trash-2.png",
+        "white": "png/white/trash-2.png",
+        "success": "png/success/trash-2.png",
+        "muted": "png/muted/trash-2.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "copy",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/copy.svg",
+        "png": {
+          "ink": "png/ink/copy.png",
+          "azure": "png/azure/copy.png",
+          "amber": "png/amber/copy.png",
+          "white": "png/white/copy.png",
+          "success": "png/success/copy.png",
+          "muted": "png/muted/copy.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/copy",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/copy.svg",
+      "png": {
+        "ink": "png/ink/copy.png",
+        "azure": "png/azure/copy.png",
+        "amber": "png/amber/copy.png",
+        "white": "png/white/copy.png",
+        "success": "png/success/copy.png",
+        "muted": "png/muted/copy.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "lightbulb",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/lightbulb.svg",
+        "png": {
+          "ink": "png/ink/lightbulb.png",
+          "azure": "png/azure/lightbulb.png",
+          "amber": "png/amber/lightbulb.png",
+          "white": "png/white/lightbulb.png",
+          "success": "png/success/lightbulb.png",
+          "muted": "png/muted/lightbulb.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/lightbulb",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/lightbulb.svg",
+      "png": {
+        "ink": "png/ink/lightbulb.png",
+        "azure": "png/azure/lightbulb.png",
+        "amber": "png/amber/lightbulb.png",
+        "white": "png/white/lightbulb.png",
+        "success": "png/success/lightbulb.png",
+        "muted": "png/muted/lightbulb.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "book-open",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/book-open.svg",
+        "png": {
+          "ink": "png/ink/book-open.png",
+          "azure": "png/azure/book-open.png",
+          "amber": "png/amber/book-open.png",
+          "white": "png/white/book-open.png",
+          "success": "png/success/book-open.png",
+          "muted": "png/muted/book-open.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/book-open",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/book-open.svg",
+      "png": {
+        "ink": "png/ink/book-open.png",
+        "azure": "png/azure/book-open.png",
+        "amber": "png/amber/book-open.png",
+        "white": "png/white/book-open.png",
+        "success": "png/success/book-open.png",
+        "muted": "png/muted/book-open.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "graduation-cap",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/graduation-cap.svg",
+        "png": {
+          "ink": "png/ink/graduation-cap.png",
+          "azure": "png/azure/graduation-cap.png",
+          "amber": "png/amber/graduation-cap.png",
+          "white": "png/white/graduation-cap.png",
+          "success": "png/success/graduation-cap.png",
+          "muted": "png/muted/graduation-cap.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/graduation-cap",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/graduation-cap.svg",
+      "png": {
+        "ink": "png/ink/graduation-cap.png",
+        "azure": "png/azure/graduation-cap.png",
+        "amber": "png/amber/graduation-cap.png",
+        "white": "png/white/graduation-cap.png",
+        "success": "png/success/graduation-cap.png",
+        "muted": "png/muted/graduation-cap.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "handshake",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/handshake.svg",
+        "png": {
+          "ink": "png/ink/handshake.png",
+          "azure": "png/azure/handshake.png",
+          "amber": "png/amber/handshake.png",
+          "white": "png/white/handshake.png",
+          "success": "png/success/handshake.png",
+          "muted": "png/muted/handshake.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/handshake",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/handshake.svg",
+      "png": {
+        "ink": "png/ink/handshake.png",
+        "azure": "png/azure/handshake.png",
+        "amber": "png/amber/handshake.png",
+        "white": "png/white/handshake.png",
+        "success": "png/success/handshake.png",
+        "muted": "png/muted/handshake.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "puzzle",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/puzzle.svg",
+        "png": {
+          "ink": "png/ink/puzzle.png",
+          "azure": "png/azure/puzzle.png",
+          "amber": "png/amber/puzzle.png",
+          "white": "png/white/puzzle.png",
+          "success": "png/success/puzzle.png",
+          "muted": "png/muted/puzzle.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/puzzle",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/puzzle.svg",
+      "png": {
+        "ink": "png/ink/puzzle.png",
+        "azure": "png/azure/puzzle.png",
+        "amber": "png/amber/puzzle.png",
+        "white": "png/white/puzzle.png",
+        "success": "png/success/puzzle.png",
+        "muted": "png/muted/puzzle.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "shield-alert",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/shield-alert.svg",
+        "png": {
+          "ink": "png/ink/shield-alert.png",
+          "azure": "png/azure/shield-alert.png",
+          "amber": "png/amber/shield-alert.png",
+          "white": "png/white/shield-alert.png",
+          "success": "png/success/shield-alert.png",
+          "muted": "png/muted/shield-alert.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/shield-alert",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/shield-alert.svg",
+      "png": {
+        "ink": "png/ink/shield-alert.png",
+        "azure": "png/azure/shield-alert.png",
+        "amber": "png/amber/shield-alert.png",
+        "white": "png/white/shield-alert.png",
+        "success": "png/success/shield-alert.png",
+        "muted": "png/muted/shield-alert.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "scroll-text",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/scroll-text.svg",
+        "png": {
+          "ink": "png/ink/scroll-text.png",
+          "azure": "png/azure/scroll-text.png",
+          "amber": "png/amber/scroll-text.png",
+          "white": "png/white/scroll-text.png",
+          "success": "png/success/scroll-text.png",
+          "muted": "png/muted/scroll-text.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/scroll-text",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/scroll-text.svg",
+      "png": {
+        "ink": "png/ink/scroll-text.png",
+        "azure": "png/azure/scroll-text.png",
+        "amber": "png/amber/scroll-text.png",
+        "white": "png/white/scroll-text.png",
+        "success": "png/success/scroll-text.png",
+        "muted": "png/muted/scroll-text.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "test-tube",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/test-tube.svg",
+        "png": {
+          "ink": "png/ink/test-tube.png",
+          "azure": "png/azure/test-tube.png",
+          "amber": "png/amber/test-tube.png",
+          "white": "png/white/test-tube.png",
+          "success": "png/success/test-tube.png",
+          "muted": "png/muted/test-tube.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/test-tube",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/test-tube.svg",
+      "png": {
+        "ink": "png/ink/test-tube.png",
+        "azure": "png/azure/test-tube.png",
+        "amber": "png/amber/test-tube.png",
+        "white": "png/white/test-tube.png",
+        "success": "png/success/test-tube.png",
+        "muted": "png/muted/test-tube.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "brackets",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/brackets.svg",
+        "png": {
+          "ink": "png/ink/brackets.png",
+          "azure": "png/azure/brackets.png",
+          "amber": "png/amber/brackets.png",
+          "white": "png/white/brackets.png",
+          "success": "png/success/brackets.png",
+          "muted": "png/muted/brackets.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/brackets",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/brackets.svg",
+      "png": {
+        "ink": "png/ink/brackets.png",
+        "azure": "png/azure/brackets.png",
+        "amber": "png/amber/brackets.png",
+        "white": "png/white/brackets.png",
+        "success": "png/success/brackets.png",
+        "muted": "png/muted/brackets.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "binary",
+      "family": "lucide",
+      "kind": "lucide",
+      "files": {
+        "svg": "lucide/binary.svg",
+        "png": {
+          "ink": "png/ink/binary.png",
+          "azure": "png/azure/binary.png",
+          "amber": "png/amber/binary.png",
+          "white": "png/white/binary.png",
+          "success": "png/success/binary.png",
+          "muted": "png/muted/binary.png"
+        }
+      },
+      "availableColors": [
+        "ink",
+        "azure",
+        "amber",
+        "white",
+        "success",
+        "muted"
+      ],
+      "source": {
+        "url": "https://lucide.dev/icons/binary",
+        "license": "ISC",
+        "notes": ""
+      },
+      "svg": "lucide/binary.svg",
+      "png": {
+        "ink": "png/ink/binary.png",
+        "azure": "png/azure/binary.png",
+        "amber": "png/amber/binary.png",
+        "white": "png/white/binary.png",
+        "success": "png/success/binary.png",
+        "muted": "png/muted/binary.png"
+      },
+      "license": "ISC",
+      "notes": ""
+    },
+    {
+      "name": "microsoft-fabric",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/microsoft-fabric.svg",
+        "png": "microsoft/png/microsoft-fabric.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/fabric/fundamentals/icons",
+        "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+        "notes": "Official Microsoft Fabric npm package asset fabric_48_color.svg."
+      },
+      "svg": "microsoft/svg/microsoft-fabric.svg",
+      "png": "microsoft/png/microsoft-fabric.png",
+      "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+      "notes": "Official Microsoft Fabric npm package asset fabric_48_color.svg."
+    },
+    {
+      "name": "one-lake",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/one-lake.svg",
+        "png": "microsoft/png/one-lake.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/fabric/fundamentals/icons",
+        "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+        "notes": "Official Microsoft Fabric npm package asset one_lake_48_color.svg."
+      },
+      "svg": "microsoft/svg/one-lake.svg",
+      "png": "microsoft/png/one-lake.png",
+      "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+      "notes": "Official Microsoft Fabric npm package asset one_lake_48_color.svg."
+    },
+    {
+      "name": "lakehouse",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/lakehouse.svg",
+        "png": "microsoft/png/lakehouse.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/fabric/fundamentals/icons",
+        "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+        "notes": "Official Microsoft Fabric npm package asset lakehouse_64_item.svg."
+      },
+      "svg": "microsoft/svg/lakehouse.svg",
+      "png": "microsoft/png/lakehouse.png",
+      "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+      "notes": "Official Microsoft Fabric npm package asset lakehouse_64_item.svg."
+    },
+    {
+      "name": "data-warehouse",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/data-warehouse.svg",
+        "png": "microsoft/png/data-warehouse.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/fabric/fundamentals/icons",
+        "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+        "notes": "Official Microsoft Fabric npm package asset data_warehouse_64_item.svg."
+      },
+      "svg": "microsoft/svg/data-warehouse.svg",
+      "png": "microsoft/png/data-warehouse.png",
+      "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+      "notes": "Official Microsoft Fabric npm package asset data_warehouse_64_item.svg."
+    },
+    {
+      "name": "notebook",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/notebook.svg",
+        "png": "microsoft/png/notebook.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/fabric/fundamentals/icons",
+        "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+        "notes": "Official Microsoft Fabric npm package asset notebook_64_item.svg."
+      },
+      "svg": "microsoft/svg/notebook.svg",
+      "png": "microsoft/png/notebook.png",
+      "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+      "notes": "Official Microsoft Fabric npm package asset notebook_64_item.svg."
+    },
+    {
+      "name": "data-pipeline",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/data-pipeline.svg",
+        "png": "microsoft/png/data-pipeline.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/fabric/fundamentals/icons",
+        "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+        "notes": "Mapped from “Data Pipeline (Data Factory)” to the current Fabric pipeline item icon pipeline_64_item.svg."
+      },
+      "svg": "microsoft/svg/data-pipeline.svg",
+      "png": "microsoft/png/data-pipeline.png",
+      "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+      "notes": "Mapped from “Data Pipeline (Data Factory)” to the current Fabric pipeline item icon pipeline_64_item.svg."
+    },
+    {
+      "name": "eventhouse",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/eventhouse.svg",
+        "png": "microsoft/png/eventhouse.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/fabric/fundamentals/icons",
+        "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+        "notes": "Official Microsoft Fabric npm package asset event_house_64_item.svg."
+      },
+      "svg": "microsoft/svg/eventhouse.svg",
+      "png": "microsoft/png/eventhouse.png",
+      "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+      "notes": "Official Microsoft Fabric npm package asset event_house_64_item.svg."
+    },
+    {
+      "name": "eventstream",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/eventstream.svg",
+        "png": "microsoft/png/eventstream.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/fabric/fundamentals/icons",
+        "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+        "notes": "Official Microsoft Fabric npm package asset eventstream_64_item.svg."
+      },
+      "svg": "microsoft/svg/eventstream.svg",
+      "png": "microsoft/png/eventstream.png",
+      "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+      "notes": "Official Microsoft Fabric npm package asset eventstream_64_item.svg."
+    },
+    {
+      "name": "data-agent",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/data-agent.svg",
+        "png": "microsoft/png/data-agent.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/fabric/fundamentals/icons",
+        "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+        "notes": "Official Microsoft Fabric npm package asset data_agent_64_item.svg."
+      },
+      "svg": "microsoft/svg/data-agent.svg",
+      "png": "microsoft/png/data-agent.png",
+      "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+      "notes": "Official Microsoft Fabric npm package asset data_agent_64_item.svg."
+    },
+    {
+      "name": "semantic-model",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/semantic-model.svg",
+        "png": "microsoft/png/semantic-model.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/fabric/fundamentals/icons",
+        "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+        "notes": "Official Microsoft Fabric npm package asset semantic_model_64_item.svg."
+      },
+      "svg": "microsoft/svg/semantic-model.svg",
+      "png": "microsoft/png/semantic-model.png",
+      "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+      "notes": "Official Microsoft Fabric npm package asset semantic_model_64_item.svg."
+    },
+    {
+      "name": "power-bi",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/power-bi.svg",
+        "png": "microsoft/png/power-bi.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/fabric/fundamentals/icons",
+        "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+        "notes": "Official Microsoft Fabric npm package asset power_bi_48_color.svg."
+      },
+      "svg": "microsoft/svg/power-bi.svg",
+      "png": "microsoft/png/power-bi.png",
+      "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+      "notes": "Official Microsoft Fabric npm package asset power_bi_48_color.svg."
+    },
+    {
+      "name": "experiment",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/experiment.svg",
+        "png": "microsoft/png/experiment.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/fabric/fundamentals/icons",
+        "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+        "notes": "Mapped from the requested “Experiment” concept to the official Fabric experiments item icon experiments_64_item.svg."
+      },
+      "svg": "microsoft/svg/experiment.svg",
+      "png": "microsoft/png/experiment.png",
+      "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+      "notes": "Mapped from the requested “Experiment” concept to the official Fabric experiments item icon experiments_64_item.svg."
+    },
+    {
+      "name": "ml-model",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/ml-model.svg",
+        "png": "microsoft/png/ml-model.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/fabric/fundamentals/icons",
+        "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+        "notes": "Mapped from the requested “ML model” concept to the official Fabric model item icon model_64_item.svg."
+      },
+      "svg": "microsoft/svg/ml-model.svg",
+      "png": "microsoft/png/ml-model.png",
+      "license": "MIT package; Microsoft Fabric doc permits use in diagrams, training materials, slide decks, and documentation.",
+      "notes": "Mapped from the requested “ML model” concept to the official Fabric model item icon model_64_item.svg."
+    },
+    {
+      "name": "azure-machine-learning",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/azure-machine-learning.svg",
+        "png": "microsoft/png/azure-machine-learning.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/icons/",
+        "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+        "notes": "Official Azure architecture icon pack entry 038470510-icon-service-Azure-Machine-Learning.svg."
+      },
+      "svg": "microsoft/svg/azure-machine-learning.svg",
+      "png": "microsoft/png/azure-machine-learning.png",
+      "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+      "notes": "Official Azure architecture icon pack entry 038470510-icon-service-Azure-Machine-Learning.svg."
+    },
+    {
+      "name": "microsoft-foundry",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/microsoft-foundry.svg",
+        "png": "microsoft/png/microsoft-foundry.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/icons/",
+        "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+        "notes": "Mapped from “Microsoft Foundry (Azure AI Foundry)” to the current official Azure icon asset 035746832-icon-service-AI-Foundry.svg."
+      },
+      "svg": "microsoft/svg/microsoft-foundry.svg",
+      "png": "microsoft/png/microsoft-foundry.png",
+      "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+      "notes": "Mapped from “Microsoft Foundry (Azure AI Foundry)” to the current official Azure icon asset 035746832-icon-service-AI-Foundry.svg."
+    },
+    {
+      "name": "azure-openai-foundry-models",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/azure-openai-foundry-models.svg",
+        "png": "microsoft/png/azure-openai-foundry-models.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/icons/",
+        "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+        "notes": "Mapped from “Azure OpenAI/Foundry Models” to the current official Foundry Models icon 038470614-icon-service-Foundry-Models.svg."
+      },
+      "svg": "microsoft/svg/azure-openai-foundry-models.svg",
+      "png": "microsoft/png/azure-openai-foundry-models.png",
+      "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+      "notes": "Mapped from “Azure OpenAI/Foundry Models” to the current official Foundry Models icon 038470614-icon-service-Foundry-Models.svg."
+    },
+    {
+      "name": "azure-key-vault",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/azure-key-vault.svg",
+        "png": "microsoft/png/azure-key-vault.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/icons/",
+        "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+        "notes": "Official Azure architecture icon pack entry 10245-icon-service-Key-Vaults.svg."
+      },
+      "svg": "microsoft/svg/azure-key-vault.svg",
+      "png": "microsoft/png/azure-key-vault.png",
+      "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+      "notes": "Official Azure architecture icon pack entry 10245-icon-service-Key-Vaults.svg."
+    },
+    {
+      "name": "azure-container-registry",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/azure-container-registry.svg",
+        "png": "microsoft/png/azure-container-registry.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/icons/",
+        "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+        "notes": "Official Azure architecture icon pack entry 10105-icon-service-Container-Registries.svg."
+      },
+      "svg": "microsoft/svg/azure-container-registry.svg",
+      "png": "microsoft/png/azure-container-registry.png",
+      "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+      "notes": "Official Azure architecture icon pack entry 10105-icon-service-Container-Registries.svg."
+    },
+    {
+      "name": "azure-storage-account-data-lake",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/azure-storage-account-data-lake.svg",
+        "png": "microsoft/png/azure-storage-account-data-lake.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/icons/",
+        "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+        "notes": "Used the current Storage Accounts icon; the requested ADLS concept is represented through the storage account surface in the official Azure pack."
+      },
+      "svg": "microsoft/svg/azure-storage-account-data-lake.svg",
+      "png": "microsoft/png/azure-storage-account-data-lake.png",
+      "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+      "notes": "Used the current Storage Accounts icon; the requested ADLS concept is represented through the storage account surface in the official Azure pack."
+    },
+    {
+      "name": "application-insights",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/application-insights.svg",
+        "png": "microsoft/png/application-insights.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/icons/",
+        "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+        "notes": "Official Azure architecture icon pack entry 00012-icon-service-Application-Insights.svg."
+      },
+      "svg": "microsoft/svg/application-insights.svg",
+      "png": "microsoft/png/application-insights.png",
+      "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+      "notes": "Official Azure architecture icon pack entry 00012-icon-service-Application-Insights.svg."
+    },
+    {
+      "name": "azure-monitor",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/azure-monitor.svg",
+        "png": "microsoft/png/azure-monitor.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/icons/",
+        "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+        "notes": "Official Azure architecture icon pack entry 00001-icon-service-Monitor.svg."
+      },
+      "svg": "microsoft/svg/azure-monitor.svg",
+      "png": "microsoft/png/azure-monitor.png",
+      "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+      "notes": "Official Azure architecture icon pack entry 00001-icon-service-Monitor.svg."
+    },
+    {
+      "name": "log-analytics",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/log-analytics.svg",
+        "png": "microsoft/png/log-analytics.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/icons/",
+        "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+        "notes": "Official Azure architecture icon pack entry 00009-icon-service-Log-Analytics-Workspaces.svg."
+      },
+      "svg": "microsoft/svg/log-analytics.svg",
+      "png": "microsoft/png/log-analytics.png",
+      "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+      "notes": "Official Azure architecture icon pack entry 00009-icon-service-Log-Analytics-Workspaces.svg."
+    },
+    {
+      "name": "microsoft-entra-id",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/microsoft-entra-id.svg",
+        "png": "microsoft/png/microsoft-entra-id.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/entra/architecture/architecture-icons",
+        "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+        "notes": "Official Microsoft Entra architecture icon package color icon."
+      },
+      "svg": "microsoft/svg/microsoft-entra-id.svg",
+      "png": "microsoft/png/microsoft-entra-id.png",
+      "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+      "notes": "Official Microsoft Entra architecture icon package color icon."
+    },
+    {
+      "name": "azure-kubernetes-service",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/azure-kubernetes-service.svg",
+        "png": "microsoft/png/azure-kubernetes-service.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/icons/",
+        "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+        "notes": "Mapped from AKS to the current official Azure Kubernetes Services icon 10023-icon-service-Kubernetes-Services.svg."
+      },
+      "svg": "microsoft/svg/azure-kubernetes-service.svg",
+      "png": "microsoft/png/azure-kubernetes-service.png",
+      "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+      "notes": "Mapped from AKS to the current official Azure Kubernetes Services icon 10023-icon-service-Kubernetes-Services.svg."
+    },
+    {
+      "name": "azure-virtual-network",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/azure-virtual-network.svg",
+        "png": "microsoft/png/azure-virtual-network.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/icons/",
+        "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+        "notes": "Official Azure architecture icon pack entry 10061-icon-service-Virtual-Networks.svg."
+      },
+      "svg": "microsoft/svg/azure-virtual-network.svg",
+      "png": "microsoft/png/azure-virtual-network.png",
+      "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+      "notes": "Official Azure architecture icon pack entry 10061-icon-service-Virtual-Networks.svg."
+    },
+    {
+      "name": "visual-studio-code",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": null,
+        "png": "microsoft/png/visual-studio-code.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://code.visualstudio.com/brand",
+        "license": "The VS Code brand page allows use of the stable icon in documentation or tutorials; the icon remains a Microsoft trademark.",
+        "notes": "Official stable VS Code icon downloaded from the VS Code brand page."
+      },
+      "svg": null,
+      "png": "microsoft/png/visual-studio-code.png",
+      "license": "The VS Code brand page allows use of the stable icon in documentation or tutorials; the icon remains a Microsoft trademark.",
+      "notes": "Official stable VS Code icon downloaded from the VS Code brand page."
+    },
+    {
+      "name": "github",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/github.svg",
+        "png": "microsoft/png/github.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://raw.githubusercontent.com/primer/octicons/main/icons/mark-github-16.svg",
+        "license": "MIT.",
+        "notes": "Official GitHub Octicons mark-github asset from @primer/octicons."
+      },
+      "svg": "microsoft/svg/github.svg",
+      "png": "microsoft/png/github.png",
+      "license": "MIT.",
+      "notes": "Official GitHub Octicons mark-github asset from @primer/octicons."
+    },
+    {
+      "name": "azure-devops",
+      "family": "microsoft",
+      "kind": "microsoft",
+      "files": {
+        "svg": "microsoft/svg/azure-devops.svg",
+        "png": "microsoft/png/azure-devops.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/icons/",
+        "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+        "notes": "Official Azure architecture icon pack entry 10261-icon-service-Azure-DevOps.svg."
+      },
+      "svg": "microsoft/svg/azure-devops.svg",
+      "png": "microsoft/png/azure-devops.png",
+      "license": "Microsoft permits use of these icons in architectural diagrams, training materials, or documentation.",
+      "notes": "Official Azure architecture icon pack entry 10261-icon-service-Azure-DevOps.svg."
+    },
+    {
+      "name": "mlflow",
+      "family": "tiles",
+      "kind": "tile",
+      "files": {
+        "svg": null,
+        "png": "tiles/mlflow.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": null,
+        "license": "Generated locally",
+        "notes": "Neutral text tile for MLflow; no third-party logo used."
+      },
+      "svg": null,
+      "png": "tiles/mlflow.png",
+      "license": "Generated locally",
+      "notes": "Neutral text tile for MLflow; no third-party logo used."
+    },
+    {
+      "name": "spark",
+      "family": "tiles",
+      "kind": "tile",
+      "files": {
+        "svg": null,
+        "png": "tiles/spark.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": null,
+        "license": "Generated locally",
+        "notes": "Neutral text tile for Spark; no third-party logo used."
+      },
+      "svg": null,
+      "png": "tiles/spark.png",
+      "license": "Generated locally",
+      "notes": "Neutral text tile for Spark; no third-party logo used."
+    },
+    {
+      "name": "delta",
+      "family": "tiles",
+      "kind": "tile",
+      "files": {
+        "svg": null,
+        "png": "tiles/delta.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": null,
+        "license": "Generated locally",
+        "notes": "Neutral text tile for Delta; no third-party logo used."
+      },
+      "svg": null,
+      "png": "tiles/delta.png",
+      "license": "Generated locally",
+      "notes": "Neutral text tile for Delta; no third-party logo used."
+    },
+    {
+      "name": "scikit-learn",
+      "family": "tiles",
+      "kind": "tile",
+      "files": {
+        "svg": null,
+        "png": "tiles/scikit-learn.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": null,
+        "license": "Generated locally",
+        "notes": "Neutral text tile for scikit-learn; no third-party logo used."
+      },
+      "svg": null,
+      "png": "tiles/scikit-learn.png",
+      "license": "Generated locally",
+      "notes": "Neutral text tile for scikit-learn; no third-party logo used."
+    },
+    {
+      "name": "python",
+      "family": "tiles",
+      "kind": "tile",
+      "files": {
+        "svg": null,
+        "png": "tiles/python.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": null,
+        "license": "Generated locally",
+        "notes": "Neutral text tile for Python; no third-party logo used."
+      },
+      "svg": null,
+      "png": "tiles/python.png",
+      "license": "Generated locally",
+      "notes": "Neutral text tile for Python; no third-party logo used."
+    },
+    {
+      "name": "docker",
+      "family": "tiles",
+      "kind": "tile",
+      "files": {
+        "svg": null,
+        "png": "tiles/docker.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": null,
+        "license": "Generated locally",
+        "notes": "Neutral text tile for Docker; no third-party logo used."
+      },
+      "svg": null,
+      "png": "tiles/docker.png",
+      "license": "Generated locally",
+      "notes": "Neutral text tile for Docker; no third-party logo used."
+    },
+    {
+      "name": "git",
+      "family": "tiles",
+      "kind": "tile",
+      "files": {
+        "svg": null,
+        "png": "tiles/git.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": null,
+        "license": "Generated locally",
+        "notes": "Neutral text tile for Git; no third-party logo used."
+      },
+      "svg": null,
+      "png": "tiles/git.png",
+      "license": "Generated locally",
+      "notes": "Neutral text tile for Git; no third-party logo used."
+    },
+    {
+      "name": "databricks",
+      "family": "tiles",
+      "kind": "tile",
+      "files": {
+        "svg": null,
+        "png": "tiles/databricks.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": null,
+        "license": "Generated locally",
+        "notes": "Neutral text tile for Databricks; no third-party logo used."
+      },
+      "svg": null,
+      "png": "tiles/databricks.png",
+      "license": "Generated locally",
+      "notes": "Neutral text tile for Databricks; no third-party logo used."
+    },
+    {
+      "name": "sql",
+      "family": "tiles",
+      "kind": "tile",
+      "files": {
+        "svg": null,
+        "png": "tiles/sql.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": null,
+        "license": "Generated locally",
+        "notes": "Neutral text tile for SQL; no third-party logo used."
+      },
+      "svg": null,
+      "png": "tiles/sql.png",
+      "license": "Generated locally",
+      "notes": "Neutral text tile for SQL; no third-party logo used."
+    },
+    {
+      "name": "kql",
+      "family": "tiles",
+      "kind": "tile",
+      "files": {
+        "svg": null,
+        "png": "tiles/kql.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": null,
+        "license": "Generated locally",
+        "notes": "Neutral text tile for KQL; no third-party logo used."
+      },
+      "svg": null,
+      "png": "tiles/kql.png",
+      "license": "Generated locally",
+      "notes": "Neutral text tile for KQL; no third-party logo used."
+    },
+    {
+      "name": "yaml",
+      "family": "tiles",
+      "kind": "tile",
+      "files": {
+        "svg": null,
+        "png": "tiles/yaml.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": null,
+        "license": "Generated locally",
+        "notes": "Neutral text tile for YAML; no third-party logo used."
+      },
+      "svg": null,
+      "png": "tiles/yaml.png",
+      "license": "Generated locally",
+      "notes": "Neutral text tile for YAML; no third-party logo used."
+    },
+    {
+      "name": "bicep",
+      "family": "tiles",
+      "kind": "tile",
+      "files": {
+        "svg": null,
+        "png": "tiles/bicep.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": null,
+        "license": "Generated locally",
+        "notes": "Neutral text tile for Bicep; no third-party logo used."
+      },
+      "svg": null,
+      "png": "tiles/bicep.png",
+      "license": "Generated locally",
+      "notes": "Neutral text tile for Bicep; no third-party logo used."
+    },
+    {
+      "name": "oidc",
+      "family": "tiles",
+      "kind": "tile",
+      "files": {
+        "svg": null,
+        "png": "tiles/oidc.png"
+      },
+      "availableColors": [],
+      "source": {
+        "url": null,
+        "license": "Generated locally",
+        "notes": "Neutral text tile for OIDC; no third-party logo used."
+      },
+      "svg": null,
+      "png": "tiles/oidc.png",
+      "license": "Generated locally",
+      "notes": "Neutral text tile for OIDC; no third-party logo used."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: fleet_compute_drift
+display_name: Fleet compute PSI drift
+version: 1
+type: command
+inputs:
+  reference_dir:
+    type: uri_folder
+  current_dir:
+    type: uri_folder
+  dim_asset:
+    type: uri_file
+outputs:
+  drift_output:
+    type: uri_folder
+code: ../../src
+environment: azureml:env-fleet-sklearn:1
+command: >-
+  python drift.py
+  --reference-dir ${{inputs.reference_dir}}
+  --current-dir ${{inputs.current_dir}}
+  --dim-asset-path ${{inputs.dim_asset}}
+  --output-dir ${{outputs.drift_output}}

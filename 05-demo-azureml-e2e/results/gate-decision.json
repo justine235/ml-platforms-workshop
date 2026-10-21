@@ -1,0 +1,44 @@
+{
+  "gate": {
+    "approved": true,
+    "challenger_metrics": {
+      "test_pr_auc": 0.3882,
+      "test_precision_at_top5pct": 0.3758,
+      "test_recall_at_top5pct": 0.4197,
+      "test_roc_auc": 0.7551,
+      "valid_pr_auc": 0.349,
+      "valid_roc_auc": 0.7037
+    },
+    "champion_metrics": {
+      "test_pr_auc": 0.2924,
+      "test_precision_at_top5pct": 0.3072,
+      "test_recall_at_top5pct": 0.3431,
+      "test_roc_auc": 0.741,
+      "valid_pr_auc": 0.2923,
+      "valid_roc_auc": 0.7301
+    },
+    "deltas": {
+      "test_pr_auc": 0.0958,
+      "test_precision_at_top5pct": 0.0686
+    },
+    "reason": "Approved: challenger cleared the +0.01 PR-AUC threshold and stayed within the precision guardrail.",
+    "rule": "challenger test_pr_auc >= champion + 0.01 and precision@top5% not worse by more than 0.02"
+  },
+  "metrics": {
+    "test_pr_auc": 0.3882,
+    "test_precision_at_top5pct": 0.3758,
+    "test_recall_at_top5pct": 0.4197,
+    "test_roc_auc": 0.7551,
+    "valid_pr_auc": 0.349,
+    "valid_roc_auc": 0.7037
+  },
+  "test_details": {
+    "positives": 274,
+    "pr_auc": 0.3882,
+    "precision_at_top5pct": 0.3758,
+    "prevalence": 0.0448,
+    "recall_at_top5pct": 0.4197,
+    "roc_auc": 0.7551,
+    "rows": 6111
+  }
+}

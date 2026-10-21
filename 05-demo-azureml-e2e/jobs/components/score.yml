@@ -1,0 +1,26 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: fleet_score_latest
+display_name: Fleet batch score latest day
+version: 1
+type: command
+inputs:
+  input_data:
+    type: uri_folder
+  dim_asset:
+    type: uri_file
+  model_path:
+    type: uri_folder
+  model_version:
+    type: string
+outputs:
+  scored_output:
+    type: uri_folder
+code: ../../src
+environment: azureml:env-fleet-sklearn:1
+command: >-
+  python score.py
+  --input-path ${{inputs.input_data}}
+  --dim-asset-path ${{inputs.dim_asset}}
+  --model-path ${{inputs.model_path}}
+  --model-version ${{inputs.model_version}}
+  --output-dir ${{outputs.scored_output}}

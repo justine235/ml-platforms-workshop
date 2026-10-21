@@ -1,0 +1,6 @@
+$schema: https://azuremlschemas.azureedge.net/latest/batchEndpoint.schema.json
+name: fleet-risk-batch
+description: Batch endpoint for scoring the latest fleet feature exports.
+tags:
+  scenario: fleet
+  serving_mode: no-code-mlflow

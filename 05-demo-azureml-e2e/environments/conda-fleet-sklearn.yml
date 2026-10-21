@@ -1,0 +1,15 @@
+name: env-fleet-sklearn
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip=24.3
+  - pip:
+      - mlflow==2.16.2
+      - azureml-mlflow
+      - scikit-learn==1.6.1
+      - pandas==2.2.3
+      - pyarrow
+      - numpy
+      - pyyaml
+      - sqlalchemy<2.1

@@ -1,0 +1,18 @@
+# Verify before Friday
+
+| Item | Why it is flagged |
+|---|---|
+| `Standard_DS3_v2` regional availability and quota in West Europe / France Central / Sweden Central | Microsoft does not publish stable subscription-specific quota defaults. Check the actual demo subscription in Azure quota views. |
+| Exact price in France Central / Sweden Central and the final workshop-day total | The fact sheet verified only a West Europe retail-price anchor and an order-of-magnitude estimate. |
+| `jobs\monitoring\model-monitoring.schedule.yml` preview schema | AML monitoring remains the moving part. The preview sample should be revalidated in the target tenant before promising it live. |
+| Online endpoint first-deploy duration | Microsoft documents the feature set, not a fixed SLA. Rehearse once in the target subscription. |
+| Rollout sequence on the real endpoint | A deployment is either live or mirrored, never both. Rehearse once: green dark, invoke green directly, `--mirror-traffic "green=10"` and read green's logs, `--mirror-traffic "green=0"`, then `--traffic "blue=90 green=10"`. Mirroring is capped at 50%, one shadow deployment, not for Kubernetes endpoints. |
+| Batch endpoint output shape for the exact registered sklearn MLflow model | The no-code MLflow serving stack is deterministic but still worth one smoke test because signature enforcement is strict. |
+| If you enable the optional AML registry | Confirm the chosen region and SKU for the target tenant if you plan to demo cross-workspace promotion live. |
+| **Server-side validation of every YAML** | The kit was only validated with the azure-ai-ml SDK loaders on a laptop. Run the whole of `rebuild-guide.md` once in a scratch resource group, at least two days before Friday, and fix whatever `az ml ... create` rejects. |
+| Environment and data assets registered first | `rebuild-guide.md` step 2 must run before any job, component, endpoint or schedule, otherwise they fail with "asset not found". Register all four (environment, features, dim_asset, champion metrics). |
+| MLflow experiment name inside a real job | The kit pins `experiment_name: fleet-failure-7d` in the job YAML and `train.py` (line 46) calls `mlflow.set_experiment()` with the same name. Confirm the run lands in that experiment and that no "active run ID does not match environment run ID" error appears. If it does, remove or guard `set_experiment` in `train.py`. |
+| Champion metrics are the frozen baseline | `assets\champion-metrics.json` is the logistic baseline of the reference data only. If you regenerate the data with another seed, run `local-validation\run_local.py`, recreate the asset as version 2 from the `metrics.json` it writes under `out\train\champion\`, and point `jobs\pipeline-train.yml` and `sdk\run_pipeline.py` at `:2`. |
+| OneLake datastore `fleet_onelake` (hybrid path only) | The kit does not create it; it is CLI/SDK only and preview. Create it from `jobs\datastore-onelake.yml` (see `bridge-fabric-aml.md`), check the Fabric workspace role and the tenant setting for external apps. The default demo does not need it. |
+| `az ml model share` flags and the registry deployment reference | `mlops\github-workflows\promote-model.yml` and `mlops\docs\registry-promotion.md` were written from the documentation and never run. Check the flags with `az ml model share -h` and the `azureml://registries/...` model reference once in the target tenant. |
+| GitHub workflow templates, OIDC | The four templates assume the repository root is the workshop folder, and that federated credentials exist for the dev, test and prod environments (`mlops\docs\oidc-setup.md`). They were parse-checked only. |

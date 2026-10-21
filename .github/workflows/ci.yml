@@ -1,0 +1,103 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHONUTF8: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+
+# One job per module, so a failure points at one folder. The Spark jobs (04 ETL), the Fabric ML job (04 ml-mlops),
+# the ETL-to-ML integration and the 06 Foundry job are added when their local validation is final (see the open issues).
+jobs:
+  static:
+    name: static (ruff, YAML/JSON/notebooks, neutrality, Fabric Git)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install ruff==0.17.0 pyyaml nbformat
+      - run: ruff check --no-cache .
+      - run: python ci/static_checks.py
+      - run: python 04-demo-fabric-e2e/tools/check_fabric_git.py --list
+
+  deck:
+    name: 01 deck (strict build)
+    runs-on: windows-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+        working-directory: 01-slides
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install -r ../ci/requirements/deck.txt
+      # The builder measures text with the Windows fonts, hence a Windows runner.
+      - name: Strict build
+        run: |
+          set -o pipefail
+          python build_deck.py --out out/strict 2>&1 | tee build.log
+          grep -q 'RESULT: clean' build.log
+      - uses: actions/upload-artifact@v4
+        with:
+          name: decks
+          path: 01-slides/out/strict/*.pptx
+          if-no-files-found: error
+
+  mlflow-tour:
+    name: 03 MLflow tour (tests)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install -r ci/requirements/mlflow-tour.txt
+      - run: python -m pytest -q -p no:cacheprovider 03-demo-mlflow-tour/tests
+
+  aml:
+    name: 05 Azure ML kit (tests, SDK loaders, Bicep, local run)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: 05-demo-azureml-e2e
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -r requirements-local.txt
+      - run: python -m py_compile src/*.py src/etl_on_aml/*.py sdk/*.py local-validation/*.py
+      - run: ruff check src tests sdk local-validation
+      - run: pytest -q tests
+      # Loads every YAML with the real azure-ai-ml loaders and builds the SDK pipeline (offline).
+      - run: python local-validation/validate_with_sdk_loaders.py
+      - run: az bicep install
+      - name: Compile every Bicep file
+        run: |
+          status=0
+          for f in $(find infra -name '*.bicep' | sort); do
+            echo "bicep build $f"
+            az bicep build --file "$f" --stdout > /dev/null || status=1
+          done
+          exit $status
+      - run: python local-validation/run_local.py

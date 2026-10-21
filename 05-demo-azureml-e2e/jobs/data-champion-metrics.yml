@@ -1,0 +1,6 @@
+$schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
+name: fleet-champion-metrics
+version: 1
+type: uri_file
+description: Frozen metrics of the current champion (the logistic-regression baseline on the reference run). The evaluate and gate steps compare the challenger against this file.
+path: ../assets/champion-metrics.json

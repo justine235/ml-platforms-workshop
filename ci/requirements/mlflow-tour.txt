@@ -1,0 +1,16 @@
+# 03-demo-mlflow-tour tests: the stack the kit was validated with (Python 3.13, MLflow 2.22).
+mlflow-skinny==2.22.0
+numpy==2.5.4
+pandas==2.2.3
+pyarrow==19.0.1
+scikit-learn==1.6.1
+scipy==1.18.1
+matplotlib==3.11.2
+cloudpickle==3.1.2
+joblib==1.6.0
+pydantic==2.14.1
+nbformat==5.11.1
+PyYAML==6.0.3
+jsonschema==4.26.0
+requests==2.34.2
+pytest==9.1.1

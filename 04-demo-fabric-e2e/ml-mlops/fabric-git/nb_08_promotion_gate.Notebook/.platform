@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "nb_08_promotion_gate",
+    "description": "Evaluate champion vs challenger on the frozen test split and return a promotion decision."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8d2439df-3423-50ac-b6f8-e2279ae20bed"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "nb_01_bronze_ingest",
+    "description": "Load raw fleet files into bronze tables with explicit schemas and landing metadata."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "3c43c756-6296-51c4-935c-0913b6689392"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "VariableLibrary",
+    "displayName": "fleet_mlops",
+    "description": "Per-environment value sets for the Fabric ML + MLOps demo."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "761d5d6e-e5de-58c8-a4ea-fdd2455465dd"
+  }
+}

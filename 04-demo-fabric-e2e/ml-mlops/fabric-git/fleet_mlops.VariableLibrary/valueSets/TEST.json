@@ -1,0 +1,19 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/variableLibrary/definition/valueSet/1.0.0/schema.json",
+  "name": "TEST",
+  "description": "Test workspace bindings for the workshop demo.",
+  "variableOverrides": [
+    {
+      "name": "workspaceId",
+      "value": "__WORKSPACE_ID__"
+    },
+    {
+      "name": "office365ConnectionId",
+      "value": "__OFFICE365_CONNECTION_ID__"
+    },
+    {
+      "name": "alertTo",
+      "value": "__ALERT_TO__"
+    }
+  ]
+}

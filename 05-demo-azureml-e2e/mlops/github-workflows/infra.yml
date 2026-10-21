@@ -1,0 +1,53 @@
+# Template: copy this file to .github/workflows/ in your repository.
+# Layout assumed: the repository root is the workshop folder (it contains 05-demo-azureml-e2e/).
+# Before the first run, edit infra/dev.bicepparam: userObjectId (your Entra object id) and userPrincipalName.
+# A .bicepparam file is passed on its own, never mixed with inline key=value parameters.
+name: aml-infra
+
+on:
+  pull_request:
+    paths:
+      - '05-demo-azureml-e2e/infra/**'
+  push:
+    branches: [main]
+    paths:
+      - '05-demo-azureml-e2e/infra/**'
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  what-if:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - run: >
+          az deployment group what-if
+          --resource-group rg-fleet-aml-dev
+          --template-file 05-demo-azureml-e2e/infra/main.bicep
+          --parameters 05-demo-azureml-e2e/infra/dev.bicepparam
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - run: >
+          az deployment group create
+          --resource-group rg-fleet-aml-dev
+          --template-file 05-demo-azureml-e2e/infra/main.bicep
+          --parameters 05-demo-azureml-e2e/infra/dev.bicepparam

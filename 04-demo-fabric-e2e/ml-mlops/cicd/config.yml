@@ -1,0 +1,14 @@
+core:
+  workspace_id: "__TARGET_WORKSPACE_ID__"
+  repository_directory: "../fabric-git"
+  parameter: "../cicd/parameter.yml"
+  item_types_in_scope:
+    - Notebook
+    - DataPipeline
+    - VariableLibrary
+
+publish:
+  skip: false
+
+unpublish:
+  skip: true

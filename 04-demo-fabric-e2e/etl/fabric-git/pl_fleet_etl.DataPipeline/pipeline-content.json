@@ -1,0 +1,148 @@
+{
+  "properties": {
+    "description": "Sequential Fabric ETL pipeline for the fleet medallion demo. Each activity's notebookId is the real logicalId of that notebook in this folder (from its own .platform file) and workspaceId is the all-zero GUID Fabric uses for a same-workspace reference, the same pattern the public fabric-cicd sample uses. Fabric Git sync resolves each activity to the matching notebook automatically; if an activity still shows an unresolved notebook after import, re-pick the notebook in that activity.",
+    "activities": [
+      {
+        "name": "RunSetup",
+        "type": "TridentNotebook",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "typeProperties": {
+          "notebookId": "560300f9-c6f2-5121-a6b2-7c26e77ba8aa",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "batch_id": {
+              "value": "fleet-demo-live",
+              "type": "string"
+            },
+            "data_cutoff_utc": {
+              "value": "2026-10-01T00:00:00Z",
+              "type": "string"
+            },
+            "mode": {
+              "value": "full",
+              "type": "string"
+            }
+          }
+        }
+      },
+      {
+        "name": "RunBronzeIngest",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "RunSetup",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "typeProperties": {
+          "notebookId": "3c43c756-6296-51c4-935c-0913b6689392",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "batch_id": {
+              "value": "fleet-demo-live",
+              "type": "string"
+            },
+            "data_cutoff_utc": {
+              "value": "2026-10-01T00:00:00Z",
+              "type": "string"
+            },
+            "mode": {
+              "value": "full",
+              "type": "string"
+            }
+          }
+        }
+      },
+      {
+        "name": "RunSilverCleanResolve",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "RunBronzeIngest",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "typeProperties": {
+          "notebookId": "c045e7f2-b13d-549b-a4d7-8153affa9b69",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "batch_id": {
+              "value": "fleet-demo-live",
+              "type": "string"
+            },
+            "data_cutoff_utc": {
+              "value": "2026-10-01T00:00:00Z",
+              "type": "string"
+            },
+            "mode": {
+              "value": "full",
+              "type": "string"
+            }
+          }
+        }
+      },
+      {
+        "name": "RunGoldReconcile",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "RunSilverCleanResolve",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "typeProperties": {
+          "notebookId": "d07d6d9c-f6eb-566e-99be-a985be286e5d",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "batch_id": {
+              "value": "fleet-demo-live",
+              "type": "string"
+            },
+            "data_cutoff_utc": {
+              "value": "2026-10-01T00:00:00Z",
+              "type": "string"
+            },
+            "mode": {
+              "value": "full",
+              "type": "string"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

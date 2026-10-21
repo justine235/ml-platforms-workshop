@@ -1,0 +1,23 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: fleet_register_model
+display_name: Fleet register model
+version: 1
+type: command
+inputs:
+  train_manifest:
+    type: uri_folder
+  evaluation_json:
+    type: uri_folder
+  gate_json:
+    type: uri_folder
+outputs:
+  registration_output:
+    type: uri_folder
+code: ../../src
+environment: azureml:env-fleet-sklearn:1
+command: >-
+  python register.py
+  --train-manifest ${{inputs.train_manifest}}/train_manifest.json
+  --evaluation-json ${{inputs.evaluation_json}}/evaluation.json
+  --gate-json ${{inputs.gate_json}}/gate_report.json
+  --output-path ${{outputs.registration_output}}/registration.json

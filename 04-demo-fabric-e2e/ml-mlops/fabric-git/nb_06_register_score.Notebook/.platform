@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "nb_06_register_score",
+    "description": "Score the latest day with the registered champion model and write ml.failure_risk_score."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d4800ec6-1d71-5af4-a7a2-658a6039cf46"
+  }
+}

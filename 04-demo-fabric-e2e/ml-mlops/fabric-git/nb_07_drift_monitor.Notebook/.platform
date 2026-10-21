@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "nb_07_drift_monitor",
+    "description": "Compare September reference telemetry to the October batch with PSI and exit machine-readable drift status."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5576afb0-976b-5fbc-83fa-654ac21618ef"
+  }
+}

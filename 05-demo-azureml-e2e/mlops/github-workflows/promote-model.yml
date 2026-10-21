@@ -1,0 +1,59 @@
+# Template: copy this file to .github/workflows/ in your repository.
+# Layout assumed: the repository root is the workshop folder (it contains 05-demo-azureml-e2e/).
+# Needs: the dev workspace (source), the shared registry, the prod workspace, and an OIDC identity
+# that can read the model in dev, write to the registry, and deploy in prod (see mlops/docs/oidc-setup.md).
+# The three traffic steps are illustrative. In a real pipeline, put a monitoring check or an
+# environment approval between them instead of shifting traffic back to back.
+name: aml-promote-model
+
+on:
+  workflow_dispatch:
+    inputs:
+      model_version:
+        description: AML model version to promote
+        required: true
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - run: az extension add -n ml --upgrade
+      - run: az configure --defaults group=rg-fleet-aml-prod workspace=mlw-fleet-prod
+      # Source = the dev workspace. Target = the shared registry.
+      - run: >
+          az ml model share
+          --name fleet-failure-7d
+          --version ${{ inputs.model_version }}
+          --share-with-name fleet-failure-7d
+          --share-with-version ${{ inputs.model_version }}
+          --registry-name mlr-fleet-shared
+          --resource-group rg-fleet-aml-dev
+          --workspace-name mlw-fleet-dev
+      # Deploy the registry copy into prod: the model is not in the prod workspace itself.
+      - run: >
+          az ml online-deployment create
+          --file 05-demo-azureml-e2e/endpoints/online-green-deployment.yml
+          --set model=azureml://registries/mlr-fleet-shared/models/fleet-failure-7d/versions/${{ inputs.model_version }}
+          --resource-group rg-fleet-aml-prod
+          --workspace-name mlw-fleet-prod
+      - run: >
+          az ml online-endpoint invoke
+          --name fleet-risk-online
+          --deployment-name green
+          --request-file 05-demo-azureml-e2e/endpoints/sample-request.json
+          --resource-group rg-fleet-aml-prod
+          --workspace-name mlw-fleet-prod
+      - run: az ml online-endpoint update --name fleet-risk-online --traffic "blue=90 green=10"
+      - run: az ml online-endpoint update --name fleet-risk-online --traffic "blue=50 green=50"
+      - run: az ml online-endpoint update --name fleet-risk-online --traffic "green=100"

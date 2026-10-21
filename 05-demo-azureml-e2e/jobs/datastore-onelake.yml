@@ -1,0 +1,11 @@
+$schema: http://azureml/sdk-2-0/OneLakeDatastore.json
+# OPTIONAL hybrid path (preview, CLI/SDK only; the Studio UI does not list OneLake). See bridge-fabric-aml.md.
+# Replace both GUIDs: the Fabric workspace id and the lakehouse id (both are in the lakehouse URL).
+name: fleet_onelake
+type: one_lake
+description: Fabric lakehouse lh_fleet, read by Azure ML through OneLake (Files area only).
+one_lake_workspace_name: 00000000-0000-0000-0000-000000000000
+endpoint: https://onelake.dfs.fabric.microsoft.com
+artifact:
+  type: lake_house
+  name: 00000000-0000-0000-0000-000000000000

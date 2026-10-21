@@ -1,0 +1,553 @@
+{
+  "pipeline": {
+    "script": "fleet_reference_pipeline.py",
+    "python": "3.13.15",
+    "pandas": "3.0.6",
+    "numpy": "2.5.4"
+  },
+  "data": {
+    "seed": 20261023,
+    "window": {
+      "start": "2026-04-01",
+      "end": "2026-09-30",
+      "cutoff_utc": "2026-10-01T00:00:00Z",
+      "drift": {
+        "start": "2026-10-01",
+        "end": "2026-10-14"
+      }
+    },
+    "file_sha256": {
+      "reference/site_master.csv": "fb8d3221aeabe8b0aca79ec4c1628aaae2579912ac92cf4aee3bed670f53a347",
+      "reference/fault_code_catalog.csv": "fa29b50eb53b707e4d66f10783e461af0488900fa79990226ddd8bf0421b21c3",
+      "reference/asset_crosswalk.csv": "597fd83836e9c8af415e941e26a4b0f0d8564d5d7c771554c9ce6de144c73b57",
+      "erp/erp_assets.csv": "b699ce4384d346d8acef032490ce144b4c11ebd69f755d22972ec05b394b3e4d",
+      "cmms/cmms_work_orders.csv": "42428067c5635180711c3a018f5ea31e30adced742dc348a5a4288f60320b03d",
+      "telematics/telematics_2026-04.jsonl": "124e9a89781c5225ed0d85860e6f069d8d2a65de0fbec39e79760c78cb67cf6e",
+      "telematics/telematics_2026-05.jsonl": "f14e1ea9c168776d9e9c9d8f2f0a67d50ac64af67ff8a35e69d009c7a1fefec3",
+      "telematics/telematics_2026-06.jsonl": "b3987bc0188415637fb26697bf017a70cb259c1d3a77ea758e5f90c184cda411",
+      "telematics/telematics_2026-07.jsonl": "e20af47165e18533fddc87b779b61fbc2b1908c001274d6e7b7c1cf5345194f1",
+      "telematics/telematics_2026-08.jsonl": "698ab173c97e467d6317799cf050a0fb5742ac048448ff75660d42cedc286db9",
+      "telematics/telematics_2026-09.jsonl": "16ea34728cb6d5b2df1fe84961a5eca501e7845d10ffb7ce57697c06a212319f",
+      "telematics_drift/telematics_2026-10.jsonl": "a477b4958fe90f6e5a96d34f09e8c14abf042b8c469e16bba15c3125a3d74f28"
+    }
+  },
+  "silver": {
+    "telematics": {
+      "bronze_rows": 208900,
+      "duplicates_removed": 1209,
+      "out_of_range_values_nulled": 217,
+      "rows": 207691,
+      "late_rows": 2066,
+      "by_resolution": {
+        "CROSSWALK": 2180,
+        "EXACT_NORM": 196810,
+        "SERIAL": 4350,
+        "UNRESOLVED": 4351
+      }
+    },
+    "cmms": {
+      "bronze_rows": 2359,
+      "rows": 2359,
+      "unresolved": 8,
+      "duplicates": 6,
+      "time_anomalies": 8,
+      "by_resolution": {
+        "CROSSWALK": 18,
+        "EXACT_NORM": 2305,
+        "SERIAL": 28,
+        "UNRESOLVED": 8
+      }
+    }
+  },
+  "gold_row_counts": {
+    "dim_asset": 316,
+    "dim_site": 12,
+    "fact_telemetry_daily": 51353,
+    "fact_fault_episode": 3459,
+    "fact_work_order": 2345,
+    "fact_recon_match": 468,
+    "fact_recon_exception": 211,
+    "agg_recon_monthly": 72,
+    "ml_asset_day_features": 50876,
+    "ml_failure_risk_score": 264
+  },
+  "assets": {
+    "by_status": {
+      "Active": 300,
+      "Disposed": 6,
+      "Retired": 10
+    },
+    "by_class": {
+      "Bulldozer": 26,
+      "Compactor": 34,
+      "DumpTruck": 44,
+      "Excavator": 65,
+      "Generator": 58,
+      "MobileCrane": 31,
+      "Paver": 26,
+      "WheelLoader": 32
+    },
+    "with_telemetry": 284,
+    "active_with_telemetry": 274
+  },
+  "reconciliation": {
+    "fault_episodes": 3459,
+    "by_severity": {
+      "CRIT": 399,
+      "INFO": 1654,
+      "WARN": 1406
+    },
+    "significant_episodes": 557,
+    "recon_status": {
+      "MATCHED": 455,
+      "PENDING": 11,
+      "UNMATCHED": 91
+    },
+    "crit_recon_status": {
+      "MATCHED": 367,
+      "PENDING": 2,
+      "UNMATCHED": 30
+    },
+    "crit_match_rate": 0.9244,
+    "match_rows": 468,
+    "episodes_with_a_match": 455,
+    "cm_work_orders": 445,
+    "cm_work_orders_matched": 366,
+    "median_crit_fault_to_wo_hours": 5.58
+  },
+  "exceptions": {
+    "total": 211,
+    "by_type": {
+      "ACTIVE_ASSET_SILENT": 12,
+      "DUPLICATE_WO": 6,
+      "FAULT_WITHOUT_WO": 91,
+      "RETIRED_ASSET_REPORTING": 6,
+      "UNRESOLVED_ASSET_CMMS": 3,
+      "UNRESOLVED_ASSET_TELEMATICS": 6,
+      "WO_TIME_ANOMALY": 8,
+      "WO_WITHOUT_FAULT": 79
+    },
+    "by_type_and_subtype": {
+      "ACTIVE_ASSET_SILENT|NO_LINKED_TELEMETRY": 2,
+      "ACTIVE_ASSET_SILENT|STOPPED_REPORTING": 10,
+      "DUPLICATE_WO|": 6,
+      "FAULT_WITHOUT_WO|CRIT": 30,
+      "FAULT_WITHOUT_WO|WARN": 61,
+      "RETIRED_ASSET_REPORTING|": 6,
+      "UNRESOLVED_ASSET_CMMS|": 3,
+      "UNRESOLVED_ASSET_TELEMATICS|": 6,
+      "WO_TIME_ANOMALY|": 8,
+      "WO_WITHOUT_FAULT|NO_FAULT_SIGNAL": 40,
+      "WO_WITHOUT_FAULT|NO_TELEMETRY": 37,
+      "WO_WITHOUT_FAULT|TELEMETRY_STOPPED": 2
+    }
+  },
+  "ml": {
+    "features": [
+      "temp_mean",
+      "temp_max",
+      "oil_mean",
+      "oil_min",
+      "hyd_mean",
+      "hyd_min",
+      "vib_mean",
+      "vib_max",
+      "fuel_mean",
+      "load_mean",
+      "idle_mean",
+      "n_readings",
+      "run_share",
+      "engine_hours",
+      "warn_cnt_1d",
+      "crit_cnt_1d",
+      "warn_cnt_7d",
+      "crit_cnt_7d",
+      "warn_cnt_14d",
+      "temp_mean_3d",
+      "temp_mean_7d",
+      "temp_mean_14d",
+      "oil_mean_3d",
+      "oil_mean_7d",
+      "oil_mean_14d",
+      "hyd_mean_3d",
+      "hyd_mean_7d",
+      "hyd_mean_14d",
+      "vib_mean_3d",
+      "vib_mean_7d",
+      "vib_mean_14d",
+      "temp_trend",
+      "oil_trend",
+      "hyd_trend",
+      "vib_trend",
+      "temp_max_7d",
+      "vib_max_7d",
+      "days_since_last_pm",
+      "days_since_last_cm",
+      "cm_count_90d",
+      "equipment_class_code",
+      "asset_age_years"
+    ],
+    "feature_count": 42,
+    "label": "fail_next_7d = a non-duplicate CM work order opened in [d+1, d+7] (UTC days)",
+    "rows": 50876,
+    "labelled_rows": 49028,
+    "positive_rate_labelled": 0.0547,
+    "by_split": {
+      "warmup": {
+        "rows": 3976,
+        "positives": 196,
+        "first": "2026-04-01",
+        "last": "2026-04-14"
+      },
+      "train": {
+        "rows": 28520,
+        "positives": 1639,
+        "first": "2026-04-15",
+        "last": "2026-07-24"
+      },
+      "gap": {
+        "rows": 3830,
+        "positives": 219,
+        "first": "2026-07-25",
+        "last": "2026-08-31"
+      },
+      "valid": {
+        "rows": 6591,
+        "positives": 353,
+        "first": "2026-08-01",
+        "last": "2026-08-24"
+      },
+      "test": {
+        "rows": 6111,
+        "positives": 274,
+        "first": "2026-09-01",
+        "last": "2026-09-23"
+      },
+      "unlabeled": {
+        "rows": 1584,
+        "positives": 0,
+        "first": "2026-09-24",
+        "last": "2026-09-29"
+      },
+      "score": {
+        "rows": 264,
+        "positives": 0,
+        "first": "2026-09-30",
+        "last": "2026-09-30"
+      }
+    },
+    "metrics_approximate": {
+      "prevalence": {
+        "valid": {
+          "rows": 6591,
+          "positives": 353,
+          "prevalence": 0.0536,
+          "pr_auc": 0.0536,
+          "roc_auc": 0.5,
+          "precision_at_top5pct": 0.0758,
+          "recall_at_top5pct": 0.0708
+        },
+        "test": {
+          "rows": 6111,
+          "positives": 274,
+          "prevalence": 0.0448,
+          "pr_auc": 0.0448,
+          "roc_auc": 0.5,
+          "precision_at_top5pct": 0.0261,
+          "recall_at_top5pct": 0.0292
+        }
+      },
+      "logistic_regression": {
+        "valid": {
+          "rows": 6591,
+          "positives": 353,
+          "prevalence": 0.0536,
+          "pr_auc": 0.2923,
+          "roc_auc": 0.7301,
+          "precision_at_top5pct": 0.3545,
+          "recall_at_top5pct": 0.3314
+        },
+        "test": {
+          "rows": 6111,
+          "positives": 274,
+          "prevalence": 0.0448,
+          "pr_auc": 0.2924,
+          "roc_auc": 0.741,
+          "precision_at_top5pct": 0.3072,
+          "recall_at_top5pct": 0.3431
+        }
+      },
+      "hist_gradient_boosting": {
+        "valid": {
+          "rows": 6591,
+          "positives": 353,
+          "prevalence": 0.0536,
+          "pr_auc": 0.3356,
+          "roc_auc": 0.697,
+          "precision_at_top5pct": 0.3727,
+          "recall_at_top5pct": 0.3484
+        },
+        "test": {
+          "rows": 6111,
+          "positives": 274,
+          "prevalence": 0.0448,
+          "pr_auc": 0.3847,
+          "roc_auc": 0.749,
+          "precision_at_top5pct": 0.3595,
+          "recall_at_top5pct": 0.4015
+        }
+      },
+      "hist_gradient_boosting_no_fault_codes": {
+        "valid": {
+          "rows": 6591,
+          "positives": 353,
+          "prevalence": 0.0536,
+          "pr_auc": 0.3228,
+          "roc_auc": 0.6986,
+          "precision_at_top5pct": 0.3364,
+          "recall_at_top5pct": 0.3144
+        },
+        "test": {
+          "rows": 6111,
+          "positives": 274,
+          "prevalence": 0.0448,
+          "pr_auc": 0.2841,
+          "roc_auc": 0.7173,
+          "precision_at_top5pct": 0.2843,
+          "recall_at_top5pct": 0.3175
+        }
+      },
+      "rule_baseline": {
+        "valid": {
+          "rows": 6591,
+          "positives": 353,
+          "prevalence": 0.0536,
+          "pr_auc": 0.0642,
+          "roc_auc": 0.554,
+          "flag_rate": 0.1074,
+          "precision": 0.1045,
+          "recall": 0.2096
+        },
+        "test": {
+          "rows": 6111,
+          "positives": 274,
+          "prevalence": 0.0448,
+          "pr_auc": 0.068,
+          "roc_auc": 0.5842,
+          "flag_rate": 0.0728,
+          "precision": 0.1438,
+          "recall": 0.2336
+        }
+      }
+    },
+    "model_seed": 0,
+    "sklearn": "1.9.1"
+  },
+  "risk_scoring": {
+    "score_date": "2026-09-30",
+    "assets_scored": 264,
+    "bands": {
+      "High": 9,
+      "Low": 248,
+      "Medium": 7
+    },
+    "model_version": "ref-hgb-v1",
+    "thresholds": {
+      "High": 0.3,
+      "Medium": 0.1
+    },
+    "top10": [
+      {
+        "rank": 1,
+        "erp_asset_id": "EQ-02893",
+        "site_code": "ES-MAD-01",
+        "equipment_class": "Excavator",
+        "risk_score": 0.9502,
+        "risk_band": "High",
+        "top_drivers": "REPEATED_WARNINGS;HYDRAULIC_PRESSURE_FALLING;VIBRATION_RISING"
+      },
+      {
+        "rank": 2,
+        "erp_asset_id": "EQ-07040",
+        "site_code": "NL-RTM-01",
+        "equipment_class": "Generator",
+        "risk_score": 0.8846,
+        "risk_band": "High",
+        "top_drivers": "REPEATED_WARNINGS;ENGINE_TEMP_RISING;OIL_PRESSURE_FALLING"
+      },
+      {
+        "rank": 3,
+        "erp_asset_id": "EQ-01714",
+        "site_code": "FR-PAR-01",
+        "equipment_class": "Generator",
+        "risk_score": 0.8779,
+        "risk_band": "High",
+        "top_drivers": "REPEATED_WARNINGS;ENGINE_TEMP_RISING;OIL_PRESSURE_FALLING"
+      },
+      {
+        "rank": 4,
+        "erp_asset_id": "EQ-01503",
+        "site_code": "FR-PAR-01",
+        "equipment_class": "Generator",
+        "risk_score": 0.8738,
+        "risk_band": "High",
+        "top_drivers": "REPEATED_WARNINGS;ENGINE_TEMP_RISING;OIL_PRESSURE_FALLING"
+      },
+      {
+        "rank": 5,
+        "erp_asset_id": "EQ-02054",
+        "site_code": "FR-PAR-01",
+        "equipment_class": "WheelLoader",
+        "risk_score": 0.8466,
+        "risk_band": "High",
+        "top_drivers": "HYDRAULIC_PRESSURE_FALLING"
+      },
+      {
+        "rank": 6,
+        "erp_asset_id": "EQ-07412",
+        "site_code": "NL-RTM-01",
+        "equipment_class": "Bulldozer",
+        "risk_score": 0.7668,
+        "risk_band": "High",
+        "top_drivers": "REPEATED_WARNINGS;ENGINE_TEMP_RISING;OIL_PRESSURE_FALLING"
+      },
+      {
+        "rank": 7,
+        "erp_asset_id": "EQ-04957",
+        "site_code": "DE-HAM-01",
+        "equipment_class": "WheelLoader",
+        "risk_score": 0.4691,
+        "risk_band": "High",
+        "top_drivers": "CRIT_FAULT_7D;REPEATED_WARNINGS;VIBRATION_RISING"
+      },
+      {
+        "rank": 8,
+        "erp_asset_id": "EQ-08372",
+        "site_code": "DE-HAM-01",
+        "equipment_class": "MobileCrane",
+        "risk_score": 0.4513,
+        "risk_band": "High",
+        "top_drivers": "HYDRAULIC_PRESSURE_FALLING"
+      },
+      {
+        "rank": 9,
+        "erp_asset_id": "EQ-07554",
+        "site_code": "PT-LIS-01",
+        "equipment_class": "DumpTruck",
+        "risk_score": 0.4008,
+        "risk_band": "High",
+        "top_drivers": "CRIT_FAULT_7D;ENGINE_TEMP_RISING;OIL_PRESSURE_FALLING"
+      },
+      {
+        "rank": 10,
+        "erp_asset_id": "EQ-04537",
+        "site_code": "FR-MRS-01",
+        "equipment_class": "Excavator",
+        "risk_score": 0.2583,
+        "risk_band": "Medium",
+        "top_drivers": "NO_STRONG_SIGNAL"
+      }
+    ]
+  },
+  "drift": {
+    "reference": "September 2026 RUN readings",
+    "new_batch": "2026-10-01 .. 2026-10-14",
+    "combinations": 47,
+    "major_shift": [
+      {
+        "equipment_class": "Excavator",
+        "sensor": "engine_temp_c",
+        "psi": 0.8804
+      },
+      {
+        "equipment_class": "Excavator",
+        "sensor": "vibration_mm_s",
+        "psi": 3.7113
+      },
+      {
+        "equipment_class": "WheelLoader",
+        "sensor": "engine_temp_c",
+        "psi": 0.9587
+      },
+      {
+        "equipment_class": "WheelLoader",
+        "sensor": "vibration_mm_s",
+        "psi": 2.7825
+      }
+    ],
+    "moderate_shift": [
+      {
+        "equipment_class": "Compactor",
+        "sensor": "engine_temp_c",
+        "psi": 0.1097
+      },
+      {
+        "equipment_class": "MobileCrane",
+        "sensor": "engine_temp_c",
+        "psi": 0.1033
+      },
+      {
+        "equipment_class": "Paver",
+        "sensor": "engine_temp_c",
+        "psi": 0.1862
+      }
+    ],
+    "note": "major = injected sensor shift (Excavator, WheelLoader); moderate engine_temp_c = seasonal ambient cooling, expected"
+  },
+  "truth_checks": {
+    "telematics_id_resolution": {
+      "ok": true,
+      "devices": 290,
+      "correct": 290
+    },
+    "cmms_id_resolution": {
+      "ok": true,
+      "work_orders": 2359,
+      "correct": 2359
+    },
+    "cmms_local_time_to_utc": {
+      "ok": true,
+      "work_orders": 2359,
+      "max_error_seconds": 59.0
+    },
+    "cmms_duplicates": {
+      "ok": true,
+      "detected": 6
+    },
+    "cmms_time_anomalies": {
+      "ok": true,
+      "detected": 8
+    },
+    "deterministic_exceptions": {
+      "ok": true,
+      "expected": {
+        "UNRESOLVED_ASSET_TELEMATICS|": 6,
+        "UNRESOLVED_ASSET_CMMS|": 3,
+        "RETIRED_ASSET_REPORTING|": 6,
+        "ACTIVE_ASSET_SILENT|STOPPED_REPORTING": 10,
+        "ACTIVE_ASSET_SILENT|NO_LINKED_TELEMETRY": 2,
+        "WO_TIME_ANOMALY|": 8,
+        "DUPLICATE_WO|": 6
+      },
+      "actual": {
+        "UNRESOLVED_ASSET_TELEMATICS|": 6,
+        "UNRESOLVED_ASSET_CMMS|": 3,
+        "RETIRED_ASSET_REPORTING|": 6,
+        "ACTIVE_ASSET_SILENT|STOPPED_REPORTING": 10,
+        "ACTIVE_ASSET_SILENT|NO_LINKED_TELEMETRY": 2,
+        "WO_TIME_ANOMALY|": 8,
+        "DUPLICATE_WO|": 6
+      }
+    },
+    "unreported_failures_found": {
+      "ok": true,
+      "informational": true,
+      "crit_fault_without_wo": 30,
+      "explained_by_truth": 28,
+      "precision": 0.933,
+      "truly_unreported_with_crit_code": 36,
+      "found": 28,
+      "recall": 0.778
+    }
+  }
+}

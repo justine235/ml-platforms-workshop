@@ -1,0 +1,53 @@
+# Deploys the Azure ML infrastructure (05-demo-azureml-e2e/infra) with GitHub OIDC.
+# Off until you set the repository variables AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_SUBSCRIPTION_ID and ENABLE_AZURE_DEPLOY=true
+# (setup: 05-demo-azureml-e2e/mlops/docs/oidc-setup.md). Edit infra/dev.bicepparam first: userObjectId and userPrincipalName.
+# The workflow passes dev.bicepparam as is, so commit your own values there (the file ships with placeholders).
+name: aml-infra
+
+on:
+  pull_request:
+    paths:
+      - '05-demo-azureml-e2e/infra/**'
+  push:
+    branches: [main]
+    paths:
+      - '05-demo-azureml-e2e/infra/**'
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  what-if:
+    if: ${{ (github.event_name == 'pull_request') && vars.ENABLE_AZURE_DEPLOY == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - run: >
+          az deployment group what-if
+          --resource-group rg-fleet-aml-dev
+          --template-file 05-demo-azureml-e2e/infra/main.bicep
+          --parameters 05-demo-azureml-e2e/infra/dev.bicepparam
+
+  deploy:
+    if: ${{ (github.event_name != 'pull_request') && vars.ENABLE_AZURE_DEPLOY == 'true' }}
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - run: >
+          az deployment group create
+          --resource-group rg-fleet-aml-dev
+          --template-file 05-demo-azureml-e2e/infra/main.bicep
+          --parameters 05-demo-azureml-e2e/infra/dev.bicepparam

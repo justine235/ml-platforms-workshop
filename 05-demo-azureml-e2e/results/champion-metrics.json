@@ -1,0 +1,30 @@
+{
+  "full_metrics": {
+    "test": {
+      "positives": 274,
+      "pr_auc": 0.2924,
+      "precision_at_top5pct": 0.3072,
+      "prevalence": 0.0448,
+      "recall_at_top5pct": 0.3431,
+      "roc_auc": 0.741,
+      "rows": 6111
+    },
+    "valid": {
+      "positives": 353,
+      "pr_auc": 0.2923,
+      "precision_at_top5pct": 0.3545,
+      "prevalence": 0.0536,
+      "recall_at_top5pct": 0.3314,
+      "roc_auc": 0.7301,
+      "rows": 6591
+    }
+  },
+  "metrics": {
+    "test_pr_auc": 0.2924,
+    "test_precision_at_top5pct": 0.3072,
+    "test_recall_at_top5pct": 0.3431,
+    "test_roc_auc": 0.741,
+    "valid_pr_auc": 0.2923,
+    "valid_roc_auc": 0.7301
+  }
+}

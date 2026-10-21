@@ -1,0 +1,1 @@
+3 passed, 0 failed - tests\test_gate.py (2 tests), tests\test_contract_scripts.py (1 test). Command: python -m pytest tests -q (first run 2026-10-19; re-run 2026-10-20 after the SDK-loader fixes: 3 passed in about 40 s).

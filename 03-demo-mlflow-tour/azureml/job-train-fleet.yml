@@ -1,0 +1,24 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+type: command
+display_name: train-fleet-mlflow
+experiment_name: fleet-failure-7d
+code: ../code
+command: >-
+  python train_fleet_model.py
+  --features ${{inputs.features}}
+  --model-kind hist_gradient_boosting
+  --experiment fleet-failure-7d
+  --register-name fleet-failure-7d
+  --run-name aml-job-hgb
+inputs:
+  features:
+    type: uri_file
+    path: azureml:fleet-features-ref:1
+environment:
+  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest
+  conda_file: ./conda-train-fleet.yml
+compute: azureml:cpu-cluster
+description: >
+  Command job for the workshop MLflow tour. It uses the same train_fleet_model.py
+  script as the laptop and Fabric demos, but runs under the AML-compatible
+  mlflow<=2.16.2 + azureml-mlflow environment.

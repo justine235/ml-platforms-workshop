@@ -1,0 +1,3 @@
+# The deck builder uses Python 3.12 syntax.
+extend = "../ruff.toml"
+target-version = "py312"

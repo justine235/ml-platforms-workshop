@@ -1,0 +1,53 @@
+$schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
+type: pipeline
+experiment_name: fleet-failure-7d
+display_name: fleet-train-evaluate-register
+description: Prep, train, evaluate, gate, and register the fleet-failure-7d model.
+settings:
+  default_compute: azureml:cpu-cluster
+inputs:
+  raw_features:
+    type: uri_file
+    path: azureml:fleet-asset-day-features-reference:1
+  champion_metrics:
+    type: uri_file
+    path: azureml:fleet-champion-metrics:1
+  git_sha: local-dev
+jobs:
+  prep:
+    type: command
+    component: ./components/prep.yml
+    inputs:
+      input_data: ${{parent.inputs.raw_features}}
+  train:
+    type: command
+    component: ./components/train.yml
+    inputs:
+      input_data: ${{parent.jobs.prep.outputs.prepared_data}}
+      experiment_name: fleet-failure-7d
+      data_version: fleet-asset-day-features-reference:1
+      git_sha: ${{parent.inputs.git_sha}}
+      learning_rate: 0.06
+      max_leaf_nodes: 24
+      l2_regularization: 1.0
+  evaluate:
+    type: command
+    component: ./components/evaluate.yml
+    inputs:
+      input_data: ${{parent.jobs.prep.outputs.prepared_data}}
+      model_path: ${{parent.jobs.train.outputs.model_output}}
+      train_metrics_json: ${{parent.jobs.train.outputs.metrics_output}}
+      champion_json: ${{parent.inputs.champion_metrics}}
+  gate:
+    type: command
+    component: ./components/gate.yml
+    inputs:
+      challenger_json: ${{parent.jobs.evaluate.outputs.evaluation_output}}
+      champion_json: ${{parent.inputs.champion_metrics}}
+  register:
+    type: command
+    component: ./components/register.yml
+    inputs:
+      train_manifest: ${{parent.jobs.train.outputs.metrics_output}}
+      evaluation_json: ${{parent.jobs.evaluate.outputs.evaluation_output}}
+      gate_json: ${{parent.jobs.gate.outputs.gate_output}}

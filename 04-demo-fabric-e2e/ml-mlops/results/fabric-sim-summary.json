@@ -1,0 +1,60 @@
+{
+  "asset_day_features_reference_comparison": {
+    "exact_failures": {},
+    "max_abs_diff": 0.0,
+    "numeric_failures": {},
+    "ok": true
+  },
+  "drift_status": "alert",
+  "exit_value_keys": {
+    "nb_04_features": [
+      "labelled_rows",
+      "positive_rate_labelled",
+      "reference_comparison",
+      "rows",
+      "split_counts"
+    ],
+    "nb_05_train_mlflow": [
+      "best_candidate",
+      "child_runs",
+      "experiment_name",
+      "hyperparameter_search_rows",
+      "model_name",
+      "registered_version"
+    ],
+    "nb_06_register_score": [
+      "bands",
+      "frozen_reference_comparison",
+      "model_version",
+      "pyfunc_vs_sklearn_max_abs_diff",
+      "rows",
+      "spark_transformer"
+    ],
+    "nb_07_drift_monitor": [
+      "expected_moderate_shifts",
+      "major_shift_count",
+      "major_shifts",
+      "moderate_shift_count",
+      "reference_comparison",
+      "status"
+    ],
+    "nb_08_promotion_gate": [
+      "challenger_metrics",
+      "challenger_test_pr_auc",
+      "challenger_test_precision_at_top5pct",
+      "challenger_version",
+      "champion_metrics",
+      "champion_test_pr_auc",
+      "champion_test_precision_at_top5pct",
+      "champion_version",
+      "decision",
+      "passed",
+      "pr_auc_gain",
+      "precision_drop",
+      "rule"
+    ]
+  },
+  "gate_decision": "hold",
+  "note": "Fabric-simulated (fake spark/notebookutils), NOT a real workspace",
+  "status": "ok"
+}

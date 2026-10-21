@@ -1,0 +1,62 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/variableLibrary/definition/variables/1.0.0/schema.json",
+  "variables": [
+    {
+      "name": "workspaceId",
+      "type": "String",
+      "value": "__WORKSPACE_ID__",
+      "note": "Workspace that hosts the workshop items."
+    },
+    {
+      "name": "lakehouseFleet",
+      "type": "ItemReference",
+      "value": {
+        "workspaceId": "__WORKSPACE_ID__",
+        "itemId": "__LAKEHOUSE_FLEET_ID__"
+      },
+      "note": "Schema-enabled lh_fleet lakehouse."
+    },
+    {
+      "name": "office365ConnectionId",
+      "type": "String",
+      "value": "__OFFICE365_CONNECTION_ID__",
+      "note": "Office 365 connection used by pipeline alerts."
+    },
+    {
+      "name": "alertTo",
+      "type": "String",
+      "value": "__ALERT_TO__",
+      "note": "Semicolon-separated recipients for pipeline alerts."
+    },
+    {
+      "name": "experimentName",
+      "type": "String",
+      "value": "fleet-failure-7d"
+    },
+    {
+      "name": "modelName",
+      "type": "String",
+      "value": "fleet-failure-7d"
+    },
+    {
+      "name": "scoreTable",
+      "type": "String",
+      "value": "ml.failure_risk_score"
+    },
+    {
+      "name": "driftTable",
+      "type": "String",
+      "value": "ml.drift_report"
+    },
+    {
+      "name": "driftModerateThreshold",
+      "type": "Number",
+      "value": 0.1
+    },
+    {
+      "name": "driftMajorThreshold",
+      "type": "Number",
+      "value": 0.25
+    }
+  ]
+}

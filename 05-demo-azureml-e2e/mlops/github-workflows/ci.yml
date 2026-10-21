@@ -1,0 +1,36 @@
+# Template: copy this file to .github/workflows/ in your repository.
+# Layout assumed: the repository root is the workshop folder (the one that contains
+# 05-demo-azureml-e2e/ and 02-demo-data/). If your repo holds only the demo folder,
+# drop the "05-demo-azureml-e2e/" prefix below.
+name: aml-ci
+
+on:
+  pull_request:
+    paths:
+      - '05-demo-azureml-e2e/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint-test-validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 05-demo-azureml-e2e
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements-local.txt
+      - run: python -m py_compile src/*.py src/etl_on_aml/*.py sdk/*.py local-validation/*.py
+      - run: ruff check src tests sdk local-validation
+      - run: pytest -q tests
+      # Loads every YAML with the real azure-ai-ml loaders and builds the SDK pipeline (offline).
+      - run: python local-validation/validate_with_sdk_loaders.py
+      - name: Compile every Bicep file
+        run: |
+          find infra -name '*.bicep' | sort | while read -r f; do az bicep build --file "$f" --stdout > /dev/null; done
+      - run: python local-validation/run_local.py

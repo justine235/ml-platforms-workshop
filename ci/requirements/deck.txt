@@ -1,0 +1,4 @@
+# Slide builder (01-slides). Python 3.12 or newer: the builder uses 3.12 f-string syntax.
+python-pptx==1.0.2
+pillow==12.3.0
+lxml==6.1.3

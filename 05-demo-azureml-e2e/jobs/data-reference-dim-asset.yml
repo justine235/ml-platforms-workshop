@@ -1,0 +1,6 @@
+$schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
+name: fleet-dim-asset-reference
+version: 1
+type: uri_file
+description: Canonical gold.dim_asset export used for joining site and equipment metadata during scoring and drift.
+path: ../../02-demo-data/reference_out/dim_asset.csv

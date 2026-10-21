@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "nb_04_features",
+    "description": "Build the ML feature table (one row per asset-day) from the reconciled ETL gold/silver tables."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "450e1a40-7003-58ba-a513-21146061cde8"
+  }
+}

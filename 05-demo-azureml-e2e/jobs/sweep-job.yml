@@ -1,0 +1,52 @@
+$schema: https://azuremlschemas.azureedge.net/latest/sweepJob.schema.json
+type: sweep
+experiment_name: fleet-failure-7d-sweep
+display_name: fleet-hgb-sweep
+description: Random sweep across the three approved fleet HGB hyper-parameters.
+compute: azureml:cpu-cluster
+objective:
+  primary_metric: valid_pr_auc
+  goal: maximize
+sampling_algorithm:
+  type: random
+search_space:
+  learning_rate:
+    type: choice
+    values: [0.04, 0.06, 0.08]
+  max_leaf_nodes:
+    type: choice
+    values: [16, 24, 32]
+  l2_regularization:
+    type: choice
+    values: [0.5, 1.0, 2.0]
+trial:
+  command: >-
+    python train.py
+    --input-path ${{inputs.input_data}}
+    --model-output ${{outputs.model_output}}
+    --metrics-output ${{outputs.metrics_output}}
+    --experiment-name fleet-failure-7d-sweep
+    --data-version fleet-asset-day-features-reference:1
+    --git-sha local-dev
+    --learning-rate ${{search_space.learning_rate}}
+    --max-leaf-nodes ${{search_space.max_leaf_nodes}}
+    --l2-regularization ${{search_space.l2_regularization}}
+  code: ../src
+  environment: azureml:env-fleet-sklearn:1
+inputs:
+  input_data:
+    type: uri_file
+    path: azureml:fleet-asset-day-features-reference:1
+outputs:
+  model_output:
+    type: uri_folder
+  metrics_output:
+    type: uri_folder
+early_termination:
+  type: median_stopping
+  delay_evaluation: 3
+  evaluation_interval: 1
+limits:
+  max_total_trials: 9
+  max_concurrent_trials: 2
+  timeout: 7200

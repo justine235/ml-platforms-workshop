@@ -1,0 +1,20 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: fleet_gate_model
+display_name: Fleet promotion gate
+version: 1
+type: command
+inputs:
+  challenger_json:
+    type: uri_file
+  champion_json:
+    type: uri_file
+outputs:
+  gate_output:
+    type: uri_folder
+code: ../../src
+environment: azureml:env-fleet-sklearn:1
+command: >-
+  python gate.py
+  --challenger-json ${{inputs.challenger_json}}
+  --champion-json ${{inputs.champion_json}}
+  --output-path ${{outputs.gate_output}}/gate_report.json

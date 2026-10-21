@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "nb_02_silver_clean_resolve",
+    "description": "Clean bronze data, normalize timestamps, resolve identities, and flag data-quality issues."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c045e7f2-b13d-549b-a4d7-8153affa9b69"
+  }
+}

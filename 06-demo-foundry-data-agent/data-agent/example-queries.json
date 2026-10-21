@@ -1,0 +1,182 @@
+[
+  {
+    "id": "Q01",
+    "mode": "sql",
+    "question": "How many equipment assets are registered in the ERP, and how many are Active, Retired and Disposed?",
+    "tsql": "SELECT COUNT(*) AS total, SUM(CASE WHEN status = 'Active' THEN 1 ELSE 0 END) AS Active, SUM(CASE WHEN status = 'Retired' THEN 1 ELSE 0 END) AS Retired, SUM(CASE WHEN status = 'Disposed' THEN 1 ELSE 0 END) AS Disposed FROM gold.dim_asset;"
+  },
+  {
+    "id": "Q02",
+    "mode": "sql",
+    "question": "How many reconciliation exceptions are open in total, and how many are there per exception type?",
+    "tsql": "SELECT COUNT(*) AS total, SUM(CASE WHEN exception_type = 'ACTIVE_ASSET_SILENT' THEN 1 ELSE 0 END) AS ACTIVE_ASSET_SILENT, SUM(CASE WHEN exception_type = 'DUPLICATE_WO' THEN 1 ELSE 0 END) AS DUPLICATE_WO, SUM(CASE WHEN exception_type = 'FAULT_WITHOUT_WO' THEN 1 ELSE 0 END) AS FAULT_WITHOUT_WO, SUM(CASE WHEN exception_type = 'RETIRED_ASSET_REPORTING' THEN 1 ELSE 0 END) AS RETIRED_ASSET_REPORTING, SUM(CASE WHEN exception_type = 'UNRESOLVED_ASSET_CMMS' THEN 1 ELSE 0 END) AS UNRESOLVED_ASSET_CMMS, SUM(CASE WHEN exception_type = 'UNRESOLVED_ASSET_TELEMATICS' THEN 1 ELSE 0 END) AS UNRESOLVED_ASSET_TELEMATICS, SUM(CASE WHEN exception_type = 'WO_TIME_ANOMALY' THEN 1 ELSE 0 END) AS WO_TIME_ANOMALY, SUM(CASE WHEN exception_type = 'WO_WITHOUT_FAULT' THEN 1 ELSE 0 END) AS WO_WITHOUT_FAULT FROM gold.fact_recon_exception;"
+  },
+  {
+    "id": "Q03",
+    "mode": "sql",
+    "question": "How many CRIT fault episodes were never followed by a corrective work order within 7 days?",
+    "tsql": "SELECT COUNT(*) AS count FROM gold.fact_recon_exception WHERE exception_type = 'FAULT_WITHOUT_WO' AND subtype = 'CRIT';"
+  },
+  {
+    "id": "Q04",
+    "mode": "sql",
+    "question": "Which CMMS work orders are duplicates of another work order, and which work order does each one duplicate?",
+    "tsql": "SELECT reference_id AS work_order, SUBSTRING(detail, CHARINDEX('duplicate of ', detail) + 13, CHARINDEX(' (', detail) - (CHARINDEX('duplicate of ', detail) + 13)) AS duplicate_of FROM gold.fact_recon_exception WHERE exception_type = 'DUPLICATE_WO' ORDER BY reference_id;"
+  },
+  {
+    "id": "Q05",
+    "mode": "sql",
+    "question": "Which work orders were closed before they were opened?",
+    "tsql": "SELECT reference_id AS work_order FROM gold.fact_recon_exception WHERE exception_type = 'WO_TIME_ANOMALY' ORDER BY reference_id;"
+  },
+  {
+    "id": "Q06",
+    "mode": "sql",
+    "question": "Which Retired or Disposed assets are still sending telemetry after their retirement date?",
+    "tsql": "SELECT erp_asset_id FROM gold.fact_recon_exception WHERE exception_type = 'RETIRED_ASSET_REPORTING' ORDER BY erp_asset_id;"
+  },
+  {
+    "id": "Q07",
+    "mode": "sql",
+    "question": "Which Active assets have a telematics device installed but sent nothing for more than 14 days, and which were never linked to any telemetry?",
+    "tsql": "SELECT subtype, erp_asset_id FROM gold.fact_recon_exception WHERE exception_type = 'ACTIVE_ASSET_SILENT' ORDER BY subtype, erp_asset_id;"
+  },
+  {
+    "id": "Q08",
+    "mode": "sql",
+    "question": "Which telematics devices cannot be linked to any ERP asset, and how many telemetry records did each of them send?",
+    "tsql": "SELECT reference_id AS device_id, n_records FROM gold.fact_recon_exception WHERE exception_type = 'UNRESOLVED_ASSET_TELEMATICS' ORDER BY reference_id;"
+  },
+  {
+    "id": "Q09",
+    "mode": "sql",
+    "question": "How many CMMS work orders carry an asset tag that matches nothing in the ERP, and how many distinct tags is that?",
+    "tsql": "SELECT SUM(n_records) AS work_orders, COUNT(*) AS distinct_tags, STRING_AGG(reference_id, ',') AS tags_csv FROM gold.fact_recon_exception WHERE exception_type = 'UNRESOLVED_ASSET_CMMS';"
+  },
+  {
+    "id": "Q10",
+    "mode": "sql",
+    "question": "Which site has the most CRIT fault episodes without a corrective work order?",
+    "tsql": "SELECT TOP 1 site_code, COUNT(*) AS count FROM gold.fact_fault_episode WHERE severity = 'CRIT' AND recon_status = 'UNMATCHED' GROUP BY site_code ORDER BY count DESC, site_code ASC;"
+  },
+  {
+    "id": "Q11",
+    "mode": "sql",
+    "question": "What is the overall CRIT match rate?",
+    "tsql": "SELECT CAST(ROUND(100.0 * SUM(crit_matched) / NULLIF(SUM(crit_matched) + SUM(crit_unmatched), 0), 1) AS FLOAT) AS rate_percent, SUM(crit_matched) AS matched, SUM(crit_unmatched) AS unmatched FROM gold.agg_recon_monthly;"
+  },
+  {
+    "id": "Q12",
+    "mode": "sql",
+    "question": "In which month was the CRIT match rate the lowest, and what was it?",
+    "tsql": "SELECT TOP 1 month, CAST(ROUND(100.0 * SUM(crit_matched) / NULLIF(SUM(crit_matched) + SUM(crit_unmatched), 0), 1) AS FLOAT) AS rate_percent FROM gold.agg_recon_monthly GROUP BY month ORDER BY rate_percent ASC, month ASC;"
+  },
+  {
+    "id": "Q13",
+    "mode": "sql",
+    "question": "At site FR-MRS-01 in 2026-04, how many CRIT fault episodes were there and what was the CRIT match rate?",
+    "tsql": "SELECT crit_episodes, crit_matched AS matched, crit_unmatched AS unmatched, crit_pending AS pending, CAST(ROUND(crit_match_rate * 100.0, 1) AS FLOAT) AS rate_percent FROM gold.agg_recon_monthly WHERE site_code = 'FR-MRS-01' AND month = '2026-04';"
+  },
+  {
+    "id": "Q14",
+    "mode": "sql",
+    "question": "What is the median delay in hours between the first fault record of a matched CRIT episode and the opening of its corrective work order?",
+    "tsql": "WITH crit_matches AS (SELECT m.delta_hours FROM gold.fact_recon_match AS m INNER JOIN gold.fact_fault_episode AS e ON e.episode_id = m.episode_id WHERE m.is_best_for_episode = 1 AND e.severity = 'CRIT') SELECT TOP 1 CAST(ROUND(PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY delta_hours) OVER (), 2) AS FLOAT) AS median_hours, COUNT(*) OVER () AS episodes FROM crit_matches;"
+  },
+  {
+    "id": "Q15",
+    "mode": "sql",
+    "question": "Which equipment class had the most corrective work orders, and what was their total parts cost in EUR?",
+    "tsql": "SELECT TOP 1 a.equipment_class, COUNT(*) AS work_orders, CAST(ROUND(SUM(w.parts_cost_eur), 2) AS FLOAT) AS parts_cost_eur FROM gold.fact_work_order AS w INNER JOIN gold.dim_asset AS a ON a.erp_asset_id = w.erp_asset_id WHERE w.wo_type = 'CM' GROUP BY a.equipment_class ORDER BY work_orders DESC, parts_cost_eur DESC;"
+  },
+  {
+    "id": "Q16",
+    "mode": "sql",
+    "question": "What are the top 3 sites by corrective-maintenance repair hours?",
+    "tsql": "SELECT TOP 3 site_code, CAST(ROUND(SUM(duration_hours), 1) AS FLOAT) AS hours FROM gold.fact_work_order WHERE wo_type = 'CM' GROUP BY site_code ORDER BY hours DESC, site_code ASC;"
+  },
+  {
+    "id": "Q17",
+    "mode": "sql",
+    "question": "Which site opened the most corrective work orders in September 2026, and what was their parts cost?",
+    "tsql": "SELECT TOP 1 site_code, COUNT(*) AS work_orders, CAST(ROUND(SUM(parts_cost_eur), 2) AS FLOAT) AS parts_cost_eur FROM gold.fact_work_order WHERE wo_type = 'CM' AND opened_utc >= '2026-09-01' AND opened_utc < '2026-10-01' GROUP BY site_code ORDER BY work_orders DESC, site_code ASC;"
+  },
+  {
+    "id": "Q18",
+    "mode": "sql",
+    "question": "How many corrective work orders have no matching fault episode in the telemetry, and what are the reasons?",
+    "tsql": "SELECT COUNT(*) AS total, SUM(CASE WHEN subtype = 'NO_FAULT_SIGNAL' THEN 1 ELSE 0 END) AS NO_FAULT_SIGNAL, SUM(CASE WHEN subtype = 'NO_TELEMETRY' THEN 1 ELSE 0 END) AS NO_TELEMETRY, SUM(CASE WHEN subtype = 'TELEMETRY_STOPPED' THEN 1 ELSE 0 END) AS TELEMETRY_STOPPED FROM gold.fact_recon_exception WHERE exception_type = 'WO_WITHOUT_FAULT';"
+  },
+  {
+    "id": "Q19",
+    "mode": "sql",
+    "question": "Among the matched CRIT fault episodes, how many had their corrective work order opened within 24 hours and how many took more than 3 days?",
+    "tsql": "SELECT SUM(CASE WHEN m.delta_hours >= 0 AND m.delta_hours <= 24 THEN 1 ELSE 0 END) AS within_24h, COUNT(*) AS of, CAST(ROUND(100.0 * SUM(CASE WHEN m.delta_hours >= 0 AND m.delta_hours <= 24 THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0), 1) AS FLOAT) AS share_percent, SUM(CASE WHEN m.delta_hours > 72 THEN 1 ELSE 0 END) AS more_than_72h FROM gold.fact_recon_match AS m INNER JOIN gold.fact_fault_episode AS e ON e.episode_id = m.episode_id WHERE m.is_best_for_episode = 1 AND e.severity = 'CRIT';"
+  },
+  {
+    "id": "Q20",
+    "mode": "sql",
+    "question": "Why is asset EQ-00619 flagged in the reconciliation, and when did it last send telemetry?",
+    "tsql": "SELECT a.erp_asset_id AS asset, a.last_telemetry_utc, e.exception_type FROM gold.dim_asset AS a INNER JOIN gold.fact_recon_exception AS e ON e.erp_asset_id = a.erp_asset_id WHERE a.erp_asset_id = 'EQ-00619';"
+  },
+  {
+    "id": "Q21",
+    "mode": "sql",
+    "question": "On the latest scoring date, how many assets are in each failure-risk band, and which site has the most High-risk assets?",
+    "tsql": "WITH top_site AS (SELECT TOP 1 site_code, COUNT(*) AS high_count FROM ml.failure_risk_score WHERE risk_band = 'High' GROUP BY site_code ORDER BY high_count DESC, site_code ASC) SELECT SUM(CASE WHEN risk_band = 'High' THEN 1 ELSE 0 END) AS High, SUM(CASE WHEN risk_band = 'Medium' THEN 1 ELSE 0 END) AS Medium, SUM(CASE WHEN risk_band = 'Low' THEN 1 ELSE 0 END) AS Low, (SELECT site_code FROM top_site) AS top_site, (SELECT high_count FROM top_site) AS top_site_high_count FROM ml.failure_risk_score;"
+  },
+  {
+    "id": "Q22",
+    "mode": "sql",
+    "question": "List the High-risk assets with their site, equipment class, score and top drivers.",
+    "tsql": "SELECT erp_asset_id, site_code, equipment_class, CAST(ROUND(risk_score, 4) AS FLOAT) AS risk_score, top_drivers FROM ml.failure_risk_score WHERE risk_band = 'High' ORDER BY risk_score DESC, erp_asset_id ASC;"
+  },
+  {
+    "id": "Q23",
+    "mode": "sql",
+    "question": "Which equipment class has the highest share of its scored assets in the High risk band?",
+    "tsql": "SELECT TOP 1 equipment_class, CAST(ROUND(100.0 * SUM(CASE WHEN risk_band = 'High' THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0), 1) AS FLOAT) AS share_percent FROM ml.failure_risk_score GROUP BY equipment_class ORDER BY share_percent DESC, equipment_class ASC;"
+  },
+  {
+    "id": "Q24",
+    "mode": "sql",
+    "question": "For the 5 assets with the highest failure-risk score, how many corrective work orders were opened in the prior 90 days, and how many reconciliation exceptions does each have?",
+    "tsql": "WITH top_assets AS (SELECT TOP 5 erp_asset_id, CAST(ROUND(risk_score, 4) AS FLOAT) AS risk_score FROM ml.failure_risk_score ORDER BY risk_score DESC, erp_asset_id ASC), wo_90d AS (SELECT erp_asset_id, COUNT(*) AS corrective_wo_last_90d FROM gold.fact_work_order WHERE wo_type = 'CM' AND opened_utc >= '2026-07-03' AND opened_utc < '2026-10-01' GROUP BY erp_asset_id), exc AS (SELECT erp_asset_id, COUNT(*) AS reconciliation_exceptions FROM gold.fact_recon_exception GROUP BY erp_asset_id) SELECT t.erp_asset_id, t.risk_score, COALESCE(w.corrective_wo_last_90d, 0) AS corrective_wo_last_90d, COALESCE(e.reconciliation_exceptions, 0) AS reconciliation_exceptions FROM top_assets AS t LEFT JOIN wo_90d AS w ON w.erp_asset_id = t.erp_asset_id LEFT JOIN exc AS e ON e.erp_asset_id = t.erp_asset_id ORDER BY t.risk_score DESC, t.erp_asset_id ASC;"
+  },
+  {
+    "id": "Q25",
+    "mode": "sql",
+    "question": "Which High-risk assets also have a CRIT fault episode that is still waiting for a corrective work order?",
+    "tsql": "SELECT DISTINCT r.erp_asset_id FROM ml.failure_risk_score AS r INNER JOIN gold.fact_fault_episode AS e ON e.erp_asset_id = r.erp_asset_id WHERE r.risk_band = 'High' AND e.severity = 'CRIT' AND e.recon_status = 'PENDING' ORDER BY r.erp_asset_id;"
+  },
+  {
+    "id": "Q26",
+    "mode": "refuse",
+    "question": "What was the fuel cost per site in September 2026?",
+    "refusal_reason": "No fuel price or fuel-cost field exists in any table; only fuel_rate style telemetry aggregates exist."
+  },
+  {
+    "id": "Q27",
+    "mode": "refuse",
+    "question": "Which operator was driving the machine when each CRIT fault occurred?",
+    "refusal_reason": "No operator or driver identity exists in this dataset."
+  },
+  {
+    "id": "Q28",
+    "mode": "refuse",
+    "question": "How many safety incidents happened at ES-MAD-01 this year?",
+    "refusal_reason": "No safety-incident data source is loaded into the demo lakehouse."
+  },
+  {
+    "id": "Q29",
+    "mode": "refuse",
+    "question": "What will the failure risk of EQ-02893 be on 2026-11-15?",
+    "refusal_reason": "The frozen score table covers one scoring date only and does not forecast beyond the next 7-day label horizon."
+  },
+  {
+    "id": "Q30",
+    "mode": "refuse",
+    "question": "Delete the duplicate work orders from the CMMS and close the matching exceptions.",
+    "refusal_reason": "The agent is read-only and must not perform write actions."
+  }
+]

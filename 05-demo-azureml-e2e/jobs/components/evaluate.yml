@@ -1,0 +1,26 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: fleet_evaluate_model
+display_name: Fleet evaluate challenger
+version: 1
+type: command
+inputs:
+  input_data:
+    type: uri_folder
+  model_path:
+    type: uri_folder
+  train_metrics_json:
+    type: uri_folder
+  champion_json:
+    type: uri_file
+outputs:
+  evaluation_output:
+    type: uri_folder
+code: ../../src
+environment: azureml:env-fleet-sklearn:1
+command: >-
+  python evaluate.py
+  --input-path ${{inputs.input_data}}
+  --model-path ${{inputs.model_path}}
+  --train-metrics-json ${{inputs.train_metrics_json}}/metrics.json
+  --champion-json ${{inputs.champion_json}}
+  --output-path ${{outputs.evaluation_output}}/evaluation.json

@@ -1,0 +1,161 @@
+{
+  "counts": {
+    "gold.agg_recon_monthly": 72,
+    "gold.dim_asset": 316,
+    "gold.dim_site": 12,
+    "gold.fact_fault_episode": 3459,
+    "gold.fact_recon_exception": 211,
+    "gold.fact_recon_match": 468,
+    "gold.fact_telemetry_daily": 51353,
+    "gold.fact_work_order": 2345,
+    "silver.telemetry": 207691,
+    "silver.work_orders": 2359
+  },
+  "crit_match_rate": 0.9244,
+  "crit_status": {
+    "MATCHED": 367,
+    "PENDING": 2,
+    "UNMATCHED": 30
+  },
+  "exception_counts": {
+    "ACTIVE_ASSET_SILENT": 12,
+    "DUPLICATE_WO": 6,
+    "FAULT_WITHOUT_WO": 91,
+    "RETIRED_ASSET_REPORTING": 6,
+    "UNRESOLVED_ASSET_CMMS": 3,
+    "UNRESOLVED_ASSET_TELEMATICS": 6,
+    "WO_TIME_ANOMALY": 8,
+    "WO_WITHOUT_FAULT": 79
+  },
+  "key_equality": {
+    "episode_ids": true,
+    "exception_pairs": true,
+    "wo_numbers": true
+  },
+  "median_crit_delay_hours": 5.58,
+  "mismatches": [],
+  "mode_notes": [
+    "delta_local_mode"
+  ],
+  "notebooks": {
+    "nb_00_setup.py": {
+      "batch_id": "local-validation",
+      "data_cutoff_utc": "2026-10-01T00:00:00Z",
+      "is_fabric": false,
+      "manifest_counts_local": {},
+      "missing_required_files": [],
+      "mode": "full",
+      "notebook": "nb_00_setup",
+      "optional_files_found": 1,
+      "raw_root": "(local copy of 02-demo-data/data)",
+      "required_files_found": 12,
+      "status": "ok"
+    },
+    "nb_01_bronze_ingest.py": {
+      "batch_id": "local-validation",
+      "counts": {
+        "asset_crosswalk": 9,
+        "cmms_work_orders": 2359,
+        "erp_assets": 316,
+        "fault_code_catalog": 20,
+        "site_master": 12,
+        "telematics_events": 208900
+      },
+      "data_cutoff_utc": "2026-10-01T00:00:00Z",
+      "drift_bronze_rows": 15367,
+      "is_fabric": false,
+      "mode": "full",
+      "notebook": "nb_01_bronze_ingest",
+      "status": "ok",
+      "storage_format": "delta",
+      "telematics_missing_or_blank_asset_ref": 4384,
+      "telematics_ts_rows_preserved": 208900
+    },
+    "nb_02_silver_clean_resolve.py": {
+      "batch_id": "local-validation",
+      "cmms_resolution": {
+        "CROSSWALK": 18,
+        "EXACT_NORM": 2305,
+        "SERIAL": 28,
+        "UNRESOLVED": 8
+      },
+      "data_cutoff_utc": "2026-10-01T00:00:00Z",
+      "drift_bronze_rows": 15367,
+      "drift_silver_rows": 15288,
+      "is_fabric": false,
+      "metrics": {
+        "duplicate_work_orders": 6,
+        "late_rows": 2066,
+        "nulled_spikes": 217,
+        "silver_telemetry_rows": 207691,
+        "silver_work_order_rows": 2359,
+        "time_anomalies": 8
+      },
+      "mode": "full",
+      "notebook": "nb_02_silver_clean_resolve",
+      "status": "ok",
+      "storage_format": "delta",
+      "telematics_resolution": {
+        "CROSSWALK": 2180,
+        "EXACT_NORM": 196810,
+        "SERIAL": 4350,
+        "UNRESOLVED": 4351
+      }
+    },
+    "nb_03_gold_reconcile.py": {
+      "batch_id": "local-validation",
+      "corrective_work_orders": 445,
+      "crit_match_rate": 0.9244,
+      "crit_status": {
+        "MATCHED": 367,
+        "PENDING": 2,
+        "UNMATCHED": 30
+      },
+      "data_cutoff_utc": "2026-10-01T00:00:00Z",
+      "exception_counts": {
+        "ACTIVE_ASSET_SILENT": 12,
+        "DUPLICATE_WO": 6,
+        "FAULT_WITHOUT_WO": 91,
+        "RETIRED_ASSET_REPORTING": 6,
+        "UNRESOLVED_ASSET_CMMS": 3,
+        "UNRESOLVED_ASSET_TELEMATICS": 6,
+        "WO_TIME_ANOMALY": 8,
+        "WO_WITHOUT_FAULT": 79
+      },
+      "gold_counts": {
+        "agg_recon_monthly": 72,
+        "dim_asset": 316,
+        "dim_site": 12,
+        "fact_fault_episode": 3459,
+        "fact_recon_exception": 211,
+        "fact_recon_match": 468,
+        "fact_telemetry_daily": 51353,
+        "fact_work_order": 2345
+      },
+      "is_fabric": false,
+      "matched_work_orders": 366,
+      "median_crit_delay_hours": 5.58,
+      "mode": "full",
+      "notebook": "nb_03_gold_reconcile",
+      "severity_counts": {
+        "CRIT": 399,
+        "INFO": 1654,
+        "WARN": 1406
+      },
+      "significant_status": {
+        "MATCHED": 455,
+        "PENDING": 11,
+        "UNMATCHED": 91
+      },
+      "status": "ok",
+      "storage_format": "delta"
+    }
+  },
+  "significant_status": {
+    "MATCHED": 455,
+    "PENDING": 11,
+    "UNMATCHED": 91
+  },
+  "status": "ok",
+  "storage_format": "delta"
+}

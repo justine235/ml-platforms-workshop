@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "nb_00_setup",
+    "description": "Create lakehouse schemas and validate raw landing files for the fleet demo."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "560300f9-c6f2-5121-a6b2-7c26e77ba8aa"
+  }
+}

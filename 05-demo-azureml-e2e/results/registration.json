@@ -1,0 +1,17 @@
+{
+  "name": "fleet-failure-7d",
+  "status": "READY",
+  "tags": {
+    "data_version": "reference_out",
+    "gate_approved": "true",
+    "git_sha": "local-validation",
+    "source_run_id": "e956f0664fef4558808d8d6d17c7a724",
+    "test_pr_auc": "0.3882",
+    "test_precision_at_top5pct": "0.3758",
+    "test_recall_at_top5pct": "0.4197",
+    "test_roc_auc": "0.7551",
+    "valid_pr_auc": "0.349",
+    "valid_roc_auc": "0.7037"
+  },
+  "version": "1"
+}

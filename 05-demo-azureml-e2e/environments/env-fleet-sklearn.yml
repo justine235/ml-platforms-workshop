@@ -1,0 +1,10 @@
+$schema: https://azuremlschemas.azureedge.net/latest/environment.schema.json
+name: env-fleet-sklearn
+version: 1
+description: Fleet workshop sklearn environment pinned to the AML-supported MLflow 2.16 line.
+image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest
+conda_file: ./conda-fleet-sklearn.yml
+tags:
+  purpose: workshop
+  mlflow_pin: 2.16.2
+  note: Pre-build this environment before Friday to avoid live Docker resolution delays.

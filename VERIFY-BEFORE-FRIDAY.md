@@ -1,0 +1,68 @@
+# Verify before Friday: the short list
+
+Nothing in this kit has been run in a real Fabric, Azure ML or Foundry tenant. It was checked offline: Python, PySpark, MLflow and scikit-learn on a laptop, the azure-ai-ml SDK loaders for the Azure ML YAML, and a static checker for the Fabric Git folders. So **expect small surprises (labels, names, IDs, one or two rules of the platform) on your first tenant run.** That is normal. The point of this page is to find them on Tuesday and Wednesday, not on Friday at 11:00.
+
+Every demo folder has its own `VERIFY-BEFORE-FRIDAY.md` with the full detail. This page puts the items in priority order and links to the detail. Next to each item, write **ok**, **changed the slide** or **dropped**.
+
+## 1. Ask for these now (they take days, not hours)
+
+- [ ] **Paid Fabric capacity (F2 or higher), assigned to your workspace.** The trial runs notebooks and pipelines but has no Copilot, no data agent and no AI functions, so Part 4 cannot run on it. F4 or F8 is a reasonable starting size for the ETL (not verified: time the notebooks on your capacity and watch the Capacity Metrics app). Details: `00-presenter-guide\04-prep-plan.md`, section 1.
+- [ ] **Fabric tenant settings** (one email to a Fabric admin): create Fabric items; Git sync (and the GitHub variant); Copilot and Azure OpenAI features; capacities designated as Copilot capacities; the two cross-geography AI settings if the capacity is outside the EU data boundary and the US; ML model endpoints (preview, only if you show one); the service principal setting only if CI/CD runs as a service principal. List: `00-presenter-guide\04-prep-plan.md`, section 2.
+- [ ] **Azure ML quota** for `Standard_DS3_v2` in West Europe, France Central or Sweden Central (the kit assumes at least 24 vCPUs in the DSv2 family, a planning estimate). `05-demo-azureml-e2e\VERIFY-BEFORE-FRIDAY.md`.
+- [ ] **Foundry project and one chat model deployment**, with enough tokens per minute. Choose a Data Zone EU deployment type if data residency matters. Same sign-in account for Fabric and Foundry. `06-demo-foundry-data-agent\VERIFY-BEFORE-FRIDAY.md`.
+- [ ] **Access**: Contributor on the Fabric workspace and on the Azure resource group, write on the GitHub repository, and someone who can create an Entra app with a federated credential (only for the GitHub Actions step).
+
+## 2. Rehearse once, end to end, in a scratch tenant (hard stop: Wednesday evening)
+
+| # | What to run | What the offline checks already proved | What only the tenant can prove | Detail |
+|---|---|---|---|---|
+| 1 | **Fabric ETL**: land the raw files, run `nb_00` to `nb_03`, then `pl_fleet_etl` | The notebooks run on local PySpark and match the reference pipeline on every checked count | Default lakehouse binding (attach `lh_fleet` to every notebook after an import, then restart the session), schema-enabled lakehouse, Fabric Runtime 1.3 (Runtime 2.0 was not rehearsed), the delay of about two minutes before an uploaded file is visible on the mounted path, capacity speed and sizing, the Git import of the folders | `04-demo-fabric-e2e\etl\VERIFY-BEFORE-FRIDAY.md` |
+| 2 | **Fabric ML and MLOps**: `nb_04` to `nb_08`, then `pl_fleet_daily` | The notebooks run locally on pandas, scikit-learn and MLflow with a Fabric simulation; the Git folders pass the static checker | How the shared code is found from a Fabric notebook, pandas and Spark type conversions, the exit-value expression of the drift branch, the Office 365 alert, the Variable Library read, that the model registered in the Fabric registry exposes its source-run metrics (the gate reads them) | `04-demo-fabric-e2e\ml-mlops\VERIFY-BEFORE-FRIDAY.md` |
+| 3 | **Fabric Git sync**: connect a scratch workspace to a repository holding the two `fabric-git` folders | The structure follows the public `microsoft/fabric-cicd` sample (`04-demo-fabric-e2e\tools\check_fabric_git.py`) | That a real workspace accepts every item and binds each pipeline activity to its notebook; whether your Git provider is supported | `04-demo-fabric-e2e\README.md` |
+| 4 | **Azure ML**: follow `rebuild-guide.md` once in a scratch resource group | Every YAML loads with the real SDK loaders; the pipeline builds; one offline run reproduces the gate decision | Server-side validation of each `az ml ... create`, the first image build (10 to 20 minutes) and first online deployment (10 to 15 minutes), the blue/green sequence on a real endpoint (green with no live traffic, then mirror 10 %, then clear the mirror, then a live 90/10 split), batch output shape, the experiment name inside a real job, the GitHub OIDC workflows | `05-demo-azureml-e2e\VERIFY-BEFORE-FRIDAY.md` |
+| 5 | **Foundry and the data agent**: load the tables, build `da_fleet_recon`, publish, connect `fleet-recon-agent`, ask every question of `qa-script.md` | An offline harness grades the 30 expected answers against the reference tables; the Foundry code is dry-run-first | Field limits in the Fabric UI, the Fabric IQ connection flow, the published MCP tool name, the trace path, throttling, and that the Spark-only notebooks `nb_10` and `nb_11` run in the tenant (they were only checked on local Spark 3.5 with Delta) | `06-demo-foundry-data-agent\VERIFY-BEFORE-FRIDAY.md` |
+| 6 | **MLflow tour**: local run, one Fabric run, one Azure ML job | The registry behaviour (versions, aliases, stages) was probed on MLflow 2.12.2, 2.16.2, 2.22.0 and 3.17.0 locally; metrics reproduce | The `Files/` import path in Fabric, run-comparison button labels, nested runs, Azure ML compute-instance paths, registering an exported model into Fabric and Azure ML | `03-demo-mlflow-tour\VERIFY-BEFORE-FRIDAY.md` |
+
+Four facts the room will test you on, so know them before Friday:
+
+- **Registry semantics differ.** Open-source MLflow has versions, aliases and (deprecated) stages; the docs of the managed registries in Fabric and Azure ML describe them as version-first. The kit's slides say "check the platform" where the docs are silent. Do not promise stages or aliases in Fabric.
+- **Fabric has no first-party drift monitoring.** The drift demo is a notebook plus a pipeline branch plus Activator. Say so.
+- **The promotion gate in Fabric reads the metrics logged at training time** (the honest hold-out numbers). It does not re-score the registered model, because the shipped model is refit on all labelled history and would look perfect on its own test split.
+- **Azure ML traffic: a deployment is live or mirrored, never both.** Mirroring copies a share of live traffic (at most 50 %, one mirrored deployment, not for Kubernetes endpoints) to a second deployment; clients only ever see the live deployment's answer. To go live you clear the mirror and then split the real traffic.
+
+## 3. Labels, limits and wording to confirm in the portals (30 minutes each)
+
+- [ ] **Fabric data agent**: tenant setting labels; character limits of the instruction, source-instruction and source-description fields; size of the example-query import; draft versus publish behaviour. (Slides P4.4 and P4.8.)
+- [ ] **Foundry**: the Fabric IQ and OneLake Catalog connection flow, the published MCP tool name and settings labels, the Application Insights tracing path, content-recording defaults. (P4.9 and P4.15.)
+- [ ] **Fabric ML**: run-comparison buttons, the ML model item's version comparison, the `Machine learning models` item in Git and in deployment pipelines (preview), the Monitor view label, the notebook import button label.
+- [ ] **Azure ML Studio**: whether stages show in the UI (they are SDK-only in the docs), alias support, the registry and `az ml model share` flags if you demo cross-workspace promotion.
+- [ ] **Azure ML CLI**: the exact syntax on your installed `ml` extension (version 2.4.0 or later is needed for mirroring): `--mirror-traffic "green=10"` on the endpoint update, then `--mirror-traffic "green=0"`, then `--traffic "blue=90 green=10"`. Quote the traffic strings, invoke the endpoint without naming a deployment (a call that names one is not mirrored) and read the mirrored deployment's logs with `az ml online-deployment get-logs`.
+- [ ] **Pipeline**: the `IfDriftAlert` expression against a real notebook exit payload, and which alert channel (email, Teams or both) your shared connection supports.
+
+## 4. Facts that move: previews, deprecations, dates
+
+Re-read the portal banners on Thursday and again on Friday morning. If a date moved, change slide P4.16 and say so out loud.
+
+| Item | State in this kit (checked 2026-10-18 and 19) |
+|---|---|
+| Legacy Microsoft Fabric data agent tool in Foundry | Preview, **deprecates 2026-11-06**; Fabric IQ is the replacement path (also preview) |
+| Foundry visual workflow builder | **Retires 2026-12-01** |
+| Prompt flow | **Retires 2027-04-20** |
+| Azure ML CLI v1 and SDK v1 | Ended 2025-09-30 and 2026-06-30: use CLI and SDK v2 only |
+| Azure ML model monitoring schedules, OneLake datastore | Preview or experimental: the schema moves |
+| Fabric ML experiments and models in Git and deployment pipelines; ML model endpoints; Activator parameter passing | Preview |
+| Fabric data agent SDK | Preview |
+| Fabric Runtime | The kit was validated against Spark 3.5 (Runtime 1.3, MLflow 2.12.2). Runtime 2.0 ships a different Spark and MLflow (mlflow-skinny 2.22.0) and was not rehearsed: pin Runtime 1.3 in the workspace or environment |
+
+## 5. Numbers: what is exact and what is not
+
+| Kind | What | Rule |
+|---|---|---|
+| **Exact (must match, or stop and fix)** | Row counts, tier counts, duplicates, late rows, exceptions, episodes, feature rows, 264 scored assets, 47 drift combinations | The list is in `00-presenter-guide\04-prep-plan.md`, section 5, and in `02-demo-data\scenario-contract.md` |
+| **Approximate (say "about")** | Model metrics: gradient boosting test PR-AUC about 0.385 (plus or minus 0.03), logistic about 0.29, rules about 0.07, prevalence about 0.045 | They move slightly with library versions |
+| **Varies on a live run** | Risk bands: the frozen file used in Part 4 has exactly 9 High, 7 Medium and 248 Low; a live scoring run gives roughly 8 to 10 High and 7 to 13 Medium | Part 3 slides say "roughly"; never say "exactly" about a live run |
+| **Not verified** | Euro prices for Fabric capacities and the capacity size the ETL really needs; the exact day total for Azure ML (planning estimate USD 3 to 10; the `Standard_DS3_v2` West Europe retail anchor was about USD 0.272 per hour on 2026-10-18) | Do not quote them as facts |
+
+## 6. Slides
+
+The deck is static. Every platform claim has a source in `00-presenter-guide\fact-sheets\` and a date. After your rehearsal, put the real labels and numbers you saw into the speaker notes (or tell me and I will update the deck). The appendix slide A9 (troubleshooting) is compiled from the kits' troubleshooting notes, not from a live tenant run, and says so on the slide.

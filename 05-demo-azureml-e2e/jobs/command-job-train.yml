@@ -1,0 +1,28 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+type: command
+experiment_name: fleet-failure-7d
+display_name: fleet-train-command
+description: Train the fleet HistGradientBoosting model on the prepared feature asset.
+code: ../src
+environment: azureml:env-fleet-sklearn:1
+compute: azureml:cpu-cluster
+command: >-
+  python train.py
+  --input-path ${{inputs.input_data}}
+  --model-output ${{outputs.model_output}}
+  --metrics-output ${{outputs.metrics_output}}
+  --experiment-name fleet-failure-7d
+  --data-version reference_out
+  --git-sha local-dev
+  --learning-rate 0.06
+  --max-leaf-nodes 24
+  --l2-regularization 1.0
+inputs:
+  input_data:
+    type: uri_file
+    path: azureml:fleet-asset-day-features-reference:1
+outputs:
+  model_output:
+    type: uri_folder
+  metrics_output:
+    type: uri_folder

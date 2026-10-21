@@ -1,0 +1,32 @@
+$schema: http://azureml/sdk-2-0/Schedule.json
+name: fleet_risk_online_monitoring
+display_name: Fleet risk online monitoring
+description: ⚠ PREVIEW. Managed AML monitoring definition for the fleet-risk-online endpoint.
+trigger:
+  type: recurrence
+  frequency: day
+  interval: 1
+  schedule:
+    hours: 4
+    minutes: 0
+create_monitor:
+  compute:
+    instance_type: standard_e4s_v3
+    runtime_version: "3.4"
+  monitoring_target:
+    ml_task: classification
+    endpoint_deployment_id: azureml:fleet-risk-online:blue
+  monitoring_signals:
+    fleet_data_drift:
+      type: data_drift
+      reference_data:
+        input_data:
+          path: azureml:fleet-asset-day-features-reference:1
+          type: uri_file
+        data_context: training
+      features:
+        top_n_feature_importance: 10
+      alert_enabled: true
+  alert_notification:
+    emails:
+      - owner@example.com

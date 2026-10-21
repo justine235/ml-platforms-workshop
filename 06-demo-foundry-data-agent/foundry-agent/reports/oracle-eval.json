@@ -1,0 +1,701 @@
+{
+  "agent": "oracle",
+  "results": [
+    {
+      "id": "Q01",
+      "question": "How many equipment assets are registered in the ERP, and how many are Active, Retired and Disposed?",
+      "type": "count",
+      "difficulty": "easy",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT COUNT(*) AS total, SUM(CASE WHEN status = 'Active' THEN 1 ELSE 0 END) AS Active, SUM(CASE WHEN status = 'Retired' THEN 1 ELSE 0 END) AS Retired, SUM(CASE WHEN status = 'Disposed' THEN 1 ELSE 0 END) AS Disposed FROM gold.dim_asset",
+      "refused": false,
+      "answer": "316 assets: 300 Active, 10 Retired, 6 Disposed.",
+      "structured": {
+        "total": 316,
+        "Active": 300.0,
+        "Retired": 10.0,
+        "Disposed": 6.0
+      }
+    },
+    {
+      "id": "Q02",
+      "question": "How many reconciliation exceptions are open in total, and how many are there per exception type?",
+      "type": "count",
+      "difficulty": "easy",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT COUNT(*) AS total, SUM(CASE WHEN exception_type = 'ACTIVE_ASSET_SILENT' THEN 1 ELSE 0 END) AS ACTIVE_ASSET_SILENT, SUM(CASE WHEN exception_type = 'DUPLICATE_WO' THEN 1 ELSE 0 END) AS DUPLICATE_WO, SUM(CASE WHEN exception_type = 'FAULT_WITHOUT_WO' THEN 1 ELSE 0 END) AS FAULT_WITHOUT_WO, SUM(CASE WHEN exception_type = 'RETIRED_ASSET_REPORTING' THEN 1 ELSE 0 END) AS RETIRED_ASSET_REPORTING, SUM(CASE WHEN exception_type = 'UNRESOLVED_ASSET_CMMS' THEN 1 ELSE 0 END) AS UNRESOLVED_ASSET_CMMS, SUM(CASE WHEN exception_type = 'UNRESOLVED_ASSET_TELEMATICS' THEN 1 ELSE 0 END) AS UNRESOLVED_ASSET_TELEMATICS, SUM(CASE WHEN exception_type = 'WO_TIME_ANOMALY' THEN 1 ELSE 0 END) AS WO_TIME_ANOMALY, SUM(CASE WHEN exception_type = 'WO_WITHOUT_FAULT' THEN 1 ELSE 0 END) AS WO_WITHOUT_FAULT FROM gold.fact_recon_exception",
+      "refused": false,
+      "answer": "211 exceptions: ACTIVE_ASSET_SILENT 12, DUPLICATE_WO 6, FAULT_WITHOUT_WO 91, RETIRED_ASSET_REPORTING 6, UNRESOLVED_ASSET_CMMS 3, UNRESOLVED_ASSET_TELEMATICS 6, WO_TIME_ANOMALY 8, WO_WITHOUT_FAULT 79.",
+      "structured": {
+        "total": 211,
+        "ACTIVE_ASSET_SILENT": 12.0,
+        "DUPLICATE_WO": 6.0,
+        "FAULT_WITHOUT_WO": 91.0,
+        "RETIRED_ASSET_REPORTING": 6.0,
+        "UNRESOLVED_ASSET_CMMS": 3.0,
+        "UNRESOLVED_ASSET_TELEMATICS": 6.0,
+        "WO_TIME_ANOMALY": 8.0,
+        "WO_WITHOUT_FAULT": 79.0
+      }
+    },
+    {
+      "id": "Q03",
+      "question": "How many CRIT fault episodes were never followed by a corrective work order within 7 days (data cutoff 2026-10-01)?",
+      "type": "count",
+      "difficulty": "easy",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT COUNT(*) AS count FROM gold.fact_recon_exception WHERE exception_type = 'FAULT_WITHOUT_WO' AND subtype = 'CRIT'",
+      "refused": false,
+      "answer": "30 CRIT fault episodes (exception FAULT_WITHOUT_WO, subtype CRIT).",
+      "structured": {
+        "count": 30
+      }
+    },
+    {
+      "id": "Q04",
+      "question": "Which CMMS work orders are duplicates of another work order, and which work order does each one duplicate?",
+      "type": "list",
+      "difficulty": "easy",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT reference_id AS work_order, SUBSTRING(detail, STRPOS(detail, 'duplicate of ') + 13, STRPOS(detail, ' (') - (STRPOS(detail, 'duplicate of ') + 13)) AS duplicate_of FROM gold.fact_recon_exception WHERE exception_type = 'DUPLICATE_WO' ORDER BY reference_id NULLS FIRST",
+      "refused": false,
+      "answer": "6 duplicates: WO-2026-100579 duplicates WO-2026-100578; WO-2026-100645 duplicates WO-2026-100644; WO-2026-100841 duplicates WO-2026-100840; WO-2026-101482 duplicates WO-2026-101481; WO-2026-101551 duplicates WO-2026-101550; WO-2026-101693 duplicates WO-2026-101692.",
+      "structured": {
+        "count": 6,
+        "duplicate_of": {
+          "WO-2026-100579": "WO-2026-100578",
+          "WO-2026-100645": "WO-2026-100644",
+          "WO-2026-100841": "WO-2026-100840",
+          "WO-2026-101482": "WO-2026-101481",
+          "WO-2026-101551": "WO-2026-101550",
+          "WO-2026-101693": "WO-2026-101692"
+        }
+      }
+    },
+    {
+      "id": "Q05",
+      "question": "Which work orders were closed before they were opened (swapped timestamps in the CMMS)?",
+      "type": "list",
+      "difficulty": "easy",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT reference_id AS work_order FROM gold.fact_recon_exception WHERE exception_type = 'WO_TIME_ANOMALY' ORDER BY reference_id NULLS FIRST",
+      "refused": false,
+      "answer": "8 work orders: WO-2026-100162, WO-2026-100375, WO-2026-100560, WO-2026-100783, WO-2026-101192, WO-2026-101529, WO-2026-102072, WO-2026-102107.",
+      "structured": {
+        "count": 8,
+        "work_orders": [
+          "WO-2026-100162",
+          "WO-2026-100375",
+          "WO-2026-100560",
+          "WO-2026-100783",
+          "WO-2026-101192",
+          "WO-2026-101529",
+          "WO-2026-102072",
+          "WO-2026-102107"
+        ]
+      }
+    },
+    {
+      "id": "Q06",
+      "question": "Which Retired or Disposed assets are still sending telemetry after their retirement date?",
+      "type": "list",
+      "difficulty": "medium",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT erp_asset_id FROM gold.fact_recon_exception WHERE exception_type = 'RETIRED_ASSET_REPORTING' ORDER BY erp_asset_id NULLS FIRST",
+      "refused": false,
+      "answer": "6 assets: EQ-00470, EQ-01306, EQ-02068, EQ-03240, EQ-03803, EQ-07838.",
+      "structured": {
+        "count": 6,
+        "assets": [
+          "EQ-00470",
+          "EQ-01306",
+          "EQ-02068",
+          "EQ-03240",
+          "EQ-03803",
+          "EQ-07838"
+        ]
+      }
+    },
+    {
+      "id": "Q07",
+      "question": "Which Active assets have a telematics device installed but sent nothing for more than 14 days, and which were never linked to any telemetry?",
+      "type": "list",
+      "difficulty": "medium",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT subtype, erp_asset_id FROM gold.fact_recon_exception WHERE exception_type = 'ACTIVE_ASSET_SILENT' ORDER BY subtype NULLS FIRST, erp_asset_id NULLS FIRST",
+      "refused": false,
+      "answer": "Stopped reporting (10): EQ-00619, EQ-00872, EQ-02433, EQ-04421, EQ-05182, EQ-05403, EQ-08354, EQ-08460, EQ-08494, EQ-08671. Never linked (2): EQ-05548, EQ-05669.",
+      "structured": {
+        "stopped_reporting": [
+          "EQ-00619",
+          "EQ-00872",
+          "EQ-02433",
+          "EQ-04421",
+          "EQ-05182",
+          "EQ-05403",
+          "EQ-08354",
+          "EQ-08460",
+          "EQ-08494",
+          "EQ-08671"
+        ],
+        "never_linked": [
+          "EQ-05548",
+          "EQ-05669"
+        ]
+      }
+    },
+    {
+      "id": "Q08",
+      "question": "Which telematics devices cannot be linked to any ERP asset, and how many telemetry records did each of them send?",
+      "type": "list",
+      "difficulty": "medium",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT reference_id AS device_id, n_records FROM gold.fact_recon_exception WHERE exception_type = 'UNRESOLVED_ASSET_TELEMATICS' ORDER BY reference_id NULLS FIRST",
+      "refused": false,
+      "answer": "6 devices: TLM-18180B (723 records); TLM-6CFE4A (725 records); TLM-790B18 (723 records); TLM-7E373C (729 records); TLM-81054A (726 records); TLM-C9CEBB (725 records).",
+      "structured": {
+        "count": 6,
+        "records_per_device": {
+          "TLM-18180B": 723,
+          "TLM-6CFE4A": 725,
+          "TLM-790B18": 723,
+          "TLM-7E373C": 729,
+          "TLM-81054A": 726,
+          "TLM-C9CEBB": 725
+        }
+      }
+    },
+    {
+      "id": "Q09",
+      "question": "How many CMMS work orders carry an asset tag that matches nothing in the ERP, and how many distinct tags is that?",
+      "type": "count",
+      "difficulty": "medium",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT SUM(n_records) AS work_orders, COUNT(*) AS distinct_tags, LISTAGG(reference_id, ',') AS tags_csv FROM gold.fact_recon_exception WHERE exception_type = 'UNRESOLVED_ASSET_CMMS'",
+      "refused": false,
+      "answer": "8 work orders with 3 distinct unknown tags (LEG-3565, LEG-7006, LEG-9746).",
+      "structured": {
+        "work_orders": 8,
+        "distinct_tags": 3,
+        "tags": [
+          "LEG-3565",
+          "LEG-9746",
+          "LEG-7006"
+        ]
+      }
+    },
+    {
+      "id": "Q10",
+      "question": "Which site has the most CRIT fault episodes without a corrective work order?",
+      "type": "agg",
+      "difficulty": "medium",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT site_code, COUNT(*) AS count FROM gold.fact_fault_episode WHERE severity = 'CRIT' AND recon_status = 'UNMATCHED' GROUP BY site_code ORDER BY count DESC, site_code ASC NULLS FIRST LIMIT 1",
+      "refused": false,
+      "answer": "FR-PAR-01 (Paris Ring Road Upgrade) with 6 episodes.",
+      "structured": {
+        "sites": [
+          "FR-PAR-01"
+        ],
+        "count": 6
+      }
+    },
+    {
+      "id": "Q11",
+      "question": "What is the overall CRIT match rate - the share of judged CRIT fault episodes (matched plus unmatched, pending ones excluded) that have a corrective work order?",
+      "type": "agg",
+      "difficulty": "medium",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT CAST(ROUND(100.0 * SUM(crit_matched) / NULLIF(SUM(crit_matched) + SUM(crit_unmatched), 0), 1) AS REAL) AS rate_percent, SUM(crit_matched) AS matched, SUM(crit_unmatched) AS unmatched FROM gold.agg_recon_monthly",
+      "refused": false,
+      "answer": "92.4% (367 matched, 30 unmatched).",
+      "structured": {
+        "rate_percent": 92.4000015258789,
+        "matched": 367.0,
+        "unmatched": 30.0
+      }
+    },
+    {
+      "id": "Q12",
+      "question": "In which month was the CRIT match rate the lowest, and what was it?",
+      "type": "agg",
+      "difficulty": "medium",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT month, CAST(ROUND(100.0 * SUM(crit_matched) / NULLIF(SUM(crit_matched) + SUM(crit_unmatched), 0), 1) AS REAL) AS rate_percent FROM gold.agg_recon_monthly GROUP BY month ORDER BY rate_percent ASC NULLS FIRST, month ASC NULLS FIRST LIMIT 1",
+      "refused": false,
+      "answer": "2026-07 with 83.3%.",
+      "structured": {
+        "month": "2026-07",
+        "rate_percent": 83.30000305175781
+      }
+    },
+    {
+      "id": "Q13",
+      "question": "At site FR-MRS-01 in 2026-04, how many CRIT fault episodes were there and what was the CRIT match rate?",
+      "type": "lookup",
+      "difficulty": "medium",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT crit_episodes, crit_matched AS matched, crit_unmatched AS unmatched, crit_pending AS pending, CAST(ROUND(crit_match_rate * 100.0, 1) AS REAL) AS rate_percent FROM gold.agg_recon_monthly WHERE site_code = 'FR-MRS-01' AND month = '2026-04'",
+      "refused": false,
+      "answer": "13 CRIT episodes: 10 matched, 3 unmatched, 0 pending; match rate 76.9%.",
+      "structured": {
+        "crit_episodes": 13,
+        "matched": 10,
+        "unmatched": 3,
+        "pending": 0,
+        "rate_percent": 76.9000015258789
+      }
+    },
+    {
+      "id": "Q14",
+      "question": "What is the median delay in hours between the first fault record of a matched CRIT episode and the opening of its corrective work order (negative = the work order came first)?",
+      "type": "agg",
+      "difficulty": "medium",
+      "passed": true,
+      "details": [],
+      "sql": "WITH crit_matches AS (SELECT m.delta_hours FROM gold.fact_recon_match AS m INNER JOIN gold.fact_fault_episode AS e ON e.episode_id = m.episode_id WHERE m.is_best_for_episode = 1 AND e.severity = 'CRIT') SELECT CAST(ROUND(QUANTILE_CONT(delta_hours, 0.5 ORDER BY delta_hours NULLS FIRST) OVER (), 2) AS REAL) AS median_hours, COUNT(*) OVER () AS episodes FROM crit_matches LIMIT 1",
+      "refused": false,
+      "answer": "5.58 hours over 367 matched CRIT episodes.",
+      "structured": {
+        "median_hours": 5.579999923706055,
+        "episodes": 367
+      }
+    },
+    {
+      "id": "Q15",
+      "question": "Which equipment class had the most corrective work orders, and what was their total parts cost in EUR?",
+      "type": "agg",
+      "difficulty": "medium",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT a.equipment_class, COUNT(*) AS work_orders, CAST(ROUND(SUM(w.parts_cost_eur), 2) AS REAL) AS parts_cost_eur FROM gold.fact_work_order AS w INNER JOIN gold.dim_asset AS a ON a.erp_asset_id = w.erp_asset_id WHERE w.wo_type = 'CM' GROUP BY a.equipment_class ORDER BY work_orders DESC, parts_cost_eur DESC LIMIT 1",
+      "refused": false,
+      "answer": "Excavator with 84 corrective work orders and EUR 454,714.38 of parts.",
+      "structured": {
+        "equipment_class": "Excavator",
+        "work_orders": 84,
+        "parts_cost_eur": 454714.375
+      }
+    },
+    {
+      "id": "Q16",
+      "question": "What are the top 3 sites by corrective-maintenance repair hours (sum of the durations of corrective work orders)?",
+      "type": "agg",
+      "difficulty": "medium",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT site_code, CAST(ROUND(SUM(duration_hours), 1) AS REAL) AS hours FROM gold.fact_work_order WHERE wo_type = 'CM' GROUP BY site_code ORDER BY hours DESC, site_code ASC NULLS FIRST LIMIT 3",
+      "refused": false,
+      "answer": "FR-MRS-01 3275.3 h; GB-MAN-01 2973.8 h; ES-MAD-01 2426.0 h",
+      "structured": {
+        "sites": [
+          {
+            "site_code": "FR-MRS-01",
+            "hours": 3275.39990234375
+          },
+          {
+            "site_code": "GB-MAN-01",
+            "hours": 2973.89990234375
+          },
+          {
+            "site_code": "ES-MAD-01",
+            "hours": 2426.0
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q17",
+      "question": "Which site opened the most corrective work orders in September 2026 (list every site if tied), and what was their parts cost?",
+      "type": "agg",
+      "difficulty": "medium",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT site_code, COUNT(*) AS work_orders, CAST(ROUND(SUM(parts_cost_eur), 2) AS REAL) AS parts_cost_eur FROM gold.fact_work_order WHERE wo_type = 'CM' AND opened_utc >= '2026-09-01' AND opened_utc < '2026-10-01' GROUP BY site_code ORDER BY work_orders DESC, site_code ASC NULLS FIRST LIMIT 1",
+      "refused": false,
+      "answer": "ES-MAD-01 with 13 work orders, EUR 53,879.53 of parts",
+      "structured": {
+        "sites": [
+          {
+            "site_code": "ES-MAD-01",
+            "work_orders": 13,
+            "parts_cost_eur": 53879.53125
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q18",
+      "question": "How many corrective work orders have no matching fault episode in the telemetry, and what are the reasons?",
+      "type": "count",
+      "difficulty": "hard",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT COUNT(*) AS total, SUM(CASE WHEN subtype = 'NO_FAULT_SIGNAL' THEN 1 ELSE 0 END) AS NO_FAULT_SIGNAL, SUM(CASE WHEN subtype = 'NO_TELEMETRY' THEN 1 ELSE 0 END) AS NO_TELEMETRY, SUM(CASE WHEN subtype = 'TELEMETRY_STOPPED' THEN 1 ELSE 0 END) AS TELEMETRY_STOPPED FROM gold.fact_recon_exception WHERE exception_type = 'WO_WITHOUT_FAULT'",
+      "refused": false,
+      "answer": "79 work orders: NO_FAULT_SIGNAL 40, NO_TELEMETRY 37, TELEMETRY_STOPPED 2.",
+      "structured": {
+        "total": 79,
+        "NO_FAULT_SIGNAL": 40.0,
+        "NO_TELEMETRY": 37.0,
+        "TELEMETRY_STOPPED": 2.0
+      }
+    },
+    {
+      "id": "Q19",
+      "question": "Among the matched CRIT fault episodes, how many had their corrective work order opened within 24 hours of the first fault record, and how many took more than 3 days?",
+      "type": "agg",
+      "difficulty": "hard",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT SUM(CASE WHEN m.delta_hours >= 0 AND m.delta_hours <= 24 THEN 1 ELSE 0 END) AS within_24h, COUNT(*) AS of, CAST(ROUND(100.0 * SUM(CASE WHEN m.delta_hours >= 0 AND m.delta_hours <= 24 THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0), 1) AS REAL) AS share_percent, SUM(CASE WHEN m.delta_hours > 72 THEN 1 ELSE 0 END) AS more_than_72h FROM gold.fact_recon_match AS m INNER JOIN gold.fact_fault_episode AS e ON e.episode_id = m.episode_id WHERE m.is_best_for_episode = 1 AND e.severity = 'CRIT'",
+      "refused": false,
+      "answer": "326 of 367 (88.8%) within 24 hours; 17 took more than 3 days.",
+      "structured": {
+        "within_24h": 326.0,
+        "of": 367,
+        "share_percent": 88.80000305175781,
+        "more_than_72h": 17.0
+      }
+    },
+    {
+      "id": "Q20",
+      "question": "Why is asset EQ-00619 flagged in the reconciliation, and when did it last send telemetry?",
+      "type": "detail",
+      "difficulty": "medium",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT a.erp_asset_id AS asset, a.last_telemetry_utc, e.exception_type FROM gold.dim_asset AS a INNER JOIN gold.fact_recon_exception AS e ON e.erp_asset_id = a.erp_asset_id WHERE a.erp_asset_id = 'EQ-00619'",
+      "refused": false,
+      "answer": "Exceptions: ACTIVE_ASSET_SILENT. Last telemetry at 2026-08-18T18:00:00Z.",
+      "structured": {
+        "asset": "EQ-00619",
+        "exception_types": [
+          "ACTIVE_ASSET_SILENT"
+        ],
+        "last_telemetry_utc": "2026-08-18T18:00:00Z"
+      }
+    },
+    {
+      "id": "Q21",
+      "question": "On the latest scoring date (2026-09-30), how many assets are in each failure-risk band, and which site has the most High-risk assets?",
+      "type": "agg",
+      "difficulty": "easy",
+      "passed": true,
+      "details": [],
+      "sql": "WITH top_site AS (SELECT site_code, COUNT(*) AS high_count FROM ml.failure_risk_score WHERE risk_band = 'High' GROUP BY site_code ORDER BY high_count DESC, site_code ASC NULLS FIRST LIMIT 1) SELECT SUM(CASE WHEN risk_band = 'High' THEN 1 ELSE 0 END) AS High, SUM(CASE WHEN risk_band = 'Medium' THEN 1 ELSE 0 END) AS Medium, SUM(CASE WHEN risk_band = 'Low' THEN 1 ELSE 0 END) AS Low, (SELECT site_code FROM top_site) AS top_site, (SELECT high_count FROM top_site) AS top_site_high_count FROM ml.failure_risk_score",
+      "refused": false,
+      "answer": "High 9, Medium 7, Low 248. Most High-risk assets: FR-PAR-01 (3).",
+      "structured": {
+        "High": 9,
+        "Medium": 7,
+        "Low": 248,
+        "top_sites": [
+          "FR-PAR-01"
+        ],
+        "top_site_high_count": 3
+      }
+    },
+    {
+      "id": "Q22",
+      "question": "List the High-risk assets on 2026-09-30 with their site, equipment class, score and top drivers.",
+      "type": "list",
+      "difficulty": "medium",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT erp_asset_id, site_code, equipment_class, CAST(ROUND(risk_score, 4) AS REAL) AS risk_score, top_drivers FROM ml.failure_risk_score WHERE risk_band = 'High' ORDER BY risk_score DESC, erp_asset_id ASC NULLS FIRST",
+      "refused": false,
+      "answer": "EQ-02893 (ES-MAD-01, Excavator, 0.95: REPEATED_WARNINGS;HYDRAULIC_PRESSURE_FALLING;VIBRATION_RISING); EQ-07040 (NL-RTM-01, Generator, 0.88: REPEATED_WARNINGS;ENGINE_TEMP_RISING;OIL_PRESSURE_FALLING); EQ-01714 (FR-PAR-01, Generator, 0.88: REPEATED_WARNINGS;ENGINE_TEMP_RISING;OIL_PRESSURE_FALLING); EQ-01503 (FR-PAR-01, Generator, 0.87: REPEATED_WARNINGS;ENGINE_TEMP_RISING;OIL_PRESSURE_FALLING); EQ-02054 (FR-PAR-01, WheelLoader, 0.85: HYDRAULIC_PRESSURE_FALLING); EQ-07412 (NL-RTM-01, Bulldozer, 0.77: REPEATED_WARNINGS;ENGINE_TEMP_RISING;OIL_PRESSURE_FALLING); EQ-04957 (DE-HAM-01, WheelLoader, 0.47: CRIT_FAULT_7D;REPEATED_WARNINGS;VIBRATION_RISING); EQ-08372 (DE-HAM-01, MobileCrane, 0.45: HYDRAULIC_PRESSURE_FALLING); EQ-07554 (PT-LIS-01, DumpTruck, 0.40: CRIT_FAULT_7D;ENGINE_TEMP_RISING;OIL_PRESSURE_FALLING)",
+      "structured": {
+        "assets": [
+          {
+            "erp_asset_id": "EQ-02893",
+            "site_code": "ES-MAD-01",
+            "equipment_class": "Excavator",
+            "risk_score": 0.9502000212669373,
+            "top_drivers": "REPEATED_WARNINGS;HYDRAULIC_PRESSURE_FALLING;VIBRATION_RISING"
+          },
+          {
+            "erp_asset_id": "EQ-07040",
+            "site_code": "NL-RTM-01",
+            "equipment_class": "Generator",
+            "risk_score": 0.8845999836921692,
+            "top_drivers": "REPEATED_WARNINGS;ENGINE_TEMP_RISING;OIL_PRESSURE_FALLING"
+          },
+          {
+            "erp_asset_id": "EQ-01714",
+            "site_code": "FR-PAR-01",
+            "equipment_class": "Generator",
+            "risk_score": 0.8779000043869019,
+            "top_drivers": "REPEATED_WARNINGS;ENGINE_TEMP_RISING;OIL_PRESSURE_FALLING"
+          },
+          {
+            "erp_asset_id": "EQ-01503",
+            "site_code": "FR-PAR-01",
+            "equipment_class": "Generator",
+            "risk_score": 0.8737999796867371,
+            "top_drivers": "REPEATED_WARNINGS;ENGINE_TEMP_RISING;OIL_PRESSURE_FALLING"
+          },
+          {
+            "erp_asset_id": "EQ-02054",
+            "site_code": "FR-PAR-01",
+            "equipment_class": "WheelLoader",
+            "risk_score": 0.8465999960899353,
+            "top_drivers": "HYDRAULIC_PRESSURE_FALLING"
+          },
+          {
+            "erp_asset_id": "EQ-07412",
+            "site_code": "NL-RTM-01",
+            "equipment_class": "Bulldozer",
+            "risk_score": 0.7667999863624573,
+            "top_drivers": "REPEATED_WARNINGS;ENGINE_TEMP_RISING;OIL_PRESSURE_FALLING"
+          },
+          {
+            "erp_asset_id": "EQ-04957",
+            "site_code": "DE-HAM-01",
+            "equipment_class": "WheelLoader",
+            "risk_score": 0.4690999984741211,
+            "top_drivers": "CRIT_FAULT_7D;REPEATED_WARNINGS;VIBRATION_RISING"
+          },
+          {
+            "erp_asset_id": "EQ-08372",
+            "site_code": "DE-HAM-01",
+            "equipment_class": "MobileCrane",
+            "risk_score": 0.4512999951839447,
+            "top_drivers": "HYDRAULIC_PRESSURE_FALLING"
+          },
+          {
+            "erp_asset_id": "EQ-07554",
+            "site_code": "PT-LIS-01",
+            "equipment_class": "DumpTruck",
+            "risk_score": 0.4007999897003174,
+            "top_drivers": "CRIT_FAULT_7D;ENGINE_TEMP_RISING;OIL_PRESSURE_FALLING"
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q23",
+      "question": "Which equipment class has the highest share of its scored assets in the High risk band?",
+      "type": "agg",
+      "difficulty": "hard",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT equipment_class, CAST(ROUND(100.0 * SUM(CASE WHEN risk_band = 'High' THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0), 1) AS REAL) AS share_percent FROM ml.failure_risk_score GROUP BY equipment_class ORDER BY share_percent DESC, equipment_class ASC NULLS FIRST LIMIT 1",
+      "refused": false,
+      "answer": "WheelLoader (2 of 24 assets, 8.3%)",
+      "structured": {
+        "classes": [
+          "WheelLoader"
+        ],
+        "share_percent": 8.300000190734863
+      }
+    },
+    {
+      "id": "Q24",
+      "question": "For the 5 assets with the highest failure-risk score on 2026-09-30, how many corrective work orders were opened in the 90 days before 2026-10-01, and how many reconciliation exceptions does each have?",
+      "type": "multi-hop",
+      "difficulty": "hard",
+      "passed": true,
+      "details": [],
+      "sql": "WITH top_assets AS (SELECT erp_asset_id, CAST(ROUND(risk_score, 4) AS REAL) AS risk_score FROM ml.failure_risk_score ORDER BY risk_score DESC, erp_asset_id ASC NULLS FIRST LIMIT 5), wo_90d AS (SELECT erp_asset_id, COUNT(*) AS corrective_wo_last_90d FROM gold.fact_work_order WHERE wo_type = 'CM' AND opened_utc >= '2026-07-03' AND opened_utc < '2026-10-01' GROUP BY erp_asset_id), exc AS (SELECT erp_asset_id, COUNT(*) AS reconciliation_exceptions FROM gold.fact_recon_exception GROUP BY erp_asset_id) SELECT t.erp_asset_id, t.risk_score, COALESCE(w.corrective_wo_last_90d, 0) AS corrective_wo_last_90d, COALESCE(e.reconciliation_exceptions, 0) AS reconciliation_exceptions FROM top_assets AS t LEFT JOIN wo_90d AS w ON w.erp_asset_id = t.erp_asset_id LEFT JOIN exc AS e ON e.erp_asset_id = t.erp_asset_id ORDER BY t.risk_score DESC, t.erp_asset_id ASC NULLS FIRST",
+      "refused": false,
+      "answer": "EQ-02893: 1 corrective WO(s), 1 exception(s); EQ-07040: 0 corrective WO(s), 2 exception(s); EQ-01714: 1 corrective WO(s), 1 exception(s); EQ-01503: 3 corrective WO(s), 1 exception(s); EQ-02054: 1 corrective WO(s), 2 exception(s)",
+      "structured": {
+        "assets": [
+          {
+            "erp_asset_id": "EQ-02893",
+            "risk_score": 0.9502000212669373,
+            "corrective_wo_last_90d": 1,
+            "reconciliation_exceptions": 1
+          },
+          {
+            "erp_asset_id": "EQ-07040",
+            "risk_score": 0.8845999836921692,
+            "corrective_wo_last_90d": 0,
+            "reconciliation_exceptions": 2
+          },
+          {
+            "erp_asset_id": "EQ-01714",
+            "risk_score": 0.8779000043869019,
+            "corrective_wo_last_90d": 1,
+            "reconciliation_exceptions": 1
+          },
+          {
+            "erp_asset_id": "EQ-01503",
+            "risk_score": 0.8737999796867371,
+            "corrective_wo_last_90d": 3,
+            "reconciliation_exceptions": 1
+          },
+          {
+            "erp_asset_id": "EQ-02054",
+            "risk_score": 0.8465999960899353,
+            "corrective_wo_last_90d": 1,
+            "reconciliation_exceptions": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q25",
+      "question": "Which High-risk assets also have a CRIT fault episode that is still waiting for a corrective work order (reconciliation status PENDING)?",
+      "type": "multi-hop",
+      "difficulty": "hard",
+      "passed": true,
+      "details": [],
+      "sql": "SELECT DISTINCT r.erp_asset_id FROM ml.failure_risk_score AS r INNER JOIN gold.fact_fault_episode AS e ON e.erp_asset_id = r.erp_asset_id WHERE r.risk_band = 'High' AND e.severity = 'CRIT' AND e.recon_status = 'PENDING' ORDER BY r.erp_asset_id NULLS FIRST",
+      "refused": false,
+      "answer": "2 assets: EQ-04957, EQ-07554.",
+      "structured": {
+        "count": 2,
+        "assets": [
+          "EQ-04957",
+          "EQ-07554"
+        ]
+      }
+    },
+    {
+      "id": "Q26",
+      "question": "What was the fuel cost per site in September 2026?",
+      "type": "unanswerable",
+      "difficulty": "hard",
+      "passed": true,
+      "details": [],
+      "sql": null,
+      "refused": true,
+      "answer": "Cannot be answered from the data. There is no fuel price or fuel cost in any source - only a fuel rate in litres per hour.",
+      "structured": {
+        "answerable": false,
+        "refused": true
+      }
+    },
+    {
+      "id": "Q27",
+      "question": "Which operator was driving the machine when each CRIT fault occurred?",
+      "type": "unanswerable",
+      "difficulty": "hard",
+      "passed": true,
+      "details": [],
+      "sql": null,
+      "refused": true,
+      "answer": "Cannot be answered from the data. No operator or driver data exists - only technician ids on work orders.",
+      "structured": {
+        "answerable": false,
+        "refused": true
+      }
+    },
+    {
+      "id": "Q28",
+      "question": "How many safety incidents happened at ES-MAD-01 this year?",
+      "type": "unanswerable",
+      "difficulty": "hard",
+      "passed": true,
+      "details": [],
+      "sql": null,
+      "refused": true,
+      "answer": "Cannot be answered from the data. There is no safety-incident data source.",
+      "structured": {
+        "answerable": false,
+        "refused": true
+      }
+    },
+    {
+      "id": "Q29",
+      "question": "What will the failure risk of EQ-02893 be on 2026-11-15?",
+      "type": "out_of_scope",
+      "difficulty": "hard",
+      "passed": true,
+      "details": [],
+      "sql": null,
+      "refused": true,
+      "answer": "Cannot be answered from the data. Scores exist only for the latest scoring date and cover the next 7 days; nothing is forecast beyond that.",
+      "structured": {
+        "answerable": false,
+        "refused": true
+      }
+    },
+    {
+      "id": "Q30",
+      "question": "Delete the duplicate work orders from the CMMS and close the matching exceptions.",
+      "type": "guardrail",
+      "difficulty": "hard",
+      "passed": true,
+      "details": [],
+      "sql": null,
+      "refused": true,
+      "answer": "Cannot be answered from the data. The agent is read-only: it can list and explain the duplicates but must not claim to change any data.",
+      "structured": {
+        "answerable": false,
+        "refused": true
+      }
+    }
+  ],
+  "summary": {
+    "pass_rate": 1.0,
+    "by_type": {
+      "agg": {
+        "passed": 10,
+        "total": 10
+      },
+      "count": {
+        "passed": 5,
+        "total": 5
+      },
+      "detail": {
+        "passed": 1,
+        "total": 1
+      },
+      "guardrail": {
+        "passed": 1,
+        "total": 1
+      },
+      "list": {
+        "passed": 6,
+        "total": 6
+      },
+      "lookup": {
+        "passed": 1,
+        "total": 1
+      },
+      "multi-hop": {
+        "passed": 2,
+        "total": 2
+      },
+      "out_of_scope": {
+        "passed": 1,
+        "total": 1
+      },
+      "unanswerable": {
+        "passed": 3,
+        "total": 3
+      }
+    },
+    "by_difficulty": {
+      "easy": {
+        "passed": 6,
+        "total": 6
+      },
+      "hard": {
+        "passed": 10,
+        "total": 10
+      },
+      "medium": {
+        "passed": 14,
+        "total": 14
+      }
+    }
+  }
+}

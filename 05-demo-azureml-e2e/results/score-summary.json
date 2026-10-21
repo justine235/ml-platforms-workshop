@@ -1,0 +1,69 @@
+{
+  "output_files": {
+    "csv": "local-validation/out/score/ml_failure_risk_score.csv",
+    "parquet": "local-validation/out/score/ml_failure_risk_score.parquet"
+  },
+  "risk_band_counts": {
+    "High": 8,
+    "Low": 243,
+    "Medium": 13
+  },
+  "rows": 264,
+  "top_5": [
+    {
+      "equipment_class": "Generator",
+      "erp_asset_id": "EQ-07040",
+      "model_version": "1",
+      "risk_band": "High",
+      "risk_rank": 1,
+      "risk_score": 0.9372,
+      "score_date": "2026-09-30",
+      "site_code": "NL-RTM-01",
+      "top_drivers": "REPEATED_WARNINGS;ENGINE_TEMP_RISING;OIL_PRESSURE_FALLING"
+    },
+    {
+      "equipment_class": "Excavator",
+      "erp_asset_id": "EQ-02893",
+      "model_version": "1",
+      "risk_band": "High",
+      "risk_rank": 2,
+      "risk_score": 0.9183,
+      "score_date": "2026-09-30",
+      "site_code": "ES-MAD-01",
+      "top_drivers": "REPEATED_WARNINGS;HYDRAULIC_PRESSURE_FALLING;VIBRATION_RISING"
+    },
+    {
+      "equipment_class": "Bulldozer",
+      "erp_asset_id": "EQ-07412",
+      "model_version": "1",
+      "risk_band": "High",
+      "risk_rank": 3,
+      "risk_score": 0.8912,
+      "score_date": "2026-09-30",
+      "site_code": "NL-RTM-01",
+      "top_drivers": "REPEATED_WARNINGS;ENGINE_TEMP_RISING;OIL_PRESSURE_FALLING"
+    },
+    {
+      "equipment_class": "Generator",
+      "erp_asset_id": "EQ-01503",
+      "model_version": "1",
+      "risk_band": "High",
+      "risk_rank": 4,
+      "risk_score": 0.8732,
+      "score_date": "2026-09-30",
+      "site_code": "FR-PAR-01",
+      "top_drivers": "REPEATED_WARNINGS;ENGINE_TEMP_RISING;OIL_PRESSURE_FALLING"
+    },
+    {
+      "equipment_class": "WheelLoader",
+      "erp_asset_id": "EQ-02054",
+      "model_version": "1",
+      "risk_band": "High",
+      "risk_rank": 5,
+      "risk_score": 0.777,
+      "score_date": "2026-09-30",
+      "site_code": "FR-PAR-01",
+      "top_drivers": "HYDRAULIC_PRESSURE_FALLING"
+    }
+  ]
+}

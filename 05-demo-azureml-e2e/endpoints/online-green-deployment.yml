@@ -1,0 +1,14 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
+name: green
+endpoint_name: fleet-risk-online
+model: azureml:fleet-failure-7d@latest
+instance_type: Standard_DS3_v2
+instance_count: 1
+request_settings:
+  request_timeout_ms: 180000
+  max_concurrent_requests_per_instance: 1
+environment_variables:
+  MLFLOW_SCORING_SERVER_REQUEST_TIMEOUT: "180"
+tags:
+  slot: green
+  serving_mode: no-code-mlflow

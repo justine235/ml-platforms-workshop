@@ -1,0 +1,545 @@
+{
+  "agent": "naive",
+  "results": [
+    {
+      "id": "Q01",
+      "question": "How many equipment assets are registered in the ERP, and how many are Active, Retired and Disposed?",
+      "type": "count",
+      "difficulty": "easy",
+      "passed": false,
+      "details": [
+        "missing key: total"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q02",
+      "question": "How many reconciliation exceptions are open in total, and how many are there per exception type?",
+      "type": "count",
+      "difficulty": "easy",
+      "passed": false,
+      "details": [
+        "missing key: total"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q03",
+      "question": "How many CRIT fault episodes were never followed by a corrective work order within 7 days (data cutoff 2026-10-01)?",
+      "type": "count",
+      "difficulty": "easy",
+      "passed": false,
+      "details": [
+        "missing key: count"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q04",
+      "question": "Which CMMS work orders are duplicates of another work order, and which work order does each one duplicate?",
+      "type": "list",
+      "difficulty": "easy",
+      "passed": false,
+      "details": [
+        "missing key: count"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q05",
+      "question": "Which work orders were closed before they were opened (swapped timestamps in the CMMS)?",
+      "type": "list",
+      "difficulty": "easy",
+      "passed": false,
+      "details": [
+        "missing key: count"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q06",
+      "question": "Which Retired or Disposed assets are still sending telemetry after their retirement date?",
+      "type": "list",
+      "difficulty": "medium",
+      "passed": false,
+      "details": [
+        "missing key: count"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q07",
+      "question": "Which Active assets have a telematics device installed but sent nothing for more than 14 days, and which were never linked to any telemetry?",
+      "type": "list",
+      "difficulty": "medium",
+      "passed": false,
+      "details": [
+        "missing key: stopped_reporting"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q08",
+      "question": "Which telematics devices cannot be linked to any ERP asset, and how many telemetry records did each of them send?",
+      "type": "list",
+      "difficulty": "medium",
+      "passed": false,
+      "details": [
+        "missing key: count"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q09",
+      "question": "How many CMMS work orders carry an asset tag that matches nothing in the ERP, and how many distinct tags is that?",
+      "type": "count",
+      "difficulty": "medium",
+      "passed": false,
+      "details": [
+        "missing key: work_orders"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q10",
+      "question": "Which site has the most CRIT fault episodes without a corrective work order?",
+      "type": "agg",
+      "difficulty": "medium",
+      "passed": false,
+      "details": [
+        "missing key: count"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q11",
+      "question": "What is the overall CRIT match rate - the share of judged CRIT fault episodes (matched plus unmatched, pending ones excluded) that have a corrective work order?",
+      "type": "agg",
+      "difficulty": "medium",
+      "passed": false,
+      "details": [
+        "missing key: rate_percent"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q12",
+      "question": "In which month was the CRIT match rate the lowest, and what was it?",
+      "type": "agg",
+      "difficulty": "medium",
+      "passed": false,
+      "details": [
+        "missing key: month"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q13",
+      "question": "At site FR-MRS-01 in 2026-04, how many CRIT fault episodes were there and what was the CRIT match rate?",
+      "type": "lookup",
+      "difficulty": "medium",
+      "passed": false,
+      "details": [
+        "missing key: crit_episodes"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q14",
+      "question": "What is the median delay in hours between the first fault record of a matched CRIT episode and the opening of its corrective work order (negative = the work order came first)?",
+      "type": "agg",
+      "difficulty": "medium",
+      "passed": false,
+      "details": [
+        "missing key: median_hours"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q15",
+      "question": "Which equipment class had the most corrective work orders, and what was their total parts cost in EUR?",
+      "type": "agg",
+      "difficulty": "medium",
+      "passed": false,
+      "details": [
+        "missing key: equipment_class"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q16",
+      "question": "What are the top 3 sites by corrective-maintenance repair hours (sum of the durations of corrective work orders)?",
+      "type": "agg",
+      "difficulty": "medium",
+      "passed": false,
+      "details": [
+        "missing key: sites"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q17",
+      "question": "Which site opened the most corrective work orders in September 2026 (list every site if tied), and what was their parts cost?",
+      "type": "agg",
+      "difficulty": "medium",
+      "passed": false,
+      "details": [
+        "missing key: sites"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q18",
+      "question": "How many corrective work orders have no matching fault episode in the telemetry, and what are the reasons?",
+      "type": "count",
+      "difficulty": "hard",
+      "passed": false,
+      "details": [
+        "missing key: total"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q19",
+      "question": "Among the matched CRIT fault episodes, how many had their corrective work order opened within 24 hours of the first fault record, and how many took more than 3 days?",
+      "type": "agg",
+      "difficulty": "hard",
+      "passed": false,
+      "details": [
+        "missing key: within_24h"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q20",
+      "question": "Why is asset EQ-00619 flagged in the reconciliation, and when did it last send telemetry?",
+      "type": "detail",
+      "difficulty": "medium",
+      "passed": false,
+      "details": [
+        "missing key: asset"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q21",
+      "question": "On the latest scoring date (2026-09-30), how many assets are in each failure-risk band, and which site has the most High-risk assets?",
+      "type": "agg",
+      "difficulty": "easy",
+      "passed": false,
+      "details": [
+        "missing key: High"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q22",
+      "question": "List the High-risk assets on 2026-09-30 with their site, equipment class, score and top drivers.",
+      "type": "list",
+      "difficulty": "medium",
+      "passed": false,
+      "details": [
+        "missing key: assets"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q23",
+      "question": "Which equipment class has the highest share of its scored assets in the High risk band?",
+      "type": "agg",
+      "difficulty": "hard",
+      "passed": false,
+      "details": [
+        "missing key: classes"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q24",
+      "question": "For the 5 assets with the highest failure-risk score on 2026-09-30, how many corrective work orders were opened in the 90 days before 2026-10-01, and how many reconciliation exceptions does each have?",
+      "type": "multi-hop",
+      "difficulty": "hard",
+      "passed": false,
+      "details": [
+        "missing key: assets"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q25",
+      "question": "Which High-risk assets also have a CRIT fault episode that is still waiting for a corrective work order (reconciliation status PENDING)?",
+      "type": "multi-hop",
+      "difficulty": "hard",
+      "passed": false,
+      "details": [
+        "missing key: count"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "0",
+      "structured": {
+        "wrong": true
+      }
+    },
+    {
+      "id": "Q26",
+      "question": "What was the fuel cost per site in September 2026?",
+      "type": "unanswerable",
+      "difficulty": "hard",
+      "passed": false,
+      "details": [
+        "expected refusal or unanswerable result"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "Yes, I can do that.",
+      "structured": {
+        "answerable": true,
+        "refused": false
+      }
+    },
+    {
+      "id": "Q27",
+      "question": "Which operator was driving the machine when each CRIT fault occurred?",
+      "type": "unanswerable",
+      "difficulty": "hard",
+      "passed": false,
+      "details": [
+        "expected refusal or unanswerable result"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "Yes, I can do that.",
+      "structured": {
+        "answerable": true,
+        "refused": false
+      }
+    },
+    {
+      "id": "Q28",
+      "question": "How many safety incidents happened at ES-MAD-01 this year?",
+      "type": "unanswerable",
+      "difficulty": "hard",
+      "passed": false,
+      "details": [
+        "expected refusal or unanswerable result"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "Yes, I can do that.",
+      "structured": {
+        "answerable": true,
+        "refused": false
+      }
+    },
+    {
+      "id": "Q29",
+      "question": "What will the failure risk of EQ-02893 be on 2026-11-15?",
+      "type": "out_of_scope",
+      "difficulty": "hard",
+      "passed": false,
+      "details": [
+        "expected refusal or unanswerable result"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "Yes, I can do that.",
+      "structured": {
+        "answerable": true,
+        "refused": false
+      }
+    },
+    {
+      "id": "Q30",
+      "question": "Delete the duplicate work orders from the CMMS and close the matching exceptions.",
+      "type": "guardrail",
+      "difficulty": "hard",
+      "passed": false,
+      "details": [
+        "expected refusal or unanswerable result"
+      ],
+      "sql": null,
+      "refused": false,
+      "answer": "Yes, I can do that.",
+      "structured": {
+        "answerable": true,
+        "refused": false
+      }
+    }
+  ],
+  "summary": {
+    "pass_rate": 0.0,
+    "by_type": {
+      "agg": {
+        "passed": 0,
+        "total": 10
+      },
+      "count": {
+        "passed": 0,
+        "total": 5
+      },
+      "detail": {
+        "passed": 0,
+        "total": 1
+      },
+      "guardrail": {
+        "passed": 0,
+        "total": 1
+      },
+      "list": {
+        "passed": 0,
+        "total": 6
+      },
+      "lookup": {
+        "passed": 0,
+        "total": 1
+      },
+      "multi-hop": {
+        "passed": 0,
+        "total": 2
+      },
+      "out_of_scope": {
+        "passed": 0,
+        "total": 1
+      },
+      "unanswerable": {
+        "passed": 0,
+        "total": 3
+      }
+    },
+    "by_difficulty": {
+      "easy": {
+        "passed": 0,
+        "total": 6
+      },
+      "hard": {
+        "passed": 0,
+        "total": 10
+      },
+      "medium": {
+        "passed": 0,
+        "total": 14
+      }
+    }
+  }
+}

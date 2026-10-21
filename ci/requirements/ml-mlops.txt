@@ -1,5 +1,8 @@
 # 04-demo-fabric-e2e/ml-mlops local validation: the stack the kit was validated with (Python 3.13, MLflow 2.22).
 mlflow==2.22.0
+SQLAlchemy==2.0.55
+alembic==1.20.0
+# MLflow 2.22 needs SQLAlchemy 2.0.x (its tracking store fails to import on 2.1), so these two are pinned.
 numpy==2.5.4
 pandas==2.2.3
 pyarrow==19.0.1

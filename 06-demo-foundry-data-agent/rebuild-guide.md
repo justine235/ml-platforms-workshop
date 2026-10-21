@@ -52,8 +52,11 @@ Expected duration: **15-20 minutes** if the lakehouse already exists.
 3. Ensure the builder identity has at least:
    - **Foundry User** for agent work
    - **Foundry Project Manager** if it must create project connections
-4. Create the Fabric IQ / MCP connection path the project will use.
-5. Copy `foundry-agent\.env.example` to `.env` and fill the live values.
+4. Create the Fabric IQ / MCP connection path the project will use, then note the connection ID:
+   - It is the fully qualified resource ID of the project connection. For a new-style Foundry project it looks like `/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<foundry-account>/projects/<foundry-project>/connections/<connection-name>`.
+   - The Foundry portal shows it in the tool configuration. In Python, `project_client.connections.get("<connection-name>").id` returns it.
+   - **UNVERIFIED against a real project**: nothing in this kit has run against Foundry, and Learn shows this form on the legacy Fabric tool page; the Fabric IQ page only says "fully qualified resource ID". Paste the ID exactly as the portal or the SDK returns it.
+5. Copy `foundry-agent\.env.example` to `.env`, set `FABRIC_IQ_PROJECT_CONNECTION_ID` to that ID, and fill the other live values.
 6. Dry-run first:
    - `python foundry-agent\create_agent.py --dry-run`
 7. Create the agent live:

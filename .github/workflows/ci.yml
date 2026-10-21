@@ -114,3 +114,26 @@ jobs:
           done
           exit $status
       - run: python local-validation/run_local.py
+
+  foundry:
+    name: 06 Foundry data agent kit (tests, example SQL, offline eval, agent dry run)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: 06-demo-foundry-data-agent
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: ci/requirements/foundry.txt
+      - run: python -m pip install -r ../ci/requirements/foundry.txt
+      - run: python -m pytest tests -q -p no:cacheprovider
+      # Every example query of the data agent parses and returns the expected rows on the reference tables.
+      - run: python data-agent/validate_examples.py
+      # The offline eval: the agent that knows the schema passes all 30 questions (the naive one fails them on purpose).
+      - run: python foundry-agent/eval_harness.py --agent oracle
+      # Builds the agent definition without calling Azure.
+      - run: python foundry-agent/create_agent.py --dry-run

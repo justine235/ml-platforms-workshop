@@ -16,6 +16,7 @@ Be strict here: this stack mixes GA services with preview integration paths.
 3. **Fabric IQ / OneLake Catalog** path in Foundry:
    - exact tool label in the current portal
    - whether the published data agent still appears exactly as rehearsed
+   - the `FABRIC_IQ_PROJECT_CONNECTION_ID` value: the portal shows it in the tool configuration and `project_client.connections.get("<connection-name>").id` returns it; confirm it has the form `/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.CognitiveServices/accounts/<foundry-account>/projects/<foundry-project>/connections/<connection-name>` (**UNVERIFIED against a real project**: that form is the one the legacy Fabric tool page on Learn shows, the Fabric IQ page only says "fully qualified resource ID", and nothing in this kit has run against Foundry). `create_agent.py` passes the value through unchanged and `--dry-run` does not check it, so a wrong form can only show up in the live run
 4. **Published MCP details** in Fabric:
    - exact MCP tool name
    - exact settings-tab labels
@@ -30,11 +31,11 @@ Be strict here: this stack mixes GA services with preview integration paths.
    - the chosen Fabric capacity region and the workspace/data-source region are still aligned
    - the chosen Foundry region still exposes the planned model and required agent features
 8. **Notebook behaviour in Fabric** (`nb_10_load_gold_break_glass`, `nb_11_recon_walkthrough`; both were validated only on a local Spark + Delta session, never in Fabric; see `RESULTS.md`):
-   - which Spark runtime the workshop workspace uses: the local session was close to Runtime 1.3 (Spark 3.5.6 vs 3.5, Delta 3.2.1 vs 3.2, Python 3.11). Per Learn (checked 2026-10-21) Runtime 1.3 is in the end-of-support-announced stage and Runtime 2.0 (Spark 4.1, Delta 4.2, Python 3.13) is the GA runtime. The notebooks were **not** run on Runtime 2.0 (**UNVERIFIED**): rehearse on the runtime the workspace will actually use
+   - which Spark runtime the workshop workspace uses: run `print(spark.version)` in a cell first. The main local run used Spark 3.5.5 (the version Learn lists for Runtime 1.3), delta-spark 3.2.1 (Runtime 1.3: Delta 3.2) and Python 3.11, with Java 17 locally (Runtime 1.3: Java 11). A second local run on Spark 3.5.6 also passed but needed a write-route setting (see the `saveAsTable` bullet below). Per Learn (checked 2026-10-21) Runtime 1.3 is in the end-of-support-announced stage and Runtime 2.0 (Spark 4.1, Delta 4.2, Python 3.13) is the GA runtime. The notebooks were **not** run on Runtime 2.0 (**UNVERIFIED**): rehearse on the runtime the workspace will actually use
    - `lh_fleet` attached as the **default lakehouse** (schema-enabled) is enough for the relative `Files/reference_out` path and for `saveAsTable("gold.<table>")`, and the session was restarted after attaching it
    - how long after the CSV upload the first read can fail with "path not found" (file-listing cache); the "about 2 minutes" written in the notebook is **UNVERIFIED**
    - the lakehouse SQL analytics endpoint lists the new `gold.*` and `ml.*` tables, and after how long, before the data-agent source is added (**UNVERIFIED**)
-   - `saveAsTable` with `mode("overwrite")` and `overwriteSchema` works as is on the Fabric runtime (the local session needed a harness-only Spark setting for it; the Fabric runtime is expected not to need it, **UNVERIFIED**)
+   - `saveAsTable` with `mode("overwrite")` and `overwriteSchema` works as is on the Fabric runtime (**UNVERIFIED**): locally it works as is on Spark 3.5.5 (including over tables that already exist), but on Spark 3.5.6 every such write fails with "does not support truncate in batch mode" unless Spark is set to its V1 write route (see `RESULTS.md`, "Not covered", and `troubleshooting.md`). If a write fails like that in Fabric, note the exact error and the output of `print(spark.version)` and tell the kit owner
    - `nb_10` prints the 11 contract row counts and `nb_11` reaches its final assertions without error
 
 ## Known unverified or environment-specific items

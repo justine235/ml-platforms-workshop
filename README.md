@@ -111,7 +111,7 @@ Be honest with the room and with yourself: **nothing in this kit has been run in
 - **Azure ML**: every YAML loads with the real `azure-ai-ml` SDK loaders, the pipeline builds, and one offline end-to-end run reproduces the gate decision.
 - **MLflow tour**: the registry behaviour was probed on four MLflow versions (2.12.2, 2.16.2, 2.22.0, 3.17.0).
 - **Foundry and data agent**: dry-run first; an offline harness grades the expected answers (30 questions) against the reference tables.
-- **Repository checks** (`ci.yml`): lint, parsing of every YAML, JSON and notebook, a neutrality and secret scan, the strict deck build, and the tests of modules 03 and 05. The workflow has not run on GitHub yet: expect fixes on its first run.
+- **Repository checks** (`ci.yml`): lint, parsing of every YAML, JSON and notebook, a neutrality and secret scan, the strict deck build, and the tests of modules 03 and 05. The workflow is green on GitHub (four jobs: static checks, deck, module 03, module 05). The deck job runs on Windows because the builder measures text with Windows fonts. The Spark ETL, the Fabric ML kit, the ETL-to-ML integration and the Part 4 kit are checked locally for now (commands in `AGENTS.md`); adding them to the workflow is tracked in the open issues.
 
 That is why every kit ends with `VERIFY-BEFORE-FRIDAY.md`, and why `VERIFY-BEFORE-FRIDAY.md` at this level puts the checks in priority order. Spend a rehearsal day on it.
 

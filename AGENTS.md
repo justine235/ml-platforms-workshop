@@ -37,7 +37,7 @@ Read `README.md` first, then the README of the module you work on.
 
 ## What has not been verified
 
-Nothing in this repository has run in a real Fabric, Azure ML or Foundry tenant. The code is checked locally and in CI (Linux). The first run in a tenant is a test: expect small fixes (labels, names, IDs, permissions). Every `VERIFY-BEFORE-FRIDAY.md` lists what to confirm live.
+Nothing in this repository has run in a real Fabric, Azure ML or Foundry tenant. The code is checked locally and in CI (GitHub-hosted Linux runners, plus Windows for the deck). The first run in a tenant is a test: expect small fixes (labels, names, IDs, permissions). Every `VERIFY-BEFORE-FRIDAY.md` lists what to confirm live.
 
 ## Working without the author
 

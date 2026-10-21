@@ -78,4 +78,4 @@ Cost and sizing figures in the kits are estimates that nobody has checked agains
 
 ## Work that continues from GitHub
 
-`AGENTS.md` at the root holds the rules and the validation commands for each module. The open issues, labelled `module:*`, are the work queue. They can be picked up by the Copilot cloud agent while your laptop is off.
+`AGENTS.md` at the root holds the rules and the validation commands for each module. The open issues, labelled `module:*`, are the work queue. A Copilot cloud agent can pick them up while your laptop is off, but only if the repository owner has a Copilot plan with the cloud agent and GitHub-hosted runners are allowed (check **Settings, Actions** and **Settings, Copilot**; managed enterprise accounts often disable hosted runners). Otherwise open a Copilot CLI session in a clone and ask it to follow `AGENTS.md` for one issue.

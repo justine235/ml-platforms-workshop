@@ -616,7 +616,6 @@ function buildLucideRenderSvg(sourceSvg, strokeColor) {
   const innerSvg = extractSvgInner(sourceSvg);
   return [
     '<svg xmlns="http://www.w3.org/2000/svg" width="384" height="384" viewBox="0 0 384 384">',
-    '<style>*{vector-effect:non-scaling-stroke}</style>',
     `<g fill="none" stroke="${strokeColor}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" transform="translate(24 24) scale(14)">`,
     innerSvg,
     '</g>',

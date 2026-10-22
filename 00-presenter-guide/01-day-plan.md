@@ -5,6 +5,7 @@ Audience: data scientists and data engineers. One synthetic scenario runs all da
 How to use this folder
 - **This file** is the clock (section 1), the storyline (2), the demos and their fallbacks (3), what to cut when you are late (4), the half-day version (5) and the rules for a failing demo (6).
 - `02-slide-timeline.md` is the slide-by-slide clock.
+- **Friday's deck is the W1 edition** (`..\01-slides\ml-platforms-workshop-W1.pptx`, 68 slides). The clock times and breaks below still apply. `..\01-slides\slide-index-W1.md` gives the talk minutes of each part and what is left in its window for the demos, the labs and the questions. The slide ids in this plan and in `02-slide-timeline.md` are those of the 105-slide reference deck; most are unchanged in W1, and the W1 index lists the ones that were added.
 - `03-qa-cheatsheet.md` answers the questions you will be asked.
 - `04-prep-plan.md` is what to prepare between now and Friday.
 - `05-glossary.md` explains the vocabulary in plain English.

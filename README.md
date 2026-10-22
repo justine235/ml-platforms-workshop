@@ -25,7 +25,7 @@ The deck also has optional slides and a half-day version (core slides only). The
 
 1. `00-presenter-guide\README.md`: reading order, day plan, prep plan by day, Q&A cheat sheet, glossary, research fact sheets.
 2. `VERIFY-BEFORE-FRIDAY.md`: everything that could not be checked offline and must be looked at in the real tenants.
-3. `01-slides\ml-platforms-workshop.pptx`: the full deck with speaker notes (the talk track). `ml-platforms-workshop-halfday.pptx` is the core-only version. See `01-slides\README.md`.
+3. `01-slides\ml-platforms-workshop-W1.pptx`: **the deck to present on Friday**: 68 slides, all English, speaker notes, in one visual style. It is the presenter's own selection and order. `01-slides\slide-index-W1.md` lists it with the minutes per part. `ml-platforms-workshop.pptx` (105 slides) and `ml-platforms-workshop-halfday.pptx` (core slides only) are the generated reference decks. See `01-slides\README.md`.
 4. The `run-of-show.md` of each demo, then its `rebuild-guide.md` the first time you build it.
 5. `deploy\README.md`: what deploys where in your own Azure and Fabric tenants, and how to tear it down. `AGENTS.md`: the rules and the validation commands for anyone, or any agent, who continues the work.
 

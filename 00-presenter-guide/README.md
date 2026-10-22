@@ -18,7 +18,7 @@ Two more files live one level up:
 
 ## The speaker notes are the talk track
 
-Every slide in `..\01-slides\ml-platforms-workshop.pptx` has speaker notes. The first line gives the slide id, the minutes and whether the slide is core or optional, for example `[P1.3 · ~4 min · CORE]`. The body is what to say, in plain sentences. Read them once in Slide Sorter order, then rehearse out loud with the demos.
+Every slide in `..\01-slides\ml-platforms-workshop-W1.pptx` (Friday's deck; the 105-slide reference deck has the same format) has speaker notes. The first line gives the slide id, the minutes and whether the slide is core or optional, for example `[P1.3 · ~4 min · CORE]`. The body is what to say, in plain sentences. Read them once in Slide Sorter order, then rehearse out loud with the demos.
 
 ## Rehearsal order that works
 
